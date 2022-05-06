@@ -1,0 +1,11 @@
+<form class="d-inline float-right" action="{% url 'post-save' %}" method="POST">
+    {% csrf_token %}
+
+    {% if user.is_authenticated %}
+        {% if saved %}
+           <span style='font-weight:bolder;color:crimson'>Save Question</span> <button id="save" type="submit" name="post_sid" value="{{post.id}}" class="btn btnsave"><i class="fas fa-bookmark"></i></button><span style='font-weight:bolder;color:#0088cc;margin-left:0.5rem'>Saved</span>
+        {% else %}
+        <span style='font-weight:bolder;color:crimson'>Save Question</span> <button id="save" type="submit" name="post_sid" value="{{post.id}}" class="btn btnsave"><i class="far fa-bookmark"></i></button><span style='font-weight:bolder;color:#0088cc;margin-left:0.5rem'>Unsaved</span>
+        {% endif %}
+    {% endif %}
+</form>

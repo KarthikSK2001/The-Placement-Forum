@@ -1,0 +1,604 @@
+{% extends "blog/base.html" %}
+
+{% block title %}Codeforces DSA {% endblock %}
+
+{% block content %}
+    
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Hebrew&display=swap" rel="stylesheet">
+<style>
+  body {
+    background: #eee
+} * {
+  font-family: 'IBM Plex Sans Hebrew', sans-serif;
+}
+
+.filter {
+    border-top-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px
+}
+
+.profiles img {
+    margin-right: -6px
+}
+
+.col-md-4 {
+    margin-top: 26px
+}
+.btn{
+  color: #fff;
+  background: linear-gradient(135deg, #852d91, #312a6c);
+  font-family: 'Comfortaa', cursive;
+  font-size: 17px;
+  font-weight: 700;
+
+  padding: 11px 11px;
+  border: none;
+  border-radius: 5px;
+  overflow: hidden;
+  position: relative;
+  transition: all 0.3s cubic-bezier(0.02, 0.01, 0.47, 1);
+}
+.btn:hover{
+  color: #fff;
+  border: none;
+  box-shadow: 0 0 10px rgba(0,0,0,0.3);
+  animation: rotate 0.7s ease-in-out both;
+}
+.btn:before,
+.btn:after{
+  content: '';
+  background: #fff;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  opacity: 0;
+  transform: translate(100%, -25%) translate3d(0, 0, 0);
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  z-index: -1;
+  transition: all 0.15s cubic-bezier(0.02, 0.01, 0.47, 1);
+}
+.btn:hover:before,
+.btn:hover:after{
+  opacity: 0.15;
+}
+.btn:hover:before{ transform: translate3d(50%, 0, 0) scale(0.9); }
+.btn:hover:after{ transform: translate(50%, 0) scale(1.1); }
+@keyframes rotate{
+  0%{ transform: rotate(0deg); }
+  25%{ transform: rotate(3deg); }
+  50%{ transform: rotate(-3deg); }
+  75%{ transform: rotate(1deg); }
+  100%{ transform: rotate(0deg); }
+}
+@media only screen and (max-width: 767px){
+  .btn{ margin-bottom: 20px; }
+}.ratings i {
+  color: green;
+  margin-top:3px
+}
+.p-card,#card_suggest{
+  border-radius: 50px;
+  background: #e0e0e0;
+  box-shadow:  32px 32px 46px #6c6c6c,
+               -32px -32px 46px #ffffff;
+}
+</style>
+<style>
+    
+    h2 {
+        
+        font-size: 4.7rem;
+        font-weight: bolder;
+        font-family: 'Poppins', sans-serif;
+        text-align: center;
+        word-spacing: 10px;
+        padding: 30px;
+        margin-top: 20px;
+    }
+    
+ 
+    
+   
+   
+ 
+    
+    h4 {
+        text-align: center;
+        font-size: large; font-weight: bolder;color:crimson;margin:10px
+    }
+    
+    .container-main select {
+        margin-bottom: 5px;
+    }
+    
+    .container {
+      
+        margin-left: 15px;
+        margin: 55px auto;
+        font-weight: 500;
+        
+        max-width: 900px;
+        min-height: 90px;
+        padding: 20px;
+        
+    }
+    
+    table,
+    th,
+    td {
+        width: 850px;
+        max-width: 90vw;
+        margin-top: 50px;
+        margin-left: 10px;
+        margin-right: 10px;
+        margin: auto;
+        word-wrap: break-word;
+        border: 2px solid #0088cc;
+        border-collapse: collapse;
+        padding: 10px;
+    
+        font-weight: 600;
+    }
+    
+    #base_inv,
+    #easy_inv,
+    #medium_inv,
+    #hard_inv {
+        margin-top: 10px;
+        margin-left: 10px;
+        text-align: center;
+        font-size: 1.6rem;
+        color: red;
+    }
+    
+    select,option{
+        text-transform:capitalize;
+        color:black;
+        padding:10px;
+        border:2px solid #0088cc;
+        border-radius:10px;
+        font-weight:bolder
+    }
+    p{
+        color:crimson;
+    }
+</style>
+
+<body>
+    <div class="card text-center" id="card_suggest"  style='margin-bottom:4rem'>
+        <h5 class="card-header" style="background-color:#0088cc;color:white;font-weight:bolder">Select a topic you want to Practice</h5>
+        <div class="card-body" style='border-radius:1rem'>
+
+            <center><img src="https://i.ibb.co/0MdfrJg/cflogo.png" class="img-fluid" alt="..." style='width:60px;height:60px;border:2px solid white;border-radius:2rem;margin-bottom:0.5rem'></center>
+            <h5 class="card-title" style='font-weight:bold'>From the below given topics choose your interest or the one which you feel your not so strong at.</h5>
+
+
+            <select name="tags" id="tag">
+                <option value="null"></option>
+                <option value="2-sat">2-sat</option>
+                <option value="binary search" selected>binary search</option>
+                <option value="bitmasks">bitmasks</option>
+                <option value="brute force">brute force</option>
+                <option value="chinese remainder theorem">chinese remainder theorem</option>
+                <option value="combinatorics">combinatorics</option>
+                <option value="constructive algorithms">constructive algorithms</option>
+                <option value="data structures">data structures</option>
+                <option value="dfs and similar">dfs and similar</option>
+                <option value="divide and conquer">divide and conquer</option>
+                <option value="dp">dp</option>
+                <option value="dsu">dsu</option>
+                <option value="expression parsing">expression parsing</option>
+                <option value="fft">fft</option>
+                <option value="flows">flows</option>
+                <option value="games">games</option>
+                <option value="geometry">geometry</option>
+                <option value="graph matchings">graph matchings</option>
+                <option value="graphs">graphs</option>
+                <option value="greedy">greedy</option>
+                <option value="hashing">hashing</option>
+                <option value="implementation">implementation</option>
+                <option value="interactive">interactive</option>
+                <option value="math">math</option>
+                <option value="matrices">matrices</option>
+                <option value="meet-in-the-middle">meet-in-the-middle</option>
+                <option value="number theory">number theory</option>
+                <option value="probabilities">probabilities</option>
+                <option value="schedules">schedules</option>
+                <option value="shortest paths">shortest paths</option>
+                <option value="sorting">sorting</option>
+                <option value="string suffix structures">string suffix structures</option>
+                <option value="strings">strings</option>
+                <option value="ternary search">ternary search</option>
+                <option value="trees">trees</option>
+                <option value="two pointers">two pointers</option>
+            </select>
+            <br>
+
+            <button class='btn btn-success'type="submit" name="apply" onclick="applied()"style='margin-top:1rem'>Generate</button>        </div>
+      </div>
+    <span id="handle"></span>
+    {% comment %} <div class="container-main">
+        <p>Select a topic you want to Practice</p>
+        <select name="tags" id="tag">
+            <option value="null"></option>
+            <option value="2-sat">2-sat</option>
+            <option value="binary search">binary search</option>
+            <option value="bitmasks">bitmasks</option>
+            <option value="brute force">brute force</option>
+            <option value="chinese remainder theorem">chinese remainder theorem</option>
+            <option value="combinatorics">combinatorics</option>
+            <option value="constructive algorithms">constructive algorithms</option>
+            <option value="data structures">data structures</option>
+            <option value="dfs and similar">dfs and similar</option>
+            <option value="divide and conquer">divide and conquer</option>
+            <option value="dp">dp</option>
+            <option value="dsu">dsu</option>
+            <option value="expression parsing">expression parsing</option>
+            <option value="fft">fft</option>
+            <option value="flows">flows</option>
+            <option value="games">games</option>
+            <option value="geometry">geometry</option>
+            <option value="graph matchings">graph matchings</option>
+            <option value="graphs">graphs</option>
+            <option value="greedy">greedy</option>
+            <option value="hashing">hashing</option>
+            <option value="implementation">implementation</option>
+            <option value="interactive">interactive</option>
+            <option value="math">math</option>
+            <option value="matrices">matrices</option>
+            <option value="meet-in-the-middle">meet-in-the-middle</option>
+            <option value="number theory">number theory</option>
+            <option value="probabilities">probabilities</option>
+            <option value="schedules">schedules</option>
+            <option value="shortest paths">shortest paths</option>
+            <option value="sorting">sorting</option>
+            <option value="string suffix structures">string suffix structures</option>
+            <option value="strings">strings</option>
+            <option value="ternary search">ternary search</option>
+            <option value="trees">trees</option>
+            <option value="two pointers">two pointers</option>
+        </select>
+        <br>
+        <button type="submit" name="apply" onclick="applied()">Apply</button>
+    </div> {% endcomment %}
+    <div class="container">
+        <div class="questions">
+            <div id="basics">
+                <table id="base">
+                    <h4>Basics</h4>
+                    <tr>
+                        <td>S.No.</td>
+                        <td>Questions</td>
+                    </tr>
+                </table>
+                <p id="base_inv"></p>
+            </div>
+            <div id="easy">
+                <table id="ease">
+                    <h4>Easy</h4>
+                    <tr>
+                        <th>S.No.</th>
+                        <th>Questions</th>
+                    </tr>
+                </table>
+                <p id="easy_inv"></p>
+            </div>
+            <div id="medium">
+                <table id="med">
+                    <h4>Medium</h4>
+                    <tr>
+                        <th>S.No.</th>
+                        <th>Questions</th>
+                    </tr>
+                </table>
+                <p id="medium_inv"></p>
+            </div>
+            <div class="hard">
+                <table id="diff">
+                    <h4>Hard</h4>
+                    <tr>
+                        <th>S.No.</th>
+                        <th>Questions</th>
+                    </tr>
+                </table>
+                <p id="hard_inv"></p>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
+
+    <script>
+        var prev_b = 0;
+        var prev_e = 0;
+        var prev_m = 0;
+        var prev_h = 0;
+
+        function applied() {
+            rate = localStorage.getItem('rating');
+
+            var tag = document.getElementById("tag").value;
+            var api_url = 'https://codeforces.com/api/problemset.problems?tags=' + tag;
+            if (tag == "null") {
+                api_url = 'https://codeforces.com/api/problemset.problems';
+            }
+            async function get_questions() {
+                const reponse = await fetch(api_url);
+                const data = await reponse.json();
+                var ok = data.status;
+                var result = data.result.problems;
+
+                if (ok === "OK") {
+                    var basic_n = [];
+                    var basic_c = [];
+                    var basic_i = [];
+                    var min_rating = 800
+                    var max_rating = Math.min(rate, 1500);
+                    if (rate < 800) {
+                        max_rating = 1000;
+                    }
+                    var len = result.length;
+                    for (var i = 0; i < len; i++) {
+                        var rat = result[i].rating;
+                        if (rat >= min_rating && rat <= max_rating) {
+                            basic_c.push(result[i].contestId);
+                            basic_i.push(result[i].index);
+                            basic_n.push(result[i].name);
+                        }
+                        if (basic_n.length === 20) {
+                            break;
+                        }
+                    }
+
+                    if (basic_n.length > 0) {
+                        var table1 = document.getElementById("base");
+                        for (var i = 0; i < prev_b; i++) {
+                            table1.deleteRow(1);
+                        }
+                        if (prev_b === 0) {
+                            document.getElementById("base_inv").innerHTML = "";
+                        }
+                        for (var i = 0; i < basic_c.length; i++) {
+                            var new_row = table1.insertRow(-1);
+                            var cell1 = new_row.insertCell(0);
+                            var cell2 = new_row.insertCell(1);
+                            cell2.setAttribute("id", basic_n[i]);
+                            cell1.innerHTML = i + 1;
+                            var txt = basic_n[i];
+                            var link = "https://codeforces.com/problemset/problem/";
+                            link += basic_c[i];
+                            link += "/";
+                            link += basic_i[i];
+                            toString(link);
+                            var link_node = document.createElement("a");
+                            link_node.setAttribute("href", link);
+                            link_node.setAttribute("target", "_blank");
+                            link_node.setAttribute("style", "text-decoration: none;");
+                            link_node.innerText = txt;
+                            document.getElementById(basic_n[i]).appendChild(link_node);
+                        }
+                        prev_b = basic_c.length;
+                    } else {
+                        var table1 = document.getElementById("base");
+                        for (var i = 0; i < prev_b; i++) {
+                            table1.deleteRow(1);
+                        }
+                        prev_b = 0;
+                        document.getElementById("base_inv").innerHTML = "Can't find any questions of this topic and level of the question";
+                    }
+                    min_rating = max_rating;
+                    max_rating = min_rating + 500;
+                    var easy_n = [];
+                    var easy_c = [];
+                    var easy_i = [];
+                    for (var i = 0; i < len; i++) {
+                        var rat = result[i].rating;
+                        if (rat > min_rating && rat <= max_rating) {
+                            easy_c.push(result[i].contestId);
+                            easy_i.push(result[i].index);
+                            easy_n.push(result[i].name);
+                        }
+                        if (easy_n.length === 20) {
+                            break;
+                        }
+                    }
+
+                    if (easy_n.length > 0) {
+                        var table1 = document.getElementById("ease");
+                        for (var i = 0; i < prev_e; i++) {
+                            table1.deleteRow(1);
+                        }
+                        if (prev_e === 0) {
+                            document.getElementById("easy_inv").innerHTML = "";
+                        }
+                        for (var i = 0; i < easy_c.length; i++) {
+                            var new_row = table1.insertRow(-1);
+                            var cell1 = new_row.insertCell(0);
+                            var cell2 = new_row.insertCell(1);
+                            cell2.setAttribute("id", easy_n[i]);
+                            cell1.innerHTML = i + 1;
+                            var txt = easy_n[i];
+                            var link = "https://codeforces.com/problemset/problem/";
+                            link += easy_c[i];
+                            link += "/";
+                            link += easy_i[i];
+                            toString(link);
+                            var link_node = document.createElement("a");
+                            link_node.setAttribute("href", link);
+                            link_node.setAttribute("target", "_blank");
+                            link_node.setAttribute("style", "text-decoration: none;");
+                            link_node.innerText = txt;
+                            document.getElementById(easy_n[i]).appendChild(link_node);
+                        }
+                        prev_e = easy_c.length;
+                    } else {
+                        var table1 = document.getElementById("ease");
+                        for (var i = 0; i < prev_e; i++) {
+                            table1.deleteRow(1);
+                        }
+                        prev_e = 0;
+                        document.getElementById("easy_inv").innerHTML = "Can't find any questions of this topic and level of the question";
+                    }
+                    min_rating = max_rating;
+                    max_rating = min_rating + 500;
+                    var med_n = [];
+                    var med_c = [];
+                    var med_i = [];
+                    for (var i = 0; i < len; i++) {
+                        var rat = result[i].rating;
+                        if (rat > min_rating && rat <= max_rating) {
+                            med_c.push(result[i].contestId);
+                            med_i.push(result[i].index);
+                            med_n.push(result[i].name);
+                        }
+                        if (med_n.length === 10) {
+                            break;
+                        }
+                    }
+
+                    if (med_n.length > 0) {
+                        var table1 = document.getElementById("med");
+                        for (var i = 0; i < prev_m; i++) {
+                            table1.deleteRow(1);
+                        }
+                        if (prev_m === 0) {
+                            document.getElementById("medium_inv").innerHTML = "";
+                        }
+                        for (var i = 0; i < med_c.length; i++) {
+                            var new_row = table1.insertRow(-1);
+                            var cell1 = new_row.insertCell(0);
+                            var cell2 = new_row.insertCell(1);
+                            cell2.setAttribute("id", med_n[i]);
+                            cell1.innerHTML = i + 1;
+                            var txt = med_n[i];
+                            var link = "https://codeforces.com/problemset/problem/";
+                            link += med_c[i];
+                            link += "/";
+                            link += med_i[i];
+                            toString(link);
+                            var link_node = document.createElement("a");
+                            link_node.setAttribute("href", link);
+                            link_node.setAttribute("target", "_blank");
+                            link_node.setAttribute("style", "text-decoration: none;");
+                            link_node.innerText = txt;
+                            document.getElementById(med_n[i]).appendChild(link_node);
+                        }
+                        prev_m = med_c.length;
+                    } else {
+                        var table1 = document.getElementById("med");
+                        for (var i = 0; i < prev_m; i++) {
+                            table1.deleteRow(1);
+                        }
+                        prev_m = 0;
+                        document.getElementById("medium_inv").innerHTML = "Can't find any questions of this topic and level of the question";
+                    }
+                    min_rating = max_rating;
+                    max_rating = 3500;
+                    var dif_n = [];
+                    var dif_c = [];
+                    var dif_i = [];
+                    for (var i = 0; i < len; i++) {
+                        var rat = result[i].rating;
+                        if (rat > min_rating && rat <= max_rating) {
+                            dif_c.push(result[i].contestId);
+                            dif_i.push(result[i].index);
+                            dif_n.push(result[i].name);
+                        }
+                        if (dif_n.length === 10) {
+                            break;
+                        }
+                    }
+                    if (dif_n.length > 0) {
+                        var table1 = document.getElementById("diff");
+                        for (var i = 0; i < prev_h; i++) {
+                            table1.deleteRow(1);
+                        }
+                        if (prev_h === 0) {
+                            document.getElementById("hard_inv").innerHTML = "";
+                        }
+                        for (var i = 0; i < dif_c.length; i++) {
+                            var new_row = table1.insertRow(-1);
+                            var cell1 = new_row.insertCell(0);
+                            var cell2 = new_row.insertCell(1);
+                            cell2.setAttribute("id", dif_n[i]);
+                            cell1.innerHTML = i + 1;
+                            var txt = dif_n[i];
+                            var link = "https://codeforces.com/problemset/problem/";
+                            link += dif_c[i];
+                            link += "/";
+                            link += dif_i[i];
+                            toString(link);
+                            var link_node = document.createElement("a");
+                            link_node.setAttribute("href", link);
+                            link_node.setAttribute("target", "_blank");
+                            link_node.setAttribute("style", "text-decoration: none;");
+                            link_node.innerText = txt;
+                            document.getElementById(dif_n[i]).appendChild(link_node);
+                        }
+                        prev_h = dif_c.length;
+                    } else {
+                        var table1 = document.getElementById("diff");
+                        for (var i = 0; i < prev_h; i++) {
+                            table1.deleteRow(1);
+                        }
+                        prev_h = 0;
+                        document.getElementById("hard_inv").innerHTML = "Can't find any questions of this topic and level of the question";
+                    }
+                }
+            }
+            get_questions();
+        }
+    </script>
+<!-- Code injected by live-server -->
+<script type="text/javascript">
+	// <![CDATA[  <-- For SVG support
+	if ('WebSocket' in window) {
+		(function () {
+			function refreshCSS() {
+				var sheets = [].slice.call(document.getElementsByTagName("link"));
+				var head = document.getElementsByTagName("head")[0];
+				for (var i = 0; i < sheets.length; ++i) {
+					var elem = sheets[i];
+					var parent = elem.parentElement || head;
+					parent.removeChild(elem);
+					var rel = elem.rel;
+					if (elem.href && typeof rel != "string" || rel.length == 0 || rel.toLowerCase() == "stylesheet") {
+						var url = elem.href.replace(/(&|\?)_cacheOverride=\d+/, '');
+						elem.href = url + (url.indexOf('?') >= 0 ? '&' : '?') + '_cacheOverride=' + (new Date().valueOf());
+					}
+					parent.appendChild(elem);
+				}
+			}
+			var protocol = window.location.protocol === 'http:' ? 'ws://' : 'wss://';
+			var address = protocol + window.location.host + window.location.pathname + '/ws';
+			var socket = new WebSocket(address);
+			socket.onmessage = function (msg) {
+				if (msg.data == 'reload') window.location.reload();
+				else if (msg.data == 'refreshcss') refreshCSS();
+			};
+			if (sessionStorage && !sessionStorage.getItem('IsThisFirstTime_Log_From_LiveServer')) {
+				console.log('Live reload enabled.');
+				sessionStorage.setItem('IsThisFirstTime_Log_From_LiveServer', true);
+			}
+		})();
+	}
+	else {
+		console.error('Upgrade your browser. This Browser is NOT supported WebSocket for Live-Reloading.');
+	}
+	// ]]>
+</script></body>
+{% endblock %}
+{% block script %}
+<script>
+
+  var colors = ['#FB9797', '#FB84BD', '#EA84FB', '#FF6D3F', '#4270E7', 'green', 'blue'];
+    $('.add-border').each(function() {
+        $(this).css('border-top', "3px solid " + colors[Math.floor(Math.random() * colors.length)]);
+    });
+
+</script>
+{% endblock %}
+

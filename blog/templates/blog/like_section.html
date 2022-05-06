@@ -1,0 +1,17 @@
+<form action="{% url 'post-like' %}" method="POST" >
+    {% csrf_token %}
+
+    {% if user.is_authenticated %}
+        {% if liked %}
+        <span style='font-weight:bolder;color:#0088cc'>Solved</span>  <button id="like" type="submit" name="post_id" value="{{post.id}}" class="btn btnhrt"><i class="fas fa-heart"></i></button>
+        {% else %}
+        <span style='font-weight:bolder;color:#0088cc'>UnSolved</span> <button id="like" type="submit" name="post_id" value="{{post.id}}" class="btn btnhrt"><i class="far fa-heart"></i></button>
+        {% endif %}
+    {% else %}
+        <small>Login to like</small>
+    {% endif %}
+    <span style='font-weight:bolder;color:#0088cc'>- {{total_likes}}  </span > <span style="background-color:crimson;color:white;font-weight:bolder;border-radius:0.5rem;padding:0.5rem" >Users Solved</span>
+    <hr><p style="color:crimson;font-weight:bolder;border-radius:0.5rem;" >* Find Your Solved Questions Under <a href="{% url 'all-like' %}" style="text-decoration:underline"> "Liked Questions"</a> Section</p>
+    <p style="color:crimson;font-weight:bolder;border-radius:0.5rem;" >* Find Your Saved Questions Under <a href="{% url 'all-save' %}" style="text-decoration:underline"> "Saved Questions"</a> Section</p>
+
+</form>

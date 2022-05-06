@@ -1,0 +1,77 @@
+{% extends "blog/base.html" %}
+
+{% block title %}Data Structures{% endblock %}
+ 
+{% block content %}
+<style>
+    #card_suggest_detail,#btntitle,col-md-10{
+        border-radius: 0.5rem;
+        
+        box-shadow:  8px 8px 4px #c5c5c5,
+                     -8px -8px 4px #fbfbfb;}
+</style>
+<div class="col-md-10 m-auto">
+    
+<article class="content-section" style="overflow: auto;margin-bottom:2rem;border-radius: 0.5rem;
+        
+box-shadow:  8px 8px 4px #c5c5c5,
+             -8px -8px 4px #fbfbfb;">
+
+    <div class="media">
+        <img class="rounded-circle article-img" src="https://i.ibb.co/71FNvw0/ds-logo.png" alt="image">
+        <div class="media-body">
+            <h4 class="d-inline" style='font-weight:bolder'>Code Studio</h4>
+            {% for author in post_likes %}
+            <p>{{ author.username }}f</p>
+            {% endfor %}
+            <div id="save-section">
+                {% include 'blog/save_section.html' %}
+            </div>
+            <p><small class="text-success" style="color:darkgreen;font-weight:bolder" >Difficulty = "{{ post.level}}"</small></p>
+        </div>
+    </div>
+
+    <div class="card text-center" id="card_suggest_detail" style='margin-bottom:1rem;margin-top:1rem'>
+        <h6 class="card-header" style="background-color:crimson;color:white;font-weight:bolder;border-radius:0.5rem;">{{post.title}}</h6>
+       
+       
+      </div>
+    {% comment %} <h3 class="d-inline"><a class="article-title" href="{% url 'post-detail' post.id %}">Question - {{ post.title }}</a></h3> {% endcomment %}
+    {% if post.author == user %}
+    <div class="d-inline float-right">
+            &nbsp;&nbsp;&nbsp;<a class="btn btnedit" href="{% url 'post-update' post.id %}"><i class="far fa-edit"></i></a>
+            &nbsp;&nbsp;&nbsp;<a class="btn btndel" href="{% url 'post-delete' post.id %}"><i class="far fa-trash-alt"></i></a>
+        </div> 
+    {% endif %} 
+    
+    <div class="card text-center" id="card_suggest_detail" style='margin-bottom:1rem'>
+        <h6 class="card-header" style="background-color:#0088cc;color:white;font-weight:bolder;border-radius:0.5rem;">Description</h6>
+       
+       
+      </div>
+    <hr>
+    <p class="article-content" style="font-weight:bolder">{{ post.content|safe }}</p>
+    <hr>
+    <center> <button type="button" id="btntitle" class="btn btn-danger" style="border-radius:0.5rem;background-color:crimson"><a target="_blank" class="article-title" href="{{ post.link }}" style="color:white;">Solve Here</a></button>
+    </center>
+    <hr>
+</article>
+
+<div id="like-section" style='margin-top:1rem;'>
+    {% include 'blog/like_section.html' %}
+</div>
+
+
+<hr>
+
+<div class="main-comment-section">
+    {% include 'blog/comments.html' %}
+</div>
+
+
+<br><br>
+
+</div>
+
+
+{% endblock %}

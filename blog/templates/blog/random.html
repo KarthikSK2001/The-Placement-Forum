@@ -1,0 +1,5043 @@
+
+
+
+    {% extends "blog/base.html" %}
+
+    {% block title %}Random DSA Generator{% endblock %}
+    
+    {% block content %}
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <style>
+      body {
+        background: #eee
+    } * {
+      font-family: 'IBM Plex Sans Hebrew', sans-serif;
+    }
+    .btn{
+        color: #fff;
+        background: linear-gradient(135deg, #852d91, #312a6c);
+        font-family: 'Comfortaa', cursive;
+        font-size: 17px;
+        font-weight: 700;
+      
+        padding: 11px 11px;
+        border: none;
+        border-radius: 5px;
+        overflow: hidden;
+        position: relative;
+        transition: all 0.3s cubic-bezier(0.02, 0.01, 0.47, 1);
+      }
+      .btn:hover{
+        color: #fff;
+        border: none;
+        box-shadow: 0 0 10px rgba(0,0,0,0.3);
+        animation: rotate 0.7s ease-in-out both;
+      }
+      .btn:before,
+      .btn:after{
+        content: '';
+        background: #fff;
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        opacity: 0;
+        transform: translate(100%, -25%) translate3d(0, 0, 0);
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        z-index: -1;
+        transition: all 0.15s cubic-bezier(0.02, 0.01, 0.47, 1);
+      }
+      .btn:hover:before,
+      .btn:hover:after{
+        opacity: 0.15;
+      }
+      .btn:hover:before{ transform: translate3d(50%, 0, 0) scale(0.9); }
+      .btn:hover:after{ transform: translate(50%, 0) scale(1.1); }
+      @keyframes rotate{
+        0%{ transform: rotate(0deg); }
+        25%{ transform: rotate(3deg); }
+        50%{ transform: rotate(-3deg); }
+        75%{ transform: rotate(1deg); }
+        100%{ transform: rotate(0deg); }
+      }
+    .filter {
+        border-top-right-radius: 10px;
+        border-bottom-left-radius: 10px;
+        border-bottom-right-radius: 10px
+    }
+    
+    .profiles img {
+        margin-right: -6px
+    }
+    
+    .col-md-4 {
+        margin-top: 26px
+    }
+    .btn{
+      color: #fff;
+      background: linear-gradient(135deg, #852d91, #312a6c);
+      font-family: 'Comfortaa', cursive;
+      font-size: 17px;
+      font-weight: 700;
+    
+      padding: 11px 11px;
+      border: none;
+      border-radius: 5px;
+      overflow: hidden;
+      position: relative;
+      transition: all 0.3s cubic-bezier(0.02, 0.01, 0.47, 1);
+    }
+    .btn:hover{
+      color: #fff;
+      border: none;
+      box-shadow: 0 0 10px rgba(0,0,0,0.3);
+      animation: rotate 0.7s ease-in-out both;
+    }
+    .btn:before,
+    .btn:after{
+      content: '';
+      background: #fff;
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      opacity: 0;
+      transform: translate(100%, -25%) translate3d(0, 0, 0);
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      z-index: -1;
+      transition: all 0.15s cubic-bezier(0.02, 0.01, 0.47, 1);
+    }
+    .btn:hover:before,
+    .btn:hover:after{
+      opacity: 0.15;
+    }
+    .btn:hover:before{ transform: translate3d(50%, 0, 0) scale(0.9); }
+    .btn:hover:after{ transform: translate(50%, 0) scale(1.1); }
+    @keyframes rotate{
+      0%{ transform: rotate(0deg); }
+      25%{ transform: rotate(3deg); }
+      50%{ transform: rotate(-3deg); }
+      75%{ transform: rotate(1deg); }
+      100%{ transform: rotate(0deg); }
+    }
+    @media only screen and (max-width: 767px){
+      .btn{ margin-bottom: 20px; }
+    }.ratings i {
+      color: green;
+      margin-top:3px
+    }
+    .p-card,#card_suggest{
+      border-radius: 50px;
+      background: #e0e0e0;
+      box-shadow:  32px 32px 46px #6c6c6c,
+                   -32px -32px 46px #ffffff;
+    }
+    </style>
+
+    
+    
+    <div class="card text-center" id="card_suggest"  style='margin-bottom:2rem'>
+        <h5 class="card-header" style="background-color:#0088cc;color:white;font-weight:bolder">Random DSA Qns Generator</h5>
+        <div class="card-body" style='border-radius:1rem'>
+          
+          
+          <h5 class="card-title" style='font-weight:bold'>This Feature enables you to pick Random DSA Questions which can help you grind your data structure skills by solving some random and important questions asked in the interviews.</h5>
+        </div>
+      </div>
+      
+
+<style>
+    table {
+        border-collapse: separate;
+        border-spacing: 0;
+        font-family: 'IBM Plex Sans Hebrew', sans-serif;
+    }
+
+    caption,
+    th,
+    td {
+        text-align: left;
+        font-weight: normal;
+    }
+
+    th {
+        background: #3498db;
+        color: white;
+        font-weight: bold;
+    }
+
+    td,
+    th {
+        padding: 6px;
+        border: 1px solid #ccc;
+        text-align: center;
+        font-size: 17px;
+    }
+</style>
+
+<body>
+    {% comment %} <h3 style="background: crimson;color: white;font-weight: bold;padding:10px;text-align: center;">Questions List!</h3> {% endcomment %}
+   <table id="cp_logs_table" class="widefat" style="background-color:#333;color:#ddd;font-weight:bold;margin:15px;display:none;">
+
+        <thead>
+            <tr>
+                <th scope="col">Serial No.</th>
+                <th scope="col">Data Structure</th>
+                <th scope="col">Question Name</th>
+                <th scope="col">Link</th>
+            </tr>
+        </thead>
+
+
+
+        <tbody id="participants">
+            <tr>
+                <td>1</td>
+                <td title="">Array </td>
+                <td>
+                    Reverse the array
+                </td>
+                <td>
+                    <a target="_blank" href="https://www.geeksforgeeks.org/write-a-program-to-reverse-an-array-or-string/">Solve Here</a>
+                </td>
+
+            </tr>
+            <tr>
+                <td>2</td>
+                <td title="">Array</td>
+                <td>
+                    Find the maximum and minimum element in an array
+                </td>
+                <td>
+                    <a target="_blank" href="https://www.geeksforgeeks.org/maximum-and-minimum-in-an-array/">Solve Here</a>
+                </td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td title="wolfkin">Array</td>
+                <td>
+                    Find the "Kth" max and min element of an array
+
+                </td>
+                <td>
+                    <a target="_blank" href="https://practice.geeksforgeeks.org/problems/kth-smallest-element/0">Solve Here</a>
+                </td>
+            </tr>
+            <tr>
+                <td>4</td>
+                <td title="wolfkin">Array</td>
+                <td>
+                    Given an array which consists of only 0, 1 and 2. Sort the array without using any sorting algo
+
+                </td>
+                <td>
+                    <a target="_blank" href="https://practice.geeksforgeeks.org/problems/sort-an-array-of-0s-1s-and-2s4231/1">Solve Here</a>
+                </td>
+            </tr>
+            <tr>
+                <td>5</td>
+                <td title="wolfkin">Array</td>
+                <td>
+                    Move all the negative elements to one side of the array
+
+                </td>
+                <td>
+                    <a target="_blank" href="https://www.geeksforgeeks.org/move-negative-numbers-beginning-positive-end-constant-extra-space/">Solve Here</a>
+                </td>
+            </tr>
+            <tr>
+                <td>6</td>
+                <td title="wolfkin">Array</td>
+                <td>
+                  Find the Union and Intersection of the two sorted arrays.
+
+                </td>
+                <td>
+                    <a target="_blank" href="https://practice.geeksforgeeks.org/problems/union-of-two-arrays3538/1">Solve Here</a>
+                </td>
+            </tr>
+            <tr>
+                <td>7</td>
+                <td title="wolfkin">Array</td>
+                <td>
+                    Write a program to cyclically rotate an array by one.
+
+                </td>
+                <td>
+                    <a target="_blank" href="https://practice.geeksforgeeks.org/problems/cyclically-rotate-an-array-by-one2614/1">Solve Here</a>
+                </td>
+            </tr>
+            <tr>
+                <td>8</td>
+                <td title="wolfkin">Array</td>
+                <td>
+                    find Largest sum contiguous Subarray [V. IMP]
+
+                </td>
+                <td>
+                    <a target="_blank" href="https://practice.geeksforgeeks.org/problems/kadanes-algorithm-1587115620/1">Solve Here</a>
+                </td>
+            </tr>
+            <tr>
+                <td>9</td>
+                <td title="wolfkin">Array</td>
+                <td>
+                  Minimise the maximum difference between heights [V.IMP]
+
+                </td>
+                <td>
+                    <a target="_blank" href="https://practice.geeksforgeeks.org/problems/minimize-the-heights3351/1">Solve Here</a>
+                </td>
+            </tr>
+            <tr>
+                <td>10</td>
+                <td title="wolfkin">Array</td>
+                <td>
+                    Minimum no. of Jumps to reach end of an array
+
+                </td>
+                <td>
+                    <a target="_blank" href="https://practice.geeksforgeeks.org/problems/minimum-number-of-jumps-1587115620/1">Solve Here</a>
+                </td>
+            </tr>
+            <tr>
+                <td>11</td>
+                <td title="wolfkin">Array</td>
+                <td>
+                    find duplicate in an array of N+1 Integers
+
+                </td>
+                <td>
+                    <a target="_blank" href="https://leetcode.com/problems/find-the-duplicate-number/">Solve Here</a>
+                </td>
+            </tr>
+            <tr>
+                <td>12</td>
+                <td title="wolfkin">Array</td>
+                <td>
+                  Merge 2 sorted arrays without using Extra space.
+
+                </td>
+                <td>
+                    <a target="_blank" href="https://practice.geeksforgeeks.org/problems/merge-two-sorted-arrays5135/1">Solve Here</a>
+                </td>
+            </tr>
+            <tr>
+                <td>13</td>
+                <td title="wolfkin">Array</td>
+                <td>
+                  Kadane's Algo [V.V.V.V.V IMP]
+
+                </td>
+                <td>
+                    <a target="_blank" href="https://practice.geeksforgeeks.org/problems/kadanes-algorithm-1587115620/1">Solve Here</a>
+                </td>
+            </tr>
+            <tr>
+                <td>14</td>
+                <td title="wolfkin">Array</td>
+                <td>
+                Merge Intervals
+
+                </td>
+                <td>
+                    <a target="_blank" href="https://leetcode.com/problems/merge-intervals/">Solve Here</a>
+                </td>
+            </tr>
+            <tr>
+                <td>15</td>
+                <td title="wolfkin">Array</td>
+                <td>
+                Next Permutation
+
+                </td>
+                <td>
+                    <a target="_blank" href="https://leetcode.com/problems/next-permutation/">Solve Here</a>
+                </td>
+            </tr>
+            <tr>
+                <td>16</td>
+                <td title="wolfkin">Array</td>
+                <td>
+                  Count Inversion
+
+                </td>
+                <td>
+                    <a target="_blank" href="https://practice.geeksforgeeks.org/problems/inversion-of-array-1587115620/1">Solve Here</a>
+                </td>
+            </tr>
+            <tr>
+                <td>17</td>
+                <td title="wolfkin">Array</td>
+                <td>
+Best time to buy and Sell stock
+
+                </td>
+                <td>
+                    <a target="_blank" href="https://leetcode.com/problems/best-time-to-buy-and-sell-stock/">Solve Here</a>
+                </td>
+            </tr>
+            <tr>
+                <td>18</td>
+                <td title="wolfkin">Array</td>
+                <td>
+find all pairs on integer array whose sum is equal to given number
+
+                </td>
+                <td>
+                    <a target="_blank" href="https://practice.geeksforgeeks.org/problems/count-pairs-with-given-sum5022/1">Solve Here</a>
+                </td>
+            </tr>
+            <tr>
+                <td>19</td>
+                <td title="wolfkin">Array</td>
+                <td>
+find common elements In 3 sorted arrays
+
+                </td>
+                <td>
+                    <a target="_blank" href="https://practice.geeksforgeeks.org/problems/common-elements1132/1">Solve Here</a>
+                </td>
+            </tr>
+            <tr>
+                <td>20</td>
+                <td title="wolfkin">Array</td>
+                <td>
+Rearrange the array in alternating positive and negative items with O(1) extra space
+
+                </td>
+                <td>
+                    <a target="_blank" href="https://www.geeksforgeeks.org/rearrange-array-alternating-positive-negative-items-o1-extra-space/">Solve Here</a>
+                </td>
+            </tr>
+            <tr>
+                <td>21</td>
+                <td title="wolfkin">Array</td>
+                <td>
+Find if there is any subarray with sum equal to 0
+
+                </td>
+                <td>
+                    <a target="_blank" href="https://practice.geeksforgeeks.org/problems/subarray-with-0-sum-1587115621/1">Solve Here</a>
+                </td>
+            </tr>
+            <tr>
+                <td>22</td>
+                <td title="wolfkin">Array</td>
+                <td>
+Find factorial of a large number
+
+                </td>
+                <td>
+                    <a target="_blank" href="https://practice.geeksforgeeks.org/problems/factorials-of-large-numbers2508/1">Solve Here</a>
+                </td>
+            </tr>
+            <tr>
+                <td>23</td>
+                <td title="wolfkin">Array</td>
+                <td>
+find maximum product subarray
+
+                </td>
+                <td>
+                    <a target="_blank" href="https://practice.geeksforgeeks.org/problems/maximum-product-subarray3604/1">Solve Here</a>
+                </td>
+            </tr>
+            <tr>
+                <td>24</td>
+                <td title="wolfkin">Array</td>
+                <td>
+Find longest coinsecutive subsequence
+
+                </td>
+                <td>
+                    <a target="_blank" href="https://practice.geeksforgeeks.org/problems/longest-consecutive-subsequence2449/1">Solve Here</a>
+                </td>
+            </tr>
+            <tr>
+                <td>25</td>
+                <td title="wolfkin">Array</td>
+                <td>
+Given an array of size n and a number k, fin all elements that appear more than " n/k " times.
+
+                </td>
+                <td>
+                    <a target="_blank" href="https://www.geeksforgeeks.org/given-an-array-of-of-size-n-finds-all-the-elements-that-appear-more-than-nk-times/">Solve Here</a>
+                </td>
+            </tr>
+            <tr>
+                <td>26</td>
+                <td title="wolfkin">Array</td>
+                <td>
+Maximum profit by buying and selling a share atmost twice
+
+                </td>
+                <td>
+                    <a target="_blank" href="https://www.geeksforgeeks.org/maximum-profit-by-buying-and-selling-a-share-at-most-twice/">Solve Here</a>
+                </td>
+            </tr>
+            <tr>
+                <td>27</td>
+                <td title="wolfkin">Array</td>
+                <td>
+Find whether an array is a subset of another array
+
+                </td>
+                <td>
+                    <a target="_blank" href="https://practice.geeksforgeeks.org/problems/array-subset-of-another-array2317/1">Solve Here</a>
+                </td>
+            </tr>
+            <tr>
+                <td>28</td>
+                <td title="wolfkin">Array</td>
+                <td>
+Find the triplet that sum to a given value
+
+                </td>
+                <td>
+                    <a target="_blank" href="https://practice.geeksforgeeks.org/problems/triplet-sum-in-array-1587115621/1">Solve Here</a>
+                </td>
+            </tr>
+            <tr>
+                <td>29</td>
+                <td title="wolfkin">Array</td>
+                <td>
+Trapping Rain water problem
+
+                </td>
+                <td>
+                    <a target="_blank" href="https://practice.geeksforgeeks.org/problems/trapping-rain-water-1587115621/1">Solve Here</a>
+                </td>
+            </tr>
+            <tr>
+                <td>30</td>
+                <td title="wolfkin">Array</td>
+                <td>
+Chocolate Distribution problem
+
+                </td>
+                <td>
+                    <a target="_blank" href="https://practice.geeksforgeeks.org/problems/chocolate-distribution-problem3825/1">Solve Here</a>
+                </td>
+            </tr>
+            <tr>
+                <td>31</td>
+                <td title="wolfkin">Array</td>
+                <td>
+Smallest Subarray with sum greater than a given value
+
+                </td>
+                <td>
+                    <a target="_blank" href="https://practice.geeksforgeeks.org/problems/smallest-subarray-with-sum-greater-than-x5651/1">Solve Here</a>
+                </td>
+            </tr>
+            <tr>
+                <td>32</td>
+                <td title="wolfkin">Array</td>
+                <td>
+Three way partitioning of an array around a given value
+
+                </td>
+                <td>
+                    <a target="_blank" href="https://practice.geeksforgeeks.org/problems/three-way-partitioning/1">Solve Here</a>
+                </td>
+            </tr>
+            <tr>
+                <td>33</td>
+                <td title="wolfkin">Array</td>
+                <td>
+Minimum swaps required bring elements less equal K together
+
+                </td>
+                <td>
+                    <a target="_blank" href="https://practice.geeksforgeeks.org/problems/minimum-swaps-required-to-bring-all-elements-less-than-or-equal-to-k-together4847/1">Solve Here</a>
+                </td>
+            </tr>
+            <tr>
+                <td>34</td>
+                <td title="wolfkin">Array</td>
+                <td>
+Minimum no. of operations required to make an array palindrome
+
+                </td>
+                <td>
+                    <a target="_blank" href="https://practice.geeksforgeeks.org/problems/palindromic-array-1587115620/1">Solve Here</a>
+                </td>
+            </tr>
+            <tr>
+                <td>35</td>
+                <td title="wolfkin">Array</td>
+                <td>
+Median of 2 sorted arrays of equal size
+
+                </td>
+                <td>
+                    <a target="_blank" href="https://practice.geeksforgeeks.org/problems/find-the-median0527/1">Solve Here</a>
+                </td>
+            </tr>
+            <tr>
+                <td>36</td>
+                <td title="wolfkin">Array</td>
+                <td>
+Median of 2 sorted arrays of different size
+
+                </td>
+                <!-- matrix -->
+                <td>
+                    <a target="_blank" href="https://www.geeksforgeeks.org/median-of-two-sorted-arrays-of-different-sizes/">Solve Here</a>
+                </td>
+            </tr>
+            <tr>
+                <td>37</td>
+                <td title="wolfkin">Matrix</td>
+                <td>
+Spiral traversal on a Matrix
+
+                </td>
+                <td>
+                    <a target="_blank" href="https://practice.geeksforgeeks.org/problems/spirally-traversing-a-matrix-1587115621/1">Solve Here</a>
+                </td>
+            </tr>
+            <tr>
+                <td>38</td>
+                <td title="wolfkin">Matrix</td>
+                <td>
+Search an element in a matriix
+
+                </td>
+                <td>
+                    <a target="_blank" href="https://practice.geeksforgeeks.org/problems/array-subset-of-another-array2317/1">Solve Here</a>
+                </td>
+            </tr>
+            <tr>
+                <td>39</td>
+                <td title="wolfkin">Matrix</td>
+                <td>
+Find median in a row wise sorted matrix
+
+                </td>
+                <td>
+                    <a target="_blank" href="https://practice.geeksforgeeks.org/problems/median-in-a-row-wise-sorted-matrix1527/1">Solve Here</a>
+                </td>
+            </tr>
+            <tr>
+                <td>40</td>
+                <td title="wolfkin">Matrix</td>
+                <td>
+Find row with maximum no. of 1's
+
+                </td>
+                <td>
+                    <a target="_blank" href="https://practice.geeksforgeeks.org/problems/row-with-max-1s0023/1">Solve Here</a>
+                </td>
+            </tr>
+            <tr>
+                <td>41</td>
+                <td title="wolfkin">Matrix</td>
+                <td>
+Find whether an array is a subset of another array
+
+                </td>
+                <td>
+                    <a target="_blank" href="https://practice.geeksforgeeks.org/problems/array-subset-of-another-array2317/1">Solve Here</a>
+                </td>
+            </tr>
+            <tr>
+                <td>42</td>
+                <td title="wolfkin">Matrix</td>
+                <td>
+Print elements in sorted order using row-column wise sorted matrix
+
+                </td>
+                <td>
+                    <a target="_blank" href="https://practice.geeksforgeeks.org/problems/sorted-matrix2333/1">Solve Here</a>
+                </td>
+            </tr>
+            <tr>
+                <td>43</td>
+                <td title="wolfkin">Matrix</td>
+                <td>
+Maximum size rectangle
+
+                </td>
+                <td>
+                    <a target="_blank" href="https://practice.geeksforgeeks.org/problems/max-rectangle/1">Solve Here</a>
+                </td>
+            </tr>
+            <tr>
+                <td>44</td>
+                <td title="wolfkin">Matrix</td>
+                <td>
+Find a specific pair in matrix
+
+                </td>
+                <td>
+                    <a target="_blank" href="https://www.geeksforgeeks.org/find-a-specific-pair-in-matrix/">Solve Here</a>
+                </td>
+            </tr>
+            <tr>
+                <td>45</td>
+                <td title="wolfkin">Matrix</td>
+                <td>
+Rotate matrix by 90 degrees
+
+                </td>
+                <td>
+                    <a target="_blank" href="https://www.geeksforgeeks.org/rotate-a-matrix-by-90-degree-in-clockwise-direction-without-using-any-extra-space/">Solve Here</a>
+                </td>
+            </tr>
+            <tr>
+                <td>46</td>
+                <td title="wolfkin">Matrix</td>
+                <td>
+Kth smallest element in a row-cpumn wise sorted matrix
+
+                </td>
+                <td>
+                    <a target="_blank" href="https://practice.geeksforgeeks.org/problems/kth-element-in-matrix/1">Solve Here</a>
+                </td>
+            </tr>
+            <tr>
+                <td>47</td>
+                <td title="wolfkin">Matrix</td>
+                <td>
+Common elements in all rows of a given matrix
+
+                </td>
+                <td>
+                    <a target="_blank" href="https://www.geeksforgeeks.org/common-elements-in-all-rows-of-a-given-matrix/">Solve Here</a>
+                </td>
+            </tr>
+            <tr>
+                <td>48</td>
+                <td title="wolfkin">String</td>
+                <td>
+Reverse a String
+
+                </td>
+                <td>
+                    <a target="_blank" href="https://leetcode.com/problems/reverse-string/">Solve Here</a>
+                </td>
+            </tr>
+            <tr>
+                <td>49</td>
+                <td title="wolfkin">String</td>
+                <td>
+Check whether a String is Palindrome or not
+
+                </td>
+                <td>
+                    <a target="_blank" href="https://practice.geeksforgeeks.org/problems/palindrome-string0817/1">Solve Here</a>
+                </td>
+            </tr>
+            <tr>
+                <td>50</td>
+                <td title="wolfkin">String</td>
+                <td>
+Find Duplicate characters in a string
+
+                </td>
+                <td>
+                    <a target="_blank" href="https://www.geeksforgeeks.org/print-all-the-duplicates-in-the-input-string/">Solve Here</a>
+                </td>
+            </tr>
+            <tr>
+                <td>51</td>
+                <td title="wolfkin">String</td>
+                <td>
+Write a Code to check whether one string is a rotation of another
+
+                </td>
+                <td>
+                    <a target="_blank" href="https://www.geeksforgeeks.org/a-program-to-check-if-strings-are-rotations-of-each-other/">Solve Here</a>
+                </td>
+            </tr>
+            <tr>
+                <td>52</td>
+                <td title="wolfkin">String</td>
+                <td>
+Find whether an array is a subset of another array
+
+                </td>
+                <td>
+                    <a target="_blank" href="https://practice.geeksforgeeks.org/problems/array-subset-of-another-array2317/1">Solve Here</a>
+                </td>
+            </tr>
+            <tr>
+                <td>53</td>
+                <td title="wolfkin">String</td>
+                <td>
+Write a Program to check whether a string is a valid shuffle of two strings or not
+
+                </td>
+                <td>
+                    <a target="_blank" href="https://www.programiz.com/java-programming/examples/check-valid-shuffle-of-strings">Solve Here</a>
+                </td>
+            </tr>
+            <tr>
+                <td>54</td>
+                <td title="wolfkin">String</td>
+                <td>
+Count and Say problem
+
+                </td>
+                <td>
+                    <a target="_blank" href="https://leetcode.com/problems/count-and-say/">Solve Here</a>
+                </td>
+            </tr>
+            <tr>
+                <td>55</td>
+                <td title="wolfkin">String</td>
+                <td>
+
+Write a program to find the longest Palindrome in a string.[ Longest palindromic Substring]
+                </td>
+                <td>
+                    <a target="_blank" href="https://practice.geeksforgeeks.org/problems/longest-palindrome-in-a-string/0">Solve Here</a>
+                </td>
+            </tr>
+            <tr>
+                <td>56</td>
+                <td title="wolfkin">String</td>
+                <td>
+Find Longest Recurring Subsequence in String
+
+                </td>
+                <td>
+                    <a target="_blank" href="https://practice.geeksforgeeks.org/problems/longest-repeating-subsequence/0">Solve Here</a>
+                </td>
+            </tr>
+            <tr>
+                <td>57</td>
+                <td title="wolfkin">String</td>
+                <td>
+Recursively remove all adjacent duplicates
+
+                </td>
+                <td>
+                    <a target="_blank" href="https://practice.geeksforgeeks.org/problems/consecutive-elements2306/1">Solve Here</a>
+                </td>
+            </tr>
+            <tr>
+                <td>58</td>
+                <td title="wolfkin">String</td>
+                <td>
+Print all Subsequences of a string.
+
+                </td>
+                <td>
+                    <a target="_blank" href="https://www.geeksforgeeks.org/print-subsequences-string/">Solve Here</a>
+                </td>
+            </tr>
+            <tr>
+                <td>59</td>
+                <td title="wolfkin">String</td>
+                <td>
+Print all the permutations of the given string
+
+                </td>
+                <td>
+                    <a target="_blank" href="https://practice.geeksforgeeks.org/problems/permutations-of-a-given-string2041/1">Solve Here</a>
+                </td>
+            </tr>
+            <tr>
+                <td>60</td>
+                <td title="wolfkin">String</td>
+                <td>
+Split the Binary string into two substring with equal 0’s and 1’s
+
+                </td>
+                <td>
+                    <a target="_blank" href="https://www.geeksforgeeks.org/split-the-binary-string-into-substrings-with-equal-number-of-0s-and-1s/">Solve Here</a>
+                </td>
+            </tr>
+            <tr>
+                <td>61</td>
+                <td title="wolfkin">String</td>
+                <td>
+Word Wrap Problem [VERY IMP].
+
+                </td>
+                <td>
+                    <a target="_blank" href="https://practice.geeksforgeeks.org/problems/word-wrap1646/1">Solve Here</a>
+                </td>
+            </tr>
+            <tr>
+                <td>62</td>
+                <td title="wolfkin">String</td>
+                <td>
+String matching where one string contains wildcard characters
+
+                </td>
+                <td>
+                    <a target="_blank" href="https://practice.geeksforgeeks.org/problems/wildcard-string-matching1126/1">Solve Here</a>
+                </td>
+            </tr>
+            <tr>
+                <td>63</td>
+                <td title="wolfkin">String</td>
+                <td>
+EDIT Distance [Very Imp]
+
+                </td>
+                <td>
+                    <a target="_blank" href="https://practice.geeksforgeeks.org/problems/edit-distance3702/1">Solve Here</a>
+                </td>
+            </tr>
+            <tr>
+                <td>64</td>
+                <td title="wolfkin">String</td>
+                <td>
+Find next greater number with same set of digits. [Very Very IMP]
+
+                </td>
+                <td>
+                    <a target="_blank" href="https://practice.geeksforgeeks.org/problems/next-permutation5226/1">Solve Here</a>
+                </td>
+            </tr>
+            <tr>
+                <td>65</td>
+                <td title="wolfkin">String</td>
+                <td>
+Balanced Parenthesis problem.[Imp]
+
+                </td>
+                <td>
+                    <a target="_blank" href="https://practice.geeksforgeeks.org/problems/parenthesis-checker2744/1">Solve Here</a>
+                </td>
+            </tr>
+            <td>66</td>
+            <td title="wolfkin">String</td>
+            <td>
+Word break Problem[ Very Imp]
+
+            </td>
+            <td>
+                <a target="_blank" href="https://practice.geeksforgeeks.org/problems/word-break1352/1">Solve Here</a>
+            </td>
+            </tr>
+            <tr>
+            <td>67</td>
+            <td title="wolfkin">String</td>
+            <td>
+Rabin Karp Algo
+
+            </td>
+            <td>
+                <a target="_blank" href="https://www.geeksforgeeks.org/rabin-karp-algorithm-for-pattern-searching/">Solve Here</a>
+            </td>
+            </tr>
+            <tr>
+            <td>68</td>
+            <td title="wolfkin">String</td>
+            <td>
+Function to find Number of customers who could not get a computer
+
+            </td>
+            <td>
+                <a target="_blank" href="https://www.geeksforgeeks.org/function-to-find-number-of-customers-who-could-not-get-a-computer/">Solve Here</a>
+            </td>
+            </tr>
+            <tr>
+            <td>69</td>
+            <td title="wolfkin">String</td>
+            <td>
+KMP Algo
+
+            </td>
+            <td>
+                <a target="_blank" href="https://practice.geeksforgeeks.org/problems/longest-prefix-suffix2527/1">Solve Here</a>
+            </td>
+            </tr>
+            <tr>
+            <td>70</td>
+            <td title="wolfkin">String</td>
+            <td>
+Convert a Sentence into its equivalent mobile numeric keypad sequence.
+
+            </td>
+            <td>
+                <a target="_blank" href="https://www.geeksforgeeks.org/convert-sentence-equivalent-mobile-numeric-keypad-sequence/">Solve Here</a>
+            </td>
+            </tr>
+            <tr>
+            <td>71</td>
+            <td title="wolfkin">String</td>
+            <td>
+Minimum number of bracket reversals needed to make an expression balanced.
+
+            </td>
+            <td>
+                <a target="_blank" href="https://practice.geeksforgeeks.org/problems/count-the-reversals0401/1">Solve Here</a>
+            </td>
+            </tr>
+            <tr>
+            <td>72</td>
+            <td title="wolfkin">String</td>
+            <td>
+Count All Palindromic Subsequence in a given String.
+
+            </td>
+            <td>
+                <a target="_blank" href="https://practice.geeksforgeeks.org/problems/count-palindromic-subsequences/1">Solve Here</a>
+            </td>
+            </tr>
+            <tr>
+            <td>733</td>
+            <td title="wolfkin">String</td>
+            <td>
+Count of number of given string in 2D character array
+
+            </td>
+            <td>
+                <a target="_blank" href="https://www.geeksforgeeks.org/find-count-number-given-string-present-2d-character-array/">Solve Here</a>
+            </td>
+            </tr>
+            <tr>
+            <td>74</td>
+            <td title="wolfkin">String</td>
+            <td>
+Transform One String to Another using Minimum Number of Given Operation
+
+            </td>
+            <td>
+                <a target="_blank" href="https://www.geeksforgeeks.org/transform-one-string-to-another-using-minimum-number-of-given-operation/">Solve Here</a>
+            </td>
+            </tr>
+            <tr>
+            <td>75</td>
+            <td title="wolfkin">String</td>
+            <td>
+Search a Word in a 2D Grid of characters.
+
+            </td>
+            <td>
+                <a target="_blank" href="https://practice.geeksforgeeks.org/problems/find-the-string-in-grid0111/1">Solve Here</a>
+            </td>
+            </tr>
+            <tr>
+            <td>76</td>
+            <td title="wolfkin">String</td>
+            <td>
+Boyer Moore Algorithm for Pattern Searching.
+
+            </td>
+            <td>
+                <a target="_blank" href="https://www.geeksforgeeks.org/boyer-moore-algorithm-for-pattern-searching/">Solve Here</a>
+            </td>
+            </tr>
+            <tr>
+            <td>77</td>
+            <td title="wolfkin">String</td>
+            <td>
+Converting Roman Numerals to Decimal
+
+            </td>
+            <td>
+                <a target="_blank" href="https://practice.geeksforgeeks.org/problems/roman-number-to-integer3201/1">Solve Here</a>
+            </td>
+            </tr>
+            <td>78</td>
+            <td title="wolfkin">String</td>
+            <td>
+Longest Common Prefix
+
+            </td>
+            <td>
+                <a target="_blank" href="https://leetcode.com/problems/longest-common-prefix/">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>79</td>
+            <td title="wolfkin">String</td>
+            <td>
+Number of flips to make binary string alternate
+
+            </td>
+            <td>
+                <a target="_blank" href="https://practice.geeksforgeeks.org/problems/min-number-of-flips3210/1">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>80</td>
+            <td title="wolfkin">String</td>
+            <td>
+Find the first repeated word in string.
+
+            </td>
+            <td>
+                <a target="_blank" href="https://practice.geeksforgeeks.org/problems/second-most-repeated-string-in-a-sequence0534/1">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>81</td>
+            <td title="wolfkin">String</td>
+            <td>
+Minimum number of swaps for bracket balancing.
+
+            </td>
+            <td>
+                <a target="_blank" href="https://practice.geeksforgeeks.org/problems/minimum-swaps-for-bracket-balancing2704/1">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>82</td>
+            <td title="wolfkin">String</td>
+            <td>
+Find the longest common subsequence between two strings.
+
+            </td>
+            <td>
+                <a target="_blank" href="https://practice.geeksforgeeks.org/problems/longest-common-subsequence-1587115620/1">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>83</td>
+            <td title="wolfkin">String</td>
+            <td>
+Program to generate all possible valid IP addresses from given  string.
+
+            </td>
+            <td>
+                <a target="_blank" href="https://www.geeksforgeeks.org/program-generate-possible-valid-ip-addresses-given-string/">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>84</td>
+            <td title="wolfkin">String</td>
+            <td>
+Write a program tofind the smallest window that contains all characters of string itself.
+
+            </td>
+            <td>
+                <a target="_blank" href="https://practice.geeksforgeeks.org/problems/smallest-distant-window3132/1">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>85</td>
+            <td title="wolfkin">String</td>
+            <td>
+Rearrange characters in a string such that no two adjacent are same
+
+            </td>
+            <td>
+                <a target="_blank" href="https://practice.geeksforgeeks.org/problems/rearrange-characters/0">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>86</td>
+            <td title="wolfkin">String</td>
+            <td>
+Minimum characters to be added at front to make string palindrome
+
+            </td>
+            <td>
+                <a target="_blank" href="https://www.geeksforgeeks.org/minimum-characters-added-front-make-string-palindrome/">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>87</td>
+            <td title="wolfkin">String</td>
+            <td>
+Given a sequence of words, print all anagrams together
+
+            </td>
+            <td>
+                <a target="_blank" href="https://practice.geeksforgeeks.org/problems/print-anagrams-together/1">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>88</td>
+            <td title="wolfkin">String</td>
+            <td>
+Find the smallest window in a string containing all characters of another string
+
+            </td>
+            <td>
+                <a target="_blank" href="https://practice.geeksforgeeks.org/problems/smallest-window-in-a-string-containing-all-the-characters-of-another-string-1587115621/1">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>89</td>
+            <td title="wolfkin">String</td>
+            <td>
+Check if two given strings are isomorphic to each other
+
+            </td>
+            <td>
+                <a target="_blank" href="https://practice.geeksforgeeks.org/problems/isomorphic-strings-1587115620/1">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>90</td>
+            <td title="wolfkin">String</td>
+            <td>
+Recursively print all sentences that can be formed from list of word lists
+
+            </td>
+            <td>
+                <a target="_blank" href="https://www.geeksforgeeks.org/recursively-print-all-sentences-that-can-be-formed-from-list-of-word-lists/">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>91</td>
+            <td title="wolfkin">String</td>
+            <td>
+Find first and last positions of an element in a sorted array
+
+            </td>
+            <td>
+                <a target="_blank" href="https://practice.geeksforgeeks.org/problems/first-and-last-occurrences-of-x3116/1">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>92</td>
+            <td title="wolfkin">Searching & Sorting</td>
+            <td>
+Find a Fixed Point (Value equal to index) in a given array
+
+            </td>
+            <td>
+                <a target="_blank" href="https://practice.geeksforgeeks.org/problems/value-equal-to-index-value1330/1">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>93</td>
+            <td title="wolfkin">Searching & Sorting</td>
+            <td>
+Search in a rotated sorted array
+
+            </td>
+            <td>
+                <a target="_blank" href="https://leetcode.com/problems/search-in-rotated-sorted-array/">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>94</td>
+            <td title="wolfkin">Searching & Sorting</td>
+            <td>
+square root of an integer
+
+            </td>
+            <td>
+                <a target="_blank" href="https://practice.geeksforgeeks.org/problems/count-squares3649/1">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>95</td>
+            <td title="wolfkin">Searching & Sorting</td>
+            <td>
+Maximum and minimum of an array using minimum number of comparisons
+
+            </td>
+            <td>
+                <a target="_blank" href="https://practice.geeksforgeeks.org/problems/middle-of-three2926/1">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>96</td>
+            <td title="wolfkin">Searching & Sorting</td>
+            <td>
+Optimum location of point to minimize total distance
+
+            </td>
+            <td>
+                <a target="_blank" href="https://www.geeksforgeeks.org/optimum-location-point-minimize-total-distance/#:~:text=We%20need%20to%20find%20a,set%20of%20points%20is%20minimum.&text=In%20above%20figure%20optimum%20location,is%20minimum%20obtainable%20total%20distance.">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>97</td>
+            <td title="wolfkin">Searching & Sorting</td>
+            <td>
+Find the repeating and the missing
+
+            </td>
+            <td>
+                <a target="_blank" href="https://practice.geeksforgeeks.org/problems/find-missing-and-repeating2512/1">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>98</td>
+            <td title="wolfkin">Searching & Sorting</td>
+            <td>
+find majority element
+
+            </td>
+            <td>
+                <a target="_blank" href="https://practice.geeksforgeeks.org/problems/majority-element-1587115620/1">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>99</td>
+            <td title="wolfkin">Searching & Sorting</td>
+            <td>
+Searching in an array where adjacent differ by at most k
+
+            </td>
+            <td>
+                <a target="_blank" href="https://www.geeksforgeeks.org/searching-array-adjacent-differ-k/">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>100</td>
+            <td title="wolfkin">Searching & Sorting</td>
+            <td>
+find a pair with a given difference
+
+            </td>
+            <td>
+                <a target="_blank" href="https://practice.geeksforgeeks.org/problems/find-pair-given-difference1559/1">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>101</td>
+            <td title="wolfkin">Searching & Sorting</td>
+            <td>
+find four elements that sum to a given value
+
+            </td>
+            <td>
+                <a target="_blank" href="https://practice.geeksforgeeks.org/problems/find-all-four-sum-numbers1732/1">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>102</td>
+            <td title="wolfkin">Searching & Sorting</td>
+            <td>
+maximum sum such that no 2 elements are adjacent
+
+            </td>
+            <td>
+                <a target="_blank" href="https://practice.geeksforgeeks.org/problems/stickler-theif-1587115621/1">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>103</td>
+            <td title="wolfkin">Searching & Sorting</td>
+            <td>
+Count triplet with sum smaller than a given value
+
+            </td>
+            <td>
+                <a target="_blank" href="https://practice.geeksforgeeks.org/problems/count-triplets-with-sum-smaller-than-x5549/1">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>104</td>
+            <td title="wolfkin">Searching & Sorting</td>
+            <td>
+merge 2 sorted arrays
+
+            </td>
+            <td>
+                <a target="_blank" href="https://practice.geeksforgeeks.org/problems/merge-two-sorted-arrays5135/1">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>105</td>
+            <td title="wolfkin">Searching & Sorting</td>
+            <td>
+print all subarrays with 0 sum
+
+            </td>
+            <td>
+                <a target="_blank" href="https://practice.geeksforgeeks.org/problems/zero-sum-subarrays1825/1">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>106</td>
+            <td title="wolfkin">Searching & Sorting</td>
+            <td>
+Product array Puzzle
+
+            </td>
+            <td>
+                <a target="_blank" href="https://practice.geeksforgeeks.org/problems/product-array-puzzle4525/1">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>107</td>
+            <td title="wolfkin">Searching & Sorting</td>
+            <td>
+Sort array according to count of set bits
+
+            </td>
+            <td>
+                <a target="_blank" href="https://practice.geeksforgeeks.org/problems/sort-by-set-bit-count1153/1">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>108</td>
+            <td title="wolfkin">Searching & Sorting</td>
+            <td>
+minimum no. of swaps required to sort the array
+
+            </td>
+            <td>
+                <a target="_blank" href="https://practice.geeksforgeeks.org/problems/minimum-swaps/1">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>109</td>
+            <td title="wolfkin">Searching & Sorting</td>
+            <td>
+Bishu and Soldiers
+
+            </td>
+            <td>
+                <a target="_blank" href="https://www.hackerearth.com/practice/algorithms/searching/binary-search/practice-problems/algorithm/bishu-and-soldiers/">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>110</td>
+            <td title="wolfkin">Searching & Sorting</td>
+            <td>
+Rasta and Kheshtak
+
+            </td>
+            <td>
+                <a target="_blank" href="https://www.hackerearth.com/practice/algorithms/searching/binary-search/practice-problems/algorithm/rasta-and-kheshtak/">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>111</td>
+            <td title="wolfkin">Searching & Sorting</td>
+            <td>
+Kth smallest number again
+
+            </td>
+            <td>
+                <a target="_blank" href="https://www.hackerearth.com/practice/algorithms/searching/binary-search/practice-problems/algorithm/kth-smallest-number-again-2/">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>112</td>
+            <td title="wolfkin">Searching & Sorting</td>
+            <td>
+Find pivot element in a sorted array
+
+            </td>
+            <td>
+                <a target="_blank" href="http://theoryofprogramming.com/2017/12/16/find-pivot-element-sorted-rotated-array/">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>113</td>
+            <td title="wolfkin">Searching & Sorting</td>
+            <td>
+K-th Element of Two Sorted Arrays
+
+            </td>
+            <td>
+                <a target="_blank" href="https://practice.geeksforgeeks.org/problems/k-th-element-of-two-sorted-array1317/1">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>114</td>
+            <td title="wolfkin">Searching & Sorting</td>
+            <td>
+Aggressive cows
+
+            </td>
+            <td>
+                <a target="_blank" href="https://www.spoj.com/problems/AGGRCOW/">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>115</td>
+            <td title="wolfkin">Searching & Sorting</td>
+            <td>
+Book Allocation Problem
+
+            </td>
+            <td>
+                <a target="_blank" href="https://practice.geeksforgeeks.org/problems/allocate-minimum-number-of-pages0937/1">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>116</td>
+            <td title="wolfkin">Searching & Sorting</td>
+            <td>
+EKOSPOJ:
+
+            </td>
+            <td>
+                <a target="_blank" href="https://www.spoj.com/problems/EKO/">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>117</td>
+            <td title="wolfkin">Searching & Sorting</td>
+            <td>
+Job Scheduling Algo
+
+            </td>
+            <td>
+                <a target="_blank" href="https://www.geeksforgeeks.org/weighted-job-scheduling-log-n-time/">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>118</td>
+            <td title="wolfkin">Searching & Sorting</td>
+            <td>
+Missing Number in AP
+
+            </td>
+            <td>
+                <a target="_blank" href="https://practice.geeksforgeeks.org/problems/arithmetic-number2815/1">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>119</td>
+            <td title="wolfkin">Searching & Sorting</td>
+            <td>
+Smallest number with atleastn trailing zeroes infactorial
+
+            </td>
+            <td>
+                <a target="_blank" href="https://practice.geeksforgeeks.org/problems/smallest-factorial-number5929/1">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>120</td>
+            <td title="wolfkin">Searching & Sorting</td>
+            <td>
+Painters Partition Problem:
+
+            </td>
+            <td>
+                <a target="_blank" href="https://practice.geeksforgeeks.org/problems/allocate-minimum-number-of-pages0937/1">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>121</td>
+            <td title="wolfkin">Searching & Sorting</td>
+            <td>
+ROTI-Prata SPOJ
+
+            </td>
+            <td>
+                <a target="_blank" href="https://www.spoj.com/problems/PRATA/">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>122</td>
+            <td title="wolfkin">Searching & Sorting</td>
+            <td>
+DoubleHelix SPOJ
+
+            </td>
+            <td>
+                <a target="_blank" href="https://www.spoj.com/problems/ANARC05B/">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>123</td>
+            <td title="wolfkin">Searching & Sorting</td>
+            <td>
+Subset Sums
+
+            </td>
+            <td>
+                <a target="_blank" href="https://www.spoj.com/problems/SUBSUMS/">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>124</td>
+            <td title="wolfkin">Searching & Sorting</td>
+            <td>
+Findthe inversion count
+
+            </td>
+            <td>
+                <a target="_blank" href="https://practice.geeksforgeeks.org/problems/inversion-of-array-1587115620/1">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>125</td>
+            <td title="wolfkin">Searching & Sorting</td>
+            <td>
+Implement Merge-sort in-place
+
+            </td>
+            <td>
+                <a target="_blank" href="https://www.geeksforgeeks.org/in-place-merge-sort/">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>126</td>
+            <td title="wolfkin">Searching & Sorting</td>
+            <td>
+Partitioning and Sorting Arrays with Many Repeated Entries
+
+            </td>
+            <td>
+                <a target="_blank" href="https://www.baeldung.com/java-sorting-arrays-with-repeated-entries">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>127</td>
+            <td title="wolfkin">LinkedList</td>
+            <td>
+Write a Program to reverse the Linked List. (Both Iterative and recursive)
+
+            </td>
+            <td>
+                <a target="_blank" href="https://www.geeksforgeeks.org/reverse-a-linked-list/">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>128</td>
+            <td title="wolfkin">LinkedList</td>
+            <td>
+Reverse a Linked List in group of Given Size. [Very Imp]
+
+            </td>
+            <td>
+                <a target="_blank" href="https://practice.geeksforgeeks.org/problems/reverse-a-linked-list-in-groups-of-given-size/1">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>129</td>
+            <td title="wolfkin">LinkedList</td>
+            <td>
+Write a program to Detect loop in a linked list.
+
+            </td>
+            <td>
+                <a target="_blank" href="https://practice.geeksforgeeks.org/problems/detect-loop-in-linked-list/1">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>130</td>
+            <td title="wolfkin">LinkedList</td>
+            <td>
+Find the starting point of the loop. 
+
+            </td>
+            <td>
+                <a target="_blank" href="https://www.geeksforgeeks.org/find-first-node-of-loop-in-a-linked-list/">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>131</td>
+            <td title="wolfkin">LinkedList</td>
+            <td>
+Remove Duplicates in a sorted Linked List.
+
+            </td>
+            <td>
+                <a target="_blank" href="https://practice.geeksforgeeks.org/problems/remove-duplicate-element-from-sorted-linked-list/1">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>132</td>
+            <td title="wolfkin">LinkedList</td>
+            <td>
+Remove Duplicates in a Un-sorted Linked List.
+
+            </td>
+            <td>
+                <a target="_blank" href="https://practice.geeksforgeeks.org/problems/remove-duplicates-from-an-unsorted-linked-list/1">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>133</td>
+            <td title="wolfkin">LinkedList</td>
+            <td>
+Write a Program to Move the last element to Front in a Linked List.
+
+            </td>
+            <td>
+                <a target="_blank" href="https://www.geeksforgeeks.org/move-last-element-to-front-of-a-given-linked-list/">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>134</td>
+            <td title="wolfkin">LinkedList</td>
+            <td>
+Add “1” to a number represented as a Linked List.
+
+            </td>
+            <td>
+                <a target="_blank" href="https://practice.geeksforgeeks.org/problems/add-1-to-a-number-represented-as-linked-list/1">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>135</td>
+            <td title="wolfkin">LinkedList</td>
+            <td>
+Add two numbers represented by linked lists.
+
+            </td>
+            <td>
+                <a target="_blank" href="https://practice.geeksforgeeks.org/problems/add-two-numbers-represented-by-linked-lists/1">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>136</td>
+            <td title="wolfkin">LinkedList</td>
+            <td>
+Intersection of two Sorted Linked List.
+
+            </td>
+            <td>
+                <a target="_blank" href="https://practice.geeksforgeeks.org/problems/intersection-of-two-sorted-linked-lists/1">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>137</td>
+            <td title="wolfkin">LinkedList</td>
+            <td>
+Intersection Point of two Linked Lists.
+
+            </td>
+            <td>
+                <a target="_blank" href="https://practice.geeksforgeeks.org/problems/intersection-point-in-y-shapped-linked-lists/1">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>138</td>
+            <td title="wolfkin">LinkedList</td>
+            <td>
+Merge Sort For Linked lists.[Very Important]
+
+            </td>
+            <td>
+                <a target="_blank" href="https://practice.geeksforgeeks.org/problems/sort-a-linked-list/1">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>139</td>
+            <td title="wolfkin">LinkedList</td>
+            <td>
+Quicksort for Linked Lists.[Very Important]
+
+            </td>
+            <td>
+                <a target="_blank" href="https://practice.geeksforgeeks.org/problems/quick-sort-on-linked-list/1">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>140</td>
+            <td title="wolfkin">LinkedList</td>
+            <td>
+Find the middle Element of a linked list.
+
+            </td>
+            <td>
+                <a target="_blank" href="https://leetcode.com/problems/middle-of-the-linked-list/">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>141</td>
+            <td title="wolfkin">LinkedList</td>
+            <td>
+Check if a linked list is a circular linked list.
+
+            </td>
+            <td>
+                <a target="_blank" href="https://practice.geeksforgeeks.org/problems/circular-linked-list/1">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>142</td>
+            <td title="wolfkin">LinkedList</td>
+            <td>
+Split a Circular linked list into two halves.
+
+            </td>
+            <td>
+                <a target="_blank" href="https://practice.geeksforgeeks.org/problems/split-a-circular-linked-list-into-two-halves/1">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>143</td>
+            <td title="wolfkin">LinkedList</td>
+            <td>
+Write a Program to check whether the Singly Linked list is a palindrome or not.
+
+            </td>
+            <td>
+                <a target="_blank" href="https://practice.geeksforgeeks.org/problems/check-if-linked-list-is-pallindrome/1">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>144</td>
+            <td title="wolfkin">LinkedList</td>
+            <td>
+Deletion from a Circular Linked List.
+
+            </td>
+            <td>
+                <a target="_blank" href="https://www.geeksforgeeks.org/deletion-circular-linked-list/">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>145</td>
+            <td title="wolfkin">LinkedList</td>
+            <td>
+Reverse a Doubly Linked list.
+
+            </td>
+            <td>
+                <a target="_blank" href="https://practice.geeksforgeeks.org/problems/reverse-a-doubly-linked-list/1">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>146</td>
+            <td title="wolfkin">LinkedList</td>
+            <td>
+Find pairs with a given sum in a DLL.
+
+            </td>
+            <td>
+                <a target="_blank" href="https://www.geeksforgeeks.org/find-pairs-given-sum-doubly-linked-list/">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>147</td>
+            <td title="wolfkin">LinkedList</td>
+            <td>
+Count triplets in a sorted DLL whose sum is equal to given value “X”.
+
+            </td>
+            <td>
+                <a target="_blank" href="https://www.geeksforgeeks.org/count-triplets-sorted-doubly-linked-list-whose-sum-equal-given-value-x/">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>148</td>
+            <td title="wolfkin">LinkedList</td>
+            <td>
+Sort a “k”sorted Doubly Linked list.[Very IMP]
+
+            </td>
+            <td>
+                <a target="_blank" href="https://www.geeksforgeeks.org/sort-k-sorted-doubly-linked-list/">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>149</td>
+            <td title="wolfkin">LinkedList</td>
+            <td>
+Rotate DoublyLinked list by N nodes.
+
+            </td>
+            <td>
+                <a target="_blank" href="https://www.geeksforgeeks.org/rotate-doubly-linked-list-n-nodes/">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>150</td>
+            <td title="wolfkin">LinkedList</td>
+            <td>
+Rotate a Doubly Linked list in group of Given Size.[Very IMP]
+
+            </td>
+            <td>
+                <a target="_blank" href="https://www.geeksforgeeks.org/reverse-doubly-linked-list-groups-given-size/">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>151</td>
+            <td title="wolfkin">LinkedList</td>
+            <td>
+Flatten a Linked List
+
+            </td>
+            <td>
+                <a target="_blank" href="https://practice.geeksforgeeks.org/problems/flattening-a-linked-list/1">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>152</td>
+            <td title="wolfkin">LinkedList</td>
+            <td>
+Sort a LL of 0's, 1's and 2's
+
+            </td>
+            <td>
+                <a target="_blank" href="https://practice.geeksforgeeks.org/problems/given-a-linked-list-of-0s-1s-and-2s-sort-it/1">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>153</td>
+            <td title="wolfkin">LinkedList</td>
+            <td>
+Clone a linked list with next and random pointer
+
+            </td>
+            <td>
+                <a target="_blank" href="https://practice.geeksforgeeks.org/problems/clone-a-linked-list-with-next-and-random-pointer/1">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>154</td>
+            <td title="wolfkin">LinkedList</td>
+            <td>
+Merge K sorted Linked list
+
+            </td>
+            <td>
+                <a target="_blank" href="https://practice.geeksforgeeks.org/problems/merge-k-sorted-linked-lists/1">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>155</td>
+            <td title="wolfkin">LinkedList</td>
+            <td>
+Multiply 2 no. represented by LL
+
+            </td>
+            <td>
+                <a target="_blank" href="https://practice.geeksforgeeks.org/problems/multiply-two-linked-lists/1">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>156</td>
+            <td title="wolfkin">LinkedList</td>
+            <td>
+Delete nodes which have a greater value on right side
+
+            </td>
+            <td>
+                <a target="_blank" href="https://practice.geeksforgeeks.org/problems/delete-nodes-having-greater-value-on-right/1">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>157</td>
+            <td title="wolfkin">LinkedList</td>
+            <td>
+Segregate even and odd nodes in a Linked List
+
+            </td>
+            <td>
+                <a target="_blank" href="https://practice.geeksforgeeks.org/problems/segregate-even-and-odd-nodes-in-a-linked-list/0">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>158</td>
+            <td title="wolfkin">LinkedList</td>
+            <td>
+Program for n’th node from the end of a Linked List
+
+            </td>
+            <td>
+                <a target="_blank" href="https://practice.geeksforgeeks.org/problems/nth-node-from-end-of-linked-list/1">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>159</td>
+            <td title="wolfkin">LinkedList</td>
+            <td>
+Find the first non-repeating character from a stream of characters
+
+            </td>
+            <td>
+                <a target="_blank" href="https://practice.geeksforgeeks.org/problems/first-non-repeating-character-in-a-stream1216/1">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>160</td>
+            <td title="wolfkin">Binary Trees</td>
+            <td>
+level order traversal
+
+            </td>
+            <td>
+                <a target="_blank" href="https://practice.geeksforgeeks.org/problems/level-order-traversal/1">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>161</td>
+            <td title="wolfkin">Binary Trees</td>
+            <td>
+Reverse Level Order traversal
+
+            </td>
+            <td>
+                <a target="_blank" href="https://practice.geeksforgeeks.org/problems/reverse-level-order-traversal/1">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>162</td>
+            <td title="wolfkin">Binary Trees</td>
+            <td>
+Height of a tree
+
+            </td>
+            <td>
+                <a target="_blank" href="https://practice.geeksforgeeks.org/problems/height-of-binary-tree/1">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>163</td>
+            <td title="wolfkin">Binary Trees</td>
+            <td>
+Diameter of a tree
+
+            </td>
+            <td>
+                <a target="_blank" href="https://practice.geeksforgeeks.org/problems/diameter-of-binary-tree/1">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>164</td>
+            <td title="wolfkin">Binary Trees</td>
+            <td>
+Mirror of a tree
+
+            </td>
+            <td>
+                <a target="_blank" href="https://www.geeksforgeeks.org/create-a-mirror-tree-from-the-given-binary-tree/">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>165</td>
+            <td title="wolfkin">Binary Trees</td>
+            <td>
+Inorder Traversal of a tree both using recursion and Iteration
+
+            </td>
+            <td>
+                <a target="_blank" href="https://www.techiedelight.com/inorder-tree-traversal-iterative-recursive/">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>166</td>
+            <td title="wolfkin">Binary Trees</td>
+            <td>
+Preorder Traversal of a tree both using recursion and Iteration
+
+            </td>
+            <td>
+                <a target="_blank" href="https://www.techiedelight.com/preorder-tree-traversal-iterative-recursive/">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>167</td>
+            <td title="wolfkin">Binary Trees</td>
+            <td>
+Left View of a tree
+
+            </td>
+            <td>
+                <a target="_blank" href="https://practice.geeksforgeeks.org/problems/left-view-of-binary-tree/1">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>168</td>
+            <td title="wolfkin">Binary Trees</td>
+            <td>
+Right View of Tree
+
+            </td>
+            <td>
+                <a target="_blank" href="https://practice.geeksforgeeks.org/problems/right-view-of-binary-tree/1">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>169</td>
+            <td title="wolfkin">Binary Trees</td>
+            <td>
+Top View of a tree
+
+            </td>
+            <td>
+                <a target="_blank" href="https://practice.geeksforgeeks.org/problems/top-view-of-binary-tree/1">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>170</td>
+            <td title="wolfkin">Binary Trees</td>
+            <td>
+Bottom View of a tree
+
+            </td>
+            <td>
+                <a target="_blank" href="https://practice.geeksforgeeks.org/problems/bottom-view-of-binary-tree/1">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>171</td>
+            <td title="wolfkin">Binary Trees</td>
+            <td>
+Zig-Zag traversal of a binary tree
+
+            </td>
+            <td>
+                <a target="_blank" href="https://practice.geeksforgeeks.org/problems/zigzag-tree-traversal/1">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>172</td>
+            <td title="wolfkin">Binary Trees</td>
+            <td>
+Check if a tree is balanced or not
+
+            </td>
+            <td>
+                <a target="_blank" href="https://practice.geeksforgeeks.org/problems/check-for-balanced-tree/1">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>173</td>
+            <td title="wolfkin">Binary Trees</td>
+            <td>
+Diagnol Traversal of a Binary tree
+
+            </td>
+            <td>
+                <a target="_blank" href="https://www.geeksforgeeks.org/diagonal-traversal-of-binary-tree/">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>174</td>
+            <td title="wolfkin">Binary Trees</td>
+            <td>
+Boundary traversal of a Binary tree
+
+            </td>
+            <td>
+                <a target="_blank" href="https://practice.geeksforgeeks.org/problems/boundary-traversal-of-binary-tree/1">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>175</td>
+            <td title="wolfkin">Binary Trees</td>
+            <td>
+Construct Binary Tree from String with Bracket Representation
+
+            </td>
+            <td>
+                <a target="_blank" href="https://www.geeksforgeeks.org/construct-binary-tree-string-bracket-representation/">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>176</td>
+            <td title="wolfkin">Binary Trees</td>
+            <td>
+Convert Binary tree into Doubly Linked List
+
+            </td>
+            <td>
+                <a target="_blank" href="https://practice.geeksforgeeks.org/problems/binary-tree-to-dll/1">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>177</td>
+            <td title="wolfkin">Binary Trees</td>
+            <td>
+Convert Binary tree into Sum tree
+
+            </td>
+            <td>
+                <a target="_blank" href="https://practice.geeksforgeeks.org/problems/transform-to-sum-tree/1">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>178</td>
+            <td title="wolfkin">Binary Trees</td>
+            <td>
+Construct Binary tree from Inorder and preorder traversal
+
+            </td>
+            <td>
+                <a target="_blank" href="https://practice.geeksforgeeks.org/problems/construct-tree-1/1">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>179</td>
+            <td title="wolfkin">Binary Trees</td>
+            <td>
+Find minimum swaps required to convert a Binary tree into BST
+
+            </td>
+            <td>
+                <a target="_blank" href="https://www.geeksforgeeks.org/minimum-swap-required-convert-binary-tree-binary-search-tree/#:~:text=Given%20the%20array%20representation%20of,it%20into%20Binary%20Search%20Tree.&text=Swap%201%3A%20Swap%20node%208,node%209%20with%20node%2010.">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>180</td>
+            <td title="wolfkin">Binary Trees</td>
+            <td>
+Check if Binary tree is Sum tree or not
+
+            </td>
+            <td>
+                <a target="_blank" href="https://practice.geeksforgeeks.org/problems/sum-tree/1">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>181</td>
+            <td title="wolfkin">Binary Trees</td>
+            <td>
+Check if all leaf nodes are at same level or not
+
+            </td>
+            <td>
+                <a target="_blank" href="https://practice.geeksforgeeks.org/problems/leaf-at-same-level/1">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>182</td>
+            <td title="wolfkin">Binary Trees</td>
+            <td>
+Check if a Binary Tree contains duplicate subtrees of size 2 or more [ IMP ]
+
+            </td>
+            <td>
+                <a target="_blank" href="https://practice.geeksforgeeks.org/problems/duplicate-subtree-in-binary-tree/1">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>183</td>
+            <td title="wolfkin">Binary Trees</td>
+            <td>
+Check if 2 trees are mirror or not
+
+            </td>
+            <td>
+                <a target="_blank" href="https://practice.geeksforgeeks.org/problems/check-mirror-in-n-ary-tree1528/1">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>184</td>
+            <td title="wolfkin">Binary Trees</td>
+            <td>
+Sum of Nodes on the Longest path from root to leaf node
+
+            </td>
+            <td>
+                <a target="_blank" href="https://practice.geeksforgeeks.org/problems/sum-of-the-longest-bloodline-of-a-tree/1">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>185</td>
+            <td title="wolfkin">Binary Trees</td>
+            <td>
+Check if given graph is tree or not.  [ IMP ]
+
+            </td>
+            <td>
+                <a target="_blank" href="https://www.geeksforgeeks.org/check-given-graph-tree/#:~:text=Since%20the%20graph%20is%20undirected,graph%20is%20connected%2C%20otherwise%20not.">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>186</td>
+            <td title="wolfkin">Binary Trees</td>
+            <td>
+Find Largest subtree sum in a tree
+
+            </td>
+            <td>
+                <a target="_blank" href="https://www.geeksforgeeks.org/find-largest-subtree-sum-tree/  ">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>187</td>
+            <td title="wolfkin">Binary Trees</td>
+            <td>
+Maximum Sum of nodes in Binary tree such that no two are adjacent
+
+            </td>
+            <td>
+                <a target="_blank" href="https://www.geeksforgeeks.org/maximum-sum-nodes-binary-tree-no-two-adjacent/">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>188</td>
+            <td title="wolfkin">Binary Trees</td>
+            <td>
+Print all "K" Sum paths in a Binary tree
+
+            </td>
+            <td>
+                <a target="_blank" href="https://www.geeksforgeeks.org/print-k-sum-paths-binary-tree/">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>189</td>
+            <td title="wolfkin">Binary Trees</td>
+            <td>
+Find LCA in a Binary tree
+
+            </td>
+            <td>
+                <a target="_blank" href="https://practice.geeksforgeeks.org/problems/lowest-common-ancestor-in-a-binary-tree/1">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>190</td>
+            <td title="wolfkin">Binary Trees</td>
+            <td>
+Find distance between 2 nodes in a Binary tree
+
+            </td>
+            <td>
+                <a target="_blank" href="https://practice.geeksforgeeks.org/problems/min-distance-between-two-given-nodes-of-a-binary-tree/1">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>191</td>
+            <td title="wolfkin">Binary Trees</td>
+            <td>
+Kth Ancestor of node in a Binary tree
+
+            </td>
+            <td>
+                <a target="_blank" href="https://www.geeksforgeeks.org/kth-ancestor-node-binary-tree-set-2/">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>192</td>
+            <td title="wolfkin">Binary Trees</td>
+            <td>
+Find all Duplicate subtrees in a Binary tree [ IMP ]
+
+            </td>
+            <td>
+                <a target="_blank" href="https://practice.geeksforgeeks.org/problems/duplicate-subtrees/1">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>193</td>
+            <td title="wolfkin">Binary Trees</td>
+            <td>
+Tree Isomorphism Problem
+
+            </td>
+            <td>
+                <a target="_blank" href="https://practice.geeksforgeeks.org/problems/check-if-tree-is-isomorphic/1">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>194</td>
+            <td title="wolfkin">Binary Search Trees</td>
+            <td>
+Fina a value in a BST
+
+            </td>
+            <td>
+                <a target="_blank" href="https://www.geeksforgeeks.org/binary-search-tree-set-1-search-and-insertion/">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>195</td>
+            <td title="wolfkin">Binary Search Trees</td>
+            <td>
+Deletion of a node in a BST
+
+            </td>
+            <td>
+                <a target="_blank" href="https://leetcode.com/problems/delete-node-in-a-bst/">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>196</td>
+            <td title="wolfkin">Binary Search Trees</td>
+            <td>
+Find min and max value in a BST
+
+            </td>
+            <td>
+                <a target="_blank" href="https://practice.geeksforgeeks.org/problems/minimum-element-in-bst/1">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>197</td>
+            <td title="wolfkin">Binary Search Trees</td>
+            <td>
+Find inorder successor and inorder predecessor in a BST
+
+            </td>
+            <td>
+                <a target="_blank" href="https://practice.geeksforgeeks.org/problems/predecessor-and-successor/1">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>198</td>
+            <td title="wolfkin">Binary Search Trees</td>
+            <td>
+Check if a tree is a BST or not
+
+            </td>
+            <td>
+                <a target="_blank" href="https://practice.geeksforgeeks.org/problems/check-for-bst/1">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>199</td>
+            <td title="wolfkin">Binary Search Trees</td>
+            <td>
+Populate Inorder successor of all nodes
+
+            </td>
+            <td>
+                <a target="_blank" href="https://practice.geeksforgeeks.org/problems/populate-inorder-successor-for-all-nodes/1">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>200</td>
+            <td title="wolfkin">Binary Search Trees</td>
+            <td>
+Find LCA  of 2 nodes in a BST
+
+            </td>
+            <td>
+                <a target="_blank" href="https://practice.geeksforgeeks.org/problems/lowest-common-ancestor-in-a-bst/1">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>201</td>
+            <td title="wolfkin">Binary Search Trees</td>
+            <td>
+Construct BST from preorder traversal
+
+            </td>
+            <td>
+                <a target="_blank" href="https://www.geeksforgeeks.org/construct-bst-from-given-preorder-traversa/">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>202</td>
+            <td title="wolfkin">Binary Search Trees</td>
+            <td>
+Convert Binary tree into BST
+
+            </td>
+            <td>
+                <a target="_blank" href="https://practice.geeksforgeeks.org/problems/binary-tree-to-bst/1">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>203</td>
+            <td title="wolfkin">Binary Search Trees</td>
+            <td>
+Convert a normal BST into a Balanced BST
+
+            </td>
+            <td>
+                <a target="_blank" href="https://www.geeksforgeeks.org/convert-normal-bst-balanced-bst/">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>204</td>
+            <td title="wolfkin">Binary Search Trees</td>
+            <td>
+Merge two BST [ V.V.V>IMP ]
+
+            </td>
+            <td>
+                <a target="_blank" href="https://www.geeksforgeeks.org/merge-two-balanced-binary-search-trees/">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>205</td>
+            <td title="wolfkin">Binary Search Trees</td>
+            <td>
+Find Kth largest element in a BST
+
+            </td>
+            <td>
+                <a target="_blank" href="https://practice.geeksforgeeks.org/problems/kth-largest-element-in-bst/1">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>206</td>
+            <td title="wolfkin">Binary Search Trees</td>
+            <td>
+Find Kth smallest element in a BST
+
+            </td>
+            <td>
+                <a target="_blank" href="https://practice.geeksforgeeks.org/problems/find-k-th-smallest-element-in-bst/1">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>207</td>
+            <td title="wolfkin">Binary Search Trees</td>
+            <td>
+Count pairs from 2 BST whose sum is equal to given value "X"
+
+            </td>
+            <td>
+                <a target="_blank" href="https://practice.geeksforgeeks.org/problems/brothers-from-different-root/1">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>208</td>
+            <td title="wolfkin">Binary Search Trees</td>
+            <td>
+Find the median of BST in O(n) time and O(1) space
+
+            </td>
+            <td>
+                <a target="_blank" href="https://www.geeksforgeeks.org/find-median-bst-time-o1-space/">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>208</td>
+            <td title="wolfkin">Binary Search Trees</td>
+            <td>
+Count BST ndoes that lie in a given range
+
+            </td>
+            <td>
+                <a target="_blank" href="https://practice.geeksforgeeks.org/problems/count-bst-nodes-that-lie-in-a-given-range/1">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>209</td>
+            <td title="wolfkin">Binary Search Trees</td>
+            <td>
+Replace every element with the least greater element on its right
+
+            </td>
+            <td>
+                <a target="_blank" href="https://www.geeksforgeeks.org/replace-every-element-with-the-least-greater-element-on-its-right/">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>210</td>
+            <td title="wolfkin">Binary Search Trees</td>
+            <td>
+Given "n" appointments, find the conflicting appointments
+
+            </td>
+            <td>
+                <a target="_blank" href="https://www.geeksforgeeks.org/given-n-appointments-find-conflicting-appointments/">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>211</td>
+            <td title="wolfkin">Binary Search Trees</td>
+            <td>
+Check preorder is valid or not
+
+            </td>
+            <td>
+                <a target="_blank" href="https://practice.geeksforgeeks.org/problems/preorder-to-postorder4423/1">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>212</td>
+            <td title="wolfkin">Binary Search Trees</td>
+            <td>
+Check whether BST contains Dead end
+
+            </td>
+            <td>
+                <a target="_blank" href="https://practice.geeksforgeeks.org/problems/check-whether-bst-contains-dead-end/1">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>213</td>
+            <td title="wolfkin">Binary Search Trees</td>
+            <td>
+Largest BST in a Binary Tree [ V.V.V.V.V IMP ]
+
+            </td>
+            <td>
+                <a target="_blank" href="https://practice.geeksforgeeks.org/problems/largest-bst/1">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>214</td>
+            <td title="wolfkin">Binary Search Trees</td>
+            <td>
+Flatten BST to sorted list
+
+            </td>
+            <td>
+                <a target="_blank" href="https://www.geeksforgeeks.org/flatten-bst-to-sorted-list-increasing-order/">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>215</td>
+            <td title="wolfkin">Greedy</td>
+            <td>
+Activity Selection Problem
+
+            </td>
+            <td>
+                <a target="_blank" href="https://practice.geeksforgeeks.org/problems/n-meetings-in-one-room-1587115620/1">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>216</td>
+            <td title="wolfkin">Greedy</td>
+            <td>
+Job SequencingProblem
+
+            </td>
+            <td>
+                <a target="_blank" href="https://practice.geeksforgeeks.org/problems/job-sequencing-problem-1587115620/1">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>217</td>
+            <td title="wolfkin">Greedy</td>
+            <td>
+Huffman Coding
+
+            </td>
+            <td>
+                <a target="_blank" href="https://practice.geeksforgeeks.org/problems/huffman-encoding3345/1">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>218</td>
+            <td title="wolfkin">Greedy</td>
+            <td>
+Water Connection Problem
+
+            </td>
+            <td>
+                <a target="_blank" href="https://practice.geeksforgeeks.org/problems/water-connection-problem5822/1">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>219</td>
+            <td title="wolfkin">Greedy</td>
+            <td>
+Fractional Knapsack Problem
+
+            </td>
+            <td>
+                <a target="_blank" href="https://practice.geeksforgeeks.org/problems/fractional-knapsack-1587115620/1">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>220</td>
+            <td title="wolfkin">Greedy</td>
+            <td>
+Greedy Algorithm to find Minimum number of Coins
+
+            </td>
+            <td>
+                <a target="_blank" href="https://practice.geeksforgeeks.org/problems/choose-and-swap0531/1">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>221</td>
+            <td title="wolfkin">Greedy</td>
+            <td>
+Maximum trains for which stoppage can be provided
+
+            </td>
+            <td>
+                <a target="_blank" href="https://www.geeksforgeeks.org/maximum-trains-stoppage-can-provided/">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>222</td>
+            <td title="wolfkin">Greedy</td>
+            <td>
+Minimum Platforms Problem
+
+            </td>
+            <td>
+                <a target="_blank" href="https://practice.geeksforgeeks.org/problems/minimum-platforms-1587115620/1">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>223</td>
+            <td title="wolfkin">Greedy</td>
+            <td>
+Buy Maximum Stocks if i stocks can be bought on i-th day
+
+            </td>
+            <td>
+                <a target="_blank" href="https://www.geeksforgeeks.org/buy-maximum-stocks-stocks-can-bought-th-day/">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>224</td>
+            <td title="wolfkin">Greedy</td>
+            <td>
+Find the minimum and maximum amount to buy all N candies
+
+            </td>
+            <td>
+                <a target="_blank" href="https://practice.geeksforgeeks.org/problems/shop-in-candy-store1145/1">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>225</td>
+            <td title="wolfkin">Greedy</td>
+            <td>
+Minimize Cash Flow among a given set of friends who have borrowed money from each other
+
+            </td>
+            <td>
+                <a target="_blank" href="https://www.geeksforgeeks.org/minimize-cash-flow-among-given-set-friends-borrowed-money/">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>226</td>
+            <td title="wolfkin">Greedy</td>
+            <td>
+Minimum Cost to cut a board into squares
+
+            </td>
+            <td>
+                <a target="_blank" href="https://www.geeksforgeeks.org/minimum-cost-cut-board-squares/">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>227</td>
+            <td title="wolfkin">Greedy</td>
+            <td>
+Check if it is possible to survive on Island
+
+            </td>
+            <td>
+                <a target="_blank" href="https://www.geeksforgeeks.org/survival/">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>228</td>
+            <td title="wolfkin">Greedy</td>
+            <td>
+Find maximum meetings in one room
+
+            </td>
+            <td>
+                <a target="_blank" href="https://www.geeksforgeeks.org/find-maximum-meetings-in-one-room/">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>229</td>
+            <td title="wolfkin">Greedy</td>
+            <td>
+Maximum product subset of an array
+
+            </td>
+            <td>
+                <a target="_blank" href="https://www.geeksforgeeks.org/maximum-product-subset-array/">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>230</td>
+            <td title="wolfkin">Greedy</td>
+            <td>
+Maximize array sum after K negations
+
+            </td>
+            <td>
+                <a target="_blank" href="https://practice.geeksforgeeks.org/problems/maximize-sum-after-k-negations1149/1">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>231</td>
+            <td title="wolfkin">Greedy</td>
+            <td>
+Maximize the sum of arr[i]*i
+
+            </td>
+            <td>
+                <a target="_blank" href="https://practice.geeksforgeeks.org/problems/maximize-arrii-of-an-array0026/1">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>232</td>
+            <td title="wolfkin">Greedy</td>
+            <td>
+Maximum sum of absolute difference of an array
+
+            </td>
+            <td>
+                <a target="_blank" href="https://www.geeksforgeeks.org/maximum-sum-absolute-difference-array/">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>233</td>
+            <td title="wolfkin">Greedy</td>
+            <td>
+Maximize sum of consecutive differences in a circular array
+
+            </td>
+            <td>
+                <a target="_blank" href="https://practice.geeksforgeeks.org/problems/swap-and-maximize5859/1">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>234</td>
+            <td title="wolfkin">Greedy</td>
+            <td>
+Minimum sum of absolute difference of pairs of two arrays
+
+            </td>
+            <td>
+                <a target="_blank" href="https://www.geeksforgeeks.org/minimum-sum-absolute-difference-pairs-two-arrays/#:~:text=It%20consists%20of%20two%20steps,result%20to%20the%20sum%20S.">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>235</td>
+            <td title="wolfkin">Greedy</td>
+            <td>
+Program for Shortest Job First (or SJF) CPU Scheduling
+
+            </td>
+            <td>
+                <a target="_blank" href="https://www.geeksforgeeks.org/program-for-shortest-job-first-or-sjf-cpu-scheduling-set-1-non-preemptive/">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>236</td>
+            <td title="wolfkin">Greedy</td>
+            <td>
+Program for Least Recently Used (LRU) Page Replacement algorithm
+
+            </td>
+            <td>
+                <a target="_blank" href="https://practice.geeksforgeeks.org/problems/page-faults-in-lru5603/1">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>237</td>
+            <td title="wolfkin">Greedy</td>
+            <td>
+Smallest subset with sum greater than all other elements
+
+            </td>
+            <td>
+                <a target="_blank" href="https://www.geeksforgeeks.org/smallest-subset-sum-greater-elements/">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>238</td>
+            <td title="wolfkin">Greedy</td>
+            <td>
+Chocolate Distribution Problem
+
+            </td>
+            <td>
+                <a target="_blank" href="https://practice.geeksforgeeks.org/problems/chocolate-distribution-problem/0">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>239</td>
+            <td title="wolfkin">Greedy</td>
+            <td>
+DEFKIN -Defense of a Kingdom
+
+            </td>
+            <td>
+                <a target="_blank" href="https://www.spoj.com/problems/DEFKIN/">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>240</td>
+            <td title="wolfkin">Greedy</td>
+            <td>
+DIEHARD -DIE HARD
+
+            </td>
+            <td>
+                <a target="_blank" href="https://www.spoj.com/problems/DIEHARD/">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>241</td>
+            <td title="wolfkin">Greedy</td>
+            <td>
+GERGOVIA -Wine trading in Gergovia
+
+            </td>
+            <td>
+                <a target="_blank" href="https://www.spoj.com/problems/GERGOVIA/">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>242</td>
+            <td title="wolfkin">Greedy</td>
+            <td>
+Picking Up Chicks
+
+            </td>
+            <td>
+                <a target="_blank" href="https://www.spoj.com/problems/GCJ101BB/">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>243</td>
+            <td title="wolfkin">Greedy</td>
+            <td>
+CHOCOLA –Chocolate
+
+            </td>
+            <td>
+                <a target="_blank" href="https://www.spoj.com/problems/CHOCOLA/">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>244</td>
+            <td title="wolfkin">Greedy</td>
+            <td>
+ARRANGE -Arranging Amplifiers
+
+            </td>
+            <td>
+                <a target="_blank" href="https://www.spoj.com/problems/ARRANGE/">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>245</td>
+            <td title="wolfkin">Greedy</td>
+            <td>
+K Centers Problem
+
+            </td>
+            <td>
+                <a target="_blank" href="https://www.geeksforgeeks.org/k-centers-problem-set-1-greedy-approximate-algorithm/">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>246</td>
+            <td title="wolfkin">Greedy</td>
+            <td>
+Minimum Cost of ropes
+
+            </td>
+            <td>
+                <a target="_blank" href="https://practice.geeksforgeeks.org/problems/minimum-cost-of-ropes-1587115620/1">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>247</td>
+            <td title="wolfkin">Greedy</td>
+            <td>
+Find smallest number with given number of digits and sum of digits
+
+            </td>
+            <td>
+                <a target="_blank" href="https://practice.geeksforgeeks.org/problems/smallest-number5829/1">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>248</td>
+            <td title="wolfkin">Greedy</td>
+            <td>
+Rearrange characters in a string such that no two adjacent are same
+
+            </td>
+            <td>
+                <a target="_blank" href="https://practice.geeksforgeeks.org/problems/rearrange-characters/0">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>249</td>
+            <td title="wolfkin">Greedy</td>
+            <td>
+Find maximum sum possible equal sum of three stacks
+
+            </td>
+            <td>
+                <a target="_blank" href="https://www.geeksforgeeks.org/find-maximum-sum-possible-equal-sum-three-stacks/">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>250</td>
+            <td title="wolfkin">BackTracking</td>
+            <td>
+Rat in a maze Problem
+
+            </td>
+            <td>
+                <a target="_blank" href="https://practice.geeksforgeeks.org/problems/rat-in-a-maze-problem/1">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>251</td>
+            <td title="wolfkin">BackTracking</td>
+            <td>
+Printing all solutions in N-Queen Problem
+
+            </td>
+            <td>
+                <a target="_blank" href="https://www.geeksforgeeks.org/printing-solutions-n-queen-problem/">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>252</td>
+            <td title="wolfkin">BackTracking</td>
+            <td>
+Word Break Problem using Backtracking
+
+            </td>
+            <td>
+                <a target="_blank" href="https://practice.geeksforgeeks.org/problems/word-break-part-2/0">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>253</td>
+            <td title="wolfkin">BackTracking</td>
+            <td>
+Remove Invalid Parentheses
+
+            </td>
+            <td>
+                <a target="_blank" href="https://leetcode.com/problems/remove-invalid-parentheses/">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>254</td>
+            <td title="wolfkin">BackTracking</td>
+            <td>
+Sudoku Solver
+
+            </td>
+            <td>
+                <a target="_blank" href="https://practice.geeksforgeeks.org/problems/solve-the-sudoku/0">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>255</td>
+            <td title="wolfkin">BackTracking</td>
+            <td>
+m Coloring Problem
+
+            </td>
+            <td>
+                <a target="_blank" href="https://practice.geeksforgeeks.org/problems/m-coloring-problem/0">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>256</td>
+            <td title="wolfkin">BackTracking</td>
+            <td>
+Print all palindromic partitions of a string
+
+            </td>
+            <td>
+                <a target="_blank" href="https://www.geeksforgeeks.org/given-a-string-print-all-possible-palindromic-partition/">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>257</td>
+            <td title="wolfkin">BackTracking</td>
+            <td>
+Subset Sum Problem
+
+            </td>
+            <td>
+                <a target="_blank" href="https://practice.geeksforgeeks.org/problems/subset-sum-problem2014/1">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>258</td>
+            <td title="wolfkin">BackTracking</td>
+            <td>
+The Knight’s tour problem
+
+            </td>
+            <td>
+                <a target="_blank" href="https://www.geeksforgeeks.org/the-knights-tour-problem-backtracking-1/">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>259</td>
+            <td title="wolfkin">BackTracking</td>
+            <td>
+Tug of War
+
+            </td>
+            <td>
+                <a target="_blank" href="https://www.geeksforgeeks.org/tug-of-war/">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>260</td>
+            <td title="wolfkin">BackTracking</td>
+            <td>
+Find shortest safe route in a path with landmines
+
+            </td>
+            <td>
+                <a target="_blank" href="https://www.geeksforgeeks.org/find-shortest-safe-route-in-a-path-with-landmines/">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>261</td>
+            <td title="wolfkin">BackTracking</td>
+            <td>
+Combinational Sum
+
+            </td>
+            <td>
+                <a target="_blank" href="https://practice.geeksforgeeks.org/problems/combination-sum/0">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>262</td>
+            <td title="wolfkin">BackTracking</td>
+            <td>
+Find Maximum number possible by doing at-most K swaps
+
+            </td>
+            <td>
+                <a target="_blank" href="https://practice.geeksforgeeks.org/problems/largest-number-in-k-swaps/0">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>263</td>
+            <td title="wolfkin">BackTracking</td>
+            <td>
+Print all permutations of a string
+
+            </td>
+            <td>
+                <a target="_blank" href="https://practice.geeksforgeeks.org/problems/permutations-of-a-given-string/0">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>264</td>
+            <td title="wolfkin">BackTracking</td>
+            <td>
+Find if there is a path of more than k length from a source
+
+            </td>
+            <td>
+                <a target="_blank" href="https://www.geeksforgeeks.org/find-if-there-is-a-path-of-more-than-k-length-from-a-source/">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>265</td>
+            <td title="wolfkin">BackTracking</td>
+            <td>
+Longest Possible Route in a Matrix with Hurdles
+
+            </td>
+            <td>
+                <a target="_blank" href="https://www.geeksforgeeks.org/longest-possible-route-in-a-matrix-with-hurdles/">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>266</td>
+            <td title="wolfkin">BackTracking</td>
+            <td>
+Print all possible paths from top left to bottom right of a mXn matrix
+
+            </td>
+            <td>
+                <a target="_blank" href="https://www.geeksforgeeks.org/print-all-possible-paths-from-top-left-to-bottom-right-of-a-mxn-matrix/">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>267</td>
+            <td title="wolfkin">BackTracking</td>
+            <td>
+Partition of a set intoK subsets with equal sum
+
+            </td>
+            <td>
+                <a target="_blank" href="https://practice.geeksforgeeks.org/problems/partition-array-to-k-subsets/1">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>268</td>
+            <td title="wolfkin">BackTracking</td>
+            <td>
+Find the K-th Permutation Sequence of first N natural numbers
+
+            </td>
+            <td>
+                <a target="_blank" href="https://www.geeksforgeeks.org/find-the-k-th-permutation-sequence-of-first-n-natural-numbers/">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>269</td>
+            <td title="wolfkin">BackTracking</td>
+            <td>
+Find Maximum number possible by doing at-most K swaps
+
+            </td>
+            <td>
+                <a target="_blank" href="https://practice.geeksforgeeks.org/problems/largest-number-in-k-swaps/0">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>270</td>
+            <td title="wolfkin">Stacks & Queues</td>
+            <td>
+ Implement Stack from Scratch
+
+            </td>
+            <td>
+                <a target="_blank" href="https://www.tutorialspoint.com/javaexamples/data_stack.htm">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>271</td>
+            <td title="wolfkin">Stacks & Queues</td>
+            <td>
+ Implement Queue from Scratch
+
+            </td>
+            <td>
+                <a target="_blank" href="https://www.geeksforgeeks.org/queue-set-1introduction-and-array-implementation/">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>272</td>
+            <td title="wolfkin">Stacks & Queues</td>
+            <td>
+Implement 2 stack in an array
+
+            </td>
+            <td>
+                <a target="_blank" href="https://practice.geeksforgeeks.org/problems/implement-two-stacks-in-an-array/1">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>273</td>
+            <td title="wolfkin">Stacks & Queues</td>
+            <td>
+find the middle element of a stack
+
+            </td>
+            <td>
+                <a target="_blank" href="https://www.geeksforgeeks.org/design-a-stack-with-find-middle-operation/">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>274</td>
+            <td title="wolfkin">Stacks & Queues</td>
+            <td>
+Implement "N" stacks in an Array
+
+            </td>
+            <td>
+                <a target="_blank" href="https://www.geeksforgeeks.org/efficiently-implement-k-stacks-single-array/">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>275</td>
+            <td title="wolfkin">Stacks & Queues</td>
+            <td>
+Check the expression has valid or Balanced parenthesis or not.
+
+            </td>
+            <td>
+                <a target="_blank" href="https://practice.geeksforgeeks.org/problems/parenthesis-checker2744/1">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>276</td>
+            <td title="wolfkin">Stacks & Queues</td>
+            <td>
+Reverse a String using Stack
+
+            </td>
+            <td>
+                <a target="_blank" href="https://practice.geeksforgeeks.org/problems/reverse-a-string-using-stack/1">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>277</td>
+            <td title="wolfkin">Stacks & Queues</td>
+            <td>
+Design a Stack that supports getMin() in O(1) time and O(1) extra space.
+
+            </td>
+            <td>
+                <a target="_blank" href="https://practice.geeksforgeeks.org/problems/special-stack/1">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>278</td>
+            <td title="wolfkin">Stacks & Queues</td>
+            <td>
+Find the next Greater element
+
+            </td>
+            <td>
+                <a target="_blank" href="https://practice.geeksforgeeks.org/problems/next-larger-element-1587115620/1">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>279</td>
+            <td title="wolfkin">Stacks & Queues</td>
+            <td>
+The celebrity Problem
+
+            </td>
+            <td>
+                <a target="_blank" href="https://practice.geeksforgeeks.org/problems/the-celebrity-problem/1">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>280</td>
+            <td title="wolfkin">Stacks & Queues</td>
+            <td>
+Arithmetic Expression evaluation
+
+            </td>
+            <td>
+                <a target="_blank" href="https://www.geeksforgeeks.org/arithmetic-expression-evalution/#:~:text=The%20stack%20organization%20is%20very,i.e.%2C%20A%20%2B%20B).">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>281</td>
+            <td title="wolfkin">Stacks & Queues</td>
+            <td>
+Evaluation of Postfix expression
+
+            </td>
+            <td>
+                <a target="_blank" href="https://practice.geeksforgeeks.org/problems/evaluation-of-postfix-expression1735/1">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>282</td>
+            <td title="wolfkin">Stacks & Queues</td>
+            <td>
+Implement a method to insert an element at its bottom without using any other data structure.
+
+            </td>
+            <td>
+                <a target="_blank" href="https://stackoverflow.com/questions/45130465/inserting-at-the-end-of-stack">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>283</td>
+            <td title="wolfkin">Stacks & Queues</td>
+            <td>
+Reverse a stack using recursion
+
+            </td>
+            <td>
+                <a target="_blank" href="https://www.geeksforgeeks.org/reverse-a-stack-using-recursion/">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>284</td>
+            <td title="wolfkin">Stacks & Queues</td>
+            <td>
+Sort a Stack using recursion
+
+            </td>
+            <td>
+                <a target="_blank" href="https://practice.geeksforgeeks.org/problems/sort-a-stack/1">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>285</td>
+            <td title="wolfkin">Stacks & Queues</td>
+            <td>
+Merge Overlapping Intervals
+
+            </td>
+            <td>
+                <a target="_blank" href="https://practice.geeksforgeeks.org/problems/overlapping-intervals4919/1">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>286</td>
+            <td title="wolfkin">Stacks & Queues</td>
+            <td>
+Largest rectangular Area in Histogram
+
+            </td>
+            <td>
+                <a target="_blank" href="https://practice.geeksforgeeks.org/problems/maximum-rectangular-area-in-a-histogram-1587115620/1">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>287</td>
+            <td title="wolfkin">Stacks & Queues</td>
+            <td>
+Length of the Longest Valid Substring
+
+            </td>
+            <td>
+                <a target="_blank" href="https://practice.geeksforgeeks.org/problems/valid-substring0624/1">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>288</td>
+            <td title="wolfkin">Stacks & Queues</td>
+            <td>
+Expression contains redundant bracket or not
+
+            </td>
+            <td>
+                <a target="_blank" href="https://www.geeksforgeeks.org/expression-contains-redundant-bracket-not/">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>289</td>
+            <td title="wolfkin">Stacks & Queues</td>
+            <td>
+Implement Stack using Queue
+
+            </td>
+            <td>
+                <a target="_blank" href="https://practice.geeksforgeeks.org/problems/stack-using-two-queues/1">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>290</td>
+            <td title="wolfkin">Stacks & Queues</td>
+            <td>
+Implement Stack using Deque
+
+            </td>
+            <td>
+                <a target="_blank" href="https://www.geeksforgeeks.org/implement-stack-queue-using-deque/">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>291</td>
+            <td title="wolfkin">Stacks & Queues</td>
+            <td>
+Stack Permutations (Check if an array is stack permutation of other)
+            </td>
+            <td>
+                <a target="_blank" href="https://www.geeksforgeeks.org/stack-permutations-check-if-an-array-is-stack-permutation-of-other/">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>292</td>
+            <td title="wolfkin">Stacks & Queues</td>
+            <td>
+Implement Queue using Stack
+
+            </td>
+            <td>
+                <a target="_blank" href="https://practice.geeksforgeeks.org/problems/queue-using-two-stacks/1">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>293</td>
+            <td title="wolfkin">Stacks & Queues</td>
+            <td>
+Implement "n" queue in an array
+
+            </td>
+            <td>
+                <a target="_blank" href="https://www.geeksforgeeks.org/efficiently-implement-k-queues-single-array/">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>294</td>
+            <td title="wolfkin">Stacks & Queues</td>
+            <td>
+Implement a Circular queue
+
+            </td>
+            <td>
+                <a target="_blank" href="https://www.geeksforgeeks.org/circular-queue-set-1-introduction-array-implementation/">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>295</td>
+            <td title="wolfkin">Stacks & Queues</td>
+            <td>
+LRU Cache Implementationa
+
+            </td>
+            <td>
+                <a target="_blank" href="https://practice.geeksforgeeks.org/problems/lru-cache/1">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>296</td>
+            <td title="wolfkin">Stacks & Queues</td>
+            <td>
+Reverse a Queue using recursion
+
+            </td>
+            <td>
+                <a target="_blank" href="https://practice.geeksforgeeks.org/problems/queue-reversal/1">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>297</td>
+            <td title="wolfkin">Stacks & Queues</td>
+            <td>
+Reverse the first “K” elements of a queue
+
+            </td>
+            <td>
+                <a target="_blank" href="https://practice.geeksforgeeks.org/problems/reverse-first-k-elements-of-queue/1">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>298</td>
+            <td title="wolfkin">Stacks & Queues</td>
+            <td>
+Interleave the first half of the queue with second half
+
+            </td>
+            <td>
+                <a target="_blank" href="https://www.geeksforgeeks.org/interleave-first-half-queue-second-half/">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>299</td>
+            <td title="wolfkin">Stacks & Queues</td>
+            <td>
+Find the first circular tour that visits all Petrol Pumps
+
+            </td>
+            <td>
+                <a target="_blank" href="https://practice.geeksforgeeks.org/problems/circular-tour/1">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>300</td>
+            <td title="wolfkin">Stacks & Queues</td>
+            <td>
+Minimum time required to rot all oranges
+
+            </td>
+            <td>
+                <a target="_blank" href="https://practice.geeksforgeeks.org/problems/rotten-oranges2536/1">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>301</td>
+            <td title="wolfkin">Stacks & Queues</td>
+            <td>
+Distance of nearest cell having 1 in a binary matrix
+
+            </td>
+            <td>
+                <a target="_blank" href="https://practice.geeksforgeeks.org/problems/distance-of-nearest-cell-having-1-1587115620/1">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>302</td>
+            <td title="wolfkin">Stacks & Queues</td>
+            <td>
+First negative integer in every window of size “k”
+
+            </td>
+            <td>
+                <a target="_blank" href="https://practice.geeksforgeeks.org/problems/first-negative-integer-in-every-window-of-size-k/0">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>303</td>
+            <td title="wolfkin">Stacks & Queues</td>
+            <td>
+Check if all levels of two trees are anagrams or not.
+
+            </td>
+            <td>
+                <a target="_blank" href="https://www.geeksforgeeks.org/check-if-all-levels-of-two-trees-are-anagrams-or-not/">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>304</td>
+            <td title="wolfkin">Stacks & Queues</td>
+            <td>
+Sum of minimum and maximum elements of all subarrays of size “k”.
+
+            </td>
+            <td>
+                <a target="_blank" href="https://www.geeksforgeeks.org/sum-minimum-maximum-elements-subarrays-size-k/">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>305</td>
+            <td title="wolfkin">Stacks & Queues</td>
+            <td>
+Minimum sum of squares of character counts in a given string after removing “k” characters.
+
+            </td>
+            <td>
+                <a target="_blank" href="https://practice.geeksforgeeks.org/problems/game-with-string4100/1">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>306</td>
+            <td title="wolfkin">Stacks & Queues</td>
+            <td>
+Queue based approach or first non-repeating character in a stream.
+
+            </td>
+            <td>
+                <a target="_blank" href="https://practice.geeksforgeeks.org/problems/first-non-repeating-character-in-a-stream1216/1">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>307</td>
+            <td title="wolfkin">Stacks & Queues</td>
+            <td>
+Next Smaller Element
+
+            </td>
+            <td>
+                <a target="_blank" href="https://www.geeksforgeeks.org/next-smaller-element/">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>308</td>
+            <td title="wolfkin">Heap</td>
+            <td>
+Implement a Maxheap/MinHeap using arrays and recursion.
+
+            </td>
+            <td>
+                <a target="_blank" href="https://www.geeksforgeeks.org/building-heap-from-array/">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>309</td>
+            <td title="wolfkin">Heap</td>
+            <td>
+Sort an Array using heap. (HeapSort)
+
+            </td>
+            <td>
+                <a target="_blank" href="https://www.geeksforgeeks.org/heap-sort/">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>310</td>
+            <td title="wolfkin">Heap</td>
+            <td>
+Maximum of all subarrays of size k.
+
+            </td>
+            <td>
+                <a target="_blank" href="https://www.geeksforgeeks.org/sliding-window-maximum-maximum-of-all-subarrays-of-size-k/">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>311</td>
+            <td title="wolfkin">Heap</td>
+            <td>
+“k” largest element in an array
+
+            </td>
+            <td>
+                <a target="_blank" href="https://practice.geeksforgeeks.org/problems/k-largest-elements4206/1">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>312</td>
+            <td title="wolfkin">Heap</td>
+            <td>
+Kth smallest and largest element in an unsorted array
+
+            </td>
+            <td>
+                <a target="_blank" href="https://www.geeksforgeeks.org/kth-smallestlargest-element-unsorted-array/">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>313</td>
+            <td title="wolfkin">Heap</td>
+            <td>
+Merge “K” sorted arrays. [ IMP ]
+
+            </td>
+            <td>
+                <a target="_blank" href="https://practice.geeksforgeeks.org/problems/merge-k-sorted-arrays/1">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>314</td>
+            <td title="wolfkin">Heap</td>
+            <td>
+Merge 2 Binary Max Heaps
+
+            </td>
+            <td>
+                <a target="_blank" href="https://practice.geeksforgeeks.org/problems/merge-two-binary-max-heap0144/1">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>315</td>
+            <td title="wolfkin">Heap</td>
+            <td>
+Kth largest sum continuous subarrays
+
+            </td>
+            <td>
+                <a target="_blank" href="https://www.geeksforgeeks.org/k-th-largest-sum-contiguous-subarray/">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>316</td>
+            <td title="wolfkin">Heap</td>
+            <td>
+Leetcode- reorganize strings
+
+            </td>
+            <td>
+                <a target="_blank" href="https://leetcode.com/problems/reorganize-string/">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>317</td>
+            <td title="wolfkin">Heap</td>
+            <td>
+Merge “K” Sorted Linked Lists [V.IMP]
+
+            </td>
+            <td>
+                <a target="_blank" href="https://practice.geeksforgeeks.org/problems/merge-k-sorted-linked-lists/1">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>318</td>
+            <td title="wolfkin">Heap</td>
+            <td>
+Smallest range in “K” Lists
+
+            </td>
+            <td>
+                <a target="_blank" href="https://practice.geeksforgeeks.org/problems/find-smallest-range-containing-elements-from-k-lists/1">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>319</td>
+            <td title="wolfkin">Heap</td>
+            <td>
+Median in a stream of Integers
+
+            </td>
+            <td>
+                <a target="_blank" href="https://practice.geeksforgeeks.org/problems/find-median-in-a-stream-1587115620/1">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>320</td>
+            <td title="wolfkin">Heap</td>
+            <td>
+Check if a Binary Tree is Heap
+
+            </td>
+            <td>
+                <a target="_blank" href="https://practice.geeksforgeeks.org/problems/is-binary-tree-heap/1">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>321</td>
+            <td title="wolfkin">Heap</td>
+            <td>
+Connect “n” ropes with minimum cost
+
+            </td>
+            <td>
+                <a target="_blank" href="https://www.geeksforgeeks.org/connect-n-ropes-minimum-cost/">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>322</td>
+            <td title="wolfkin">Heap</td>
+            <td>
+Convert BST to Min Heap
+
+            </td>
+            <td>
+                <a target="_blank" href="https://www.geeksforgeeks.org/convert-bst-min-heap/">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>323</td>
+            <td title="wolfkin">Heap</td>
+            <td>
+Convert min heap to max heap
+
+            </td>
+            <td>
+                <a target="_blank" href="https://www.geeksforgeeks.org/convert-min-heap-to-max-heap/">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>324</td>
+            <td title="wolfkin">Heap</td>
+            <td>
+Rearrange characters in a string such that no two adjacent are same.
+
+            </td>
+            <td>
+                <a target="_blank" href="https://practice.geeksforgeeks.org/problems/rearrange-characters/0">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>325</td>
+            <td title="wolfkin">Heap</td>
+            <td>
+Minimum sum of two numbers formed from digits of an array
+
+            </td>
+            <td>
+                <a target="_blank" href="https://practice.geeksforgeeks.org/problems/minimum-sum4058/1">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>326</td>
+            <td title="wolfkin">Graph</td>
+            <td>
+Create a Graph, print it
+            </td>
+            <td>
+                <a target="_blank" href="https://onedrive.live.com/?authkey=%21AJrTq%5FU8BPKIWDk&cid=842AECBB531CCEA4&id=842AECBB531CCEA4%211179&parId=842AECBB531CCEA4%211164&o=OneUp">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>327</td>
+            <td title="wolfkin">Graph</td>
+            <td>
+Implement BFS algorithm 
+            </td>
+            <td>
+                <a target="_blank" href="https://practice.geeksforgeeks.org/problems/bfs-traversal-of-graph/1">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>328</td>
+            <td title="wolfkin">Graph</td>
+            <td>
+Implement DFS Algo 
+            </td>
+            <td>
+                <a target="_blank" href="https://www.geeksforgeeks.org/depth-first-search-or-dfs-for-a-graph/">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>329</td>
+            <td title="wolfkin">Graph</td>
+            <td>
+Detect Cycle in Directed Graph using BFS/DFS Algo  
+            </td>
+            <td>
+                <a target="_blank" href="https://www.geeksforgeeks.org/detect-cycle-in-a-graph/">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>330</td>
+            <td title="wolfkin">Graph</td>
+            <td>
+Detect Cycle in UnDirected Graph using BFS/DFS Algo  
+            </td>
+            <td>
+                <a target="_blank" href="https://practice.geeksforgeeks.org/problems/detect-cycle-in-an-undirected-graph/1">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>331</td>
+            <td title="wolfkin">Graph</td>
+            <td>
+Search in a Maze  
+            </td>
+            <td>
+                <a target="_blank" href="https://practice.geeksforgeeks.org/problems/rat-in-a-maze-problem/1">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>332</td>
+            <td title="wolfkin">Graph</td>
+            <td>
+Minimum Step by Knight  
+            </td>
+            <td>
+                <a target="_blank" href="https://practice.geeksforgeeks.org/problems/steps-by-knight5927/1">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>333</td>
+            <td title="wolfkin">Graph</td>
+            <td>
+flood fill algo  
+            </td>
+            <td>
+                <a target="_blank" href="https://leetcode.com/problems/flood-fill/">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>334</td>
+            <td title="wolfkin">Graph</td>
+            <td>
+Clone a graph 
+            </td>
+            <td>
+                <a target="_blank" href="https://leetcode.com/problems/clone-graph/">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>335</td>
+            <td title="wolfkin">Graph</td>
+            <td>
+Making wired Connections 
+            </td>
+            <td>
+                <a target="_blank" href="https://leetcode.com/problems/number-of-operations-to-make-network-connected/">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>336</td>
+            <td title="wolfkin">Graph</td>
+            <td>
+word Ladder  
+            </td>
+            <td>
+                <a target="_blank" href="https://leetcode.com/problems/word-ladder/">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>337</td>
+            <td title="wolfkin">Graph</td>
+            <td>
+Dijkstra algo  
+            </td>
+            <td>
+                <a target="_blank" href="https://www.geeksforgeeks.org/dijkstras-shortest-path-algorithm-greedy-algo-7/">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>338</td>
+            <td title="wolfkin">Graph</td>
+            <td>
+Implement Topological Sort   
+            </td>
+            <td>
+                <a target="_blank" href="https://practice.geeksforgeeks.org/problems/topological-sort/1">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>339</td>
+            <td title="wolfkin">Graph</td>
+            <td>
+Minimum time taken by each job to be completed given by a Directed Acyclic Graph   
+            </td>
+            <td>
+                <a target="_blank" href="https://www.geeksforgeeks.org/minimum-time-taken-by-each-job-to-be-completed-given-by-a-directed-acyclic-graph/">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>340</td>
+            <td title="wolfkin">Graph</td>
+            <td>
+Find whether it is possible to finish all tasks or not from given dependencies   
+            </td>
+            <td>
+                <a target="_blank" href="https://www.geeksforgeeks.org/find-whether-it-is-possible-to-finish-all-tasks-or-not-from-given-dependencies/">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>341</td>
+            <td title="wolfkin">Graph</td>
+            <td>
+Find the no. of Isalnds   
+            </td>
+            <td>
+                <a target="_blank" href="https://practice.geeksforgeeks.org/problems/find-the-number-of-islands/1">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>342</td>
+            <td title="wolfkin">Graph</td>
+            <td>
+Given a sorted Dictionary of an Alien Language, find order of characters   
+            </td>
+            <td>
+                <a target="_blank" href="https://practice.geeksforgeeks.org/problems/alien-dictionary/1">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>343</td>
+            <td title="wolfkin">Graph</td>
+            <td>
+Implement Kruksal’sAlgorithm   
+            </td>
+            <td>
+                <a target="_blank" href="https://www.geeksforgeeks.org/kruskals-minimum-spanning-tree-algorithm-greedy-algo-2/">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>344</td>
+            <td title="wolfkin">Graph</td>
+            <td>
+Implement Prim’s Algorithm   
+            </td>
+            <td>
+                <a target="_blank" href="https://www.geeksforgeeks.org/prims-minimum-spanning-tree-mst-greedy-algo-5/">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>345</td>
+            <td title="wolfkin">Graph</td>
+            <td>
+Total no. of Spanning tree in a graph  
+            </td>
+            <td>
+                <a target="_blank" href="https://www.geeksforgeeks.org/total-number-spanning-trees-graph/">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>346</td>
+            <td title="wolfkin">Graph</td>
+            <td>
+Implement Bellman Ford Algorithm  
+            </td>
+            <td>
+                <a target="_blank" href="https://practice.geeksforgeeks.org/problems/negative-weight-cycle3504/1">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>347</td>
+            <td title="wolfkin">Graph</td>
+            <td>
+Implement Floyd warshallAlgorithm  
+            </td>
+            <td>
+                <a target="_blank" href="https://practice.geeksforgeeks.org/problems/implementing-floyd-warshall2042/1">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>348</td>
+            <td title="wolfkin">Graph</td>
+            <td>
+Travelling Salesman Problem 
+            </td>
+            <td>
+                <a target="_blank" href="https://www.geeksforgeeks.org/travelling-salesman-problem-set-1/">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>349</td>
+            <td title="wolfkin">Graph</td>
+            <td>
+Graph ColouringProblem 
+            </td>
+            <td>
+                <a target="_blank" href="https://www.geeksforgeeks.org/graph-coloring-applications/#:~:text=Graph%20coloring%20problem%20is%20to,are%20colored%20using%20same%20color.">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>350</td>
+            <td title="wolfkin">Graph</td>
+            <td>
+Snake and Ladders Problem
+            </td>
+            <td>
+                <a target="_blank" href="https://leetcode.com/problems/snakes-and-ladders/">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>351</td>
+            <td title="wolfkin">Graph</td>
+            <td>
+Find bridge in a graph
+            </td>
+            <td>
+                <a target="_blank" href="https://www.geeksforgeeks.org/bridge-in-a-graph/">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>352</td>
+            <td title="wolfkin">Graph</td>
+            <td>
+Count Strongly connected Components(Kosaraju Algo)
+            </td>
+            <td>
+                <a target="_blank" href="https://practice.geeksforgeeks.org/problems/strongly-connected-components-kosarajus-algo/1">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>353</td>
+            <td title="wolfkin">Graph</td>
+            <td>
+Check whether a graph is Bipartite or Not
+            </td>
+            <td>
+                <a target="_blank" href="https://www.geeksforgeeks.org/bipartite-graph/">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>354</td>
+            <td title="wolfkin">Graph</td>
+            <td>
+Detect Negative cycle in a graph
+            </td>
+            <td>
+                <a target="_blank" href="https://www.geeksforgeeks.org/detect-negative-cycle-graph-bellman-ford/">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>355</td>
+            <td title="wolfkin">Graph</td>
+            <td>
+Longest path in a Directed Acyclic Graph
+            </td>
+            <td>
+                <a target="_blank" href="https://www.geeksforgeeks.org/find-longest-path-directed-acyclic-graph/">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>356</td>
+            <td title="wolfkin">Graph</td>
+            <td>
+Journey to the Moon
+            </td>
+            <td>
+                <a target="_blank" href="https://www.hackerrank.com/challenges/journey-to-the-moon/problem">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>357</td>
+            <td title="wolfkin">Graph</td>
+            <td>
+Cheapest Flights Within K Stops
+            </td>
+            <td>
+                <a target="_blank" href="https://leetcode.com/problems/cheapest-flights-within-k-stops/description/">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>358</td>
+            <td title="wolfkin">Graph</td>
+            <td>
+Oliver and the Game
+            </td>
+            <td>
+                <a target="_blank" href="https://www.hackerearth.com/practice/algorithms/graphs/topological-sort/practice-problems/algorithm/oliver-and-the-game-3/">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>359</td>
+            <td title="wolfkin">Graph</td>
+            <td>
+Water Jug problem using BFS
+            </td>
+            <td>
+                <a target="_blank" href="https://www.geeksforgeeks.org/water-jug-problem-using-bfs/">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>360</td>
+            <td title="wolfkin">Graph</td>
+            <td>
+Water Jug problem using BFS
+            </td>
+            <td>
+                <a target="_blank" href="https://www.geeksforgeeks.org/water-jug-problem-using-bfs/">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>361</td>
+            <td title="wolfkin">Graph</td>
+            <td>
+Find if there is a path of more thank length from a source
+            </td>
+            <td>
+                <a target="_blank" href="https://www.geeksforgeeks.org/find-if-there-is-a-path-of-more-than-k-length-from-a-source/">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>362</td>
+            <td title="wolfkin">Graph</td>
+            <td>
+M-ColouringProblem
+            </td>
+            <td>
+                <a target="_blank" href="https://practice.geeksforgeeks.org/problems/m-coloring-problem-1587115620/1">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>363</td>
+            <td title="wolfkin">Graph</td>
+            <td>
+Minimum edges to reverse o make path from source to destination
+            </td>
+            <td>
+                <a target="_blank" href="https://www.geeksforgeeks.org/minimum-edges-reverse-make-path-source-destination/">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>364</td>
+            <td title="wolfkin">Graph</td>
+            <td>
+Paths to travel each nodes using each edge(Seven Bridges)
+            </td>
+            <td>
+                <a target="_blank" href="https://www.geeksforgeeks.org/paths-travel-nodes-using-edgeseven-bridges-konigsberg/">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>365</td>
+            <td title="wolfkin">Graph</td>
+            <td>
+Vertex Cover Problem
+            </td>
+            <td>
+                <a target="_blank" href="https://www.geeksforgeeks.org/vertex-cover-problem-set-1-introduction-approximate-algorithm-2/">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>366</td>
+            <td title="wolfkin">Graph</td>
+            <td>
+Chinese Postman or Route Inspection
+            </td>
+            <td>
+                <a target="_blank" href="https://www.geeksforgeeks.org/chinese-postman-route-inspection-set-1-introduction/">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>367</td>
+            <td title="wolfkin">Graph</td>
+            <td>
+Number of Triangles in a Directed and Undirected Graph
+            </td>
+            <td>
+                <a target="_blank" href="https://www.geeksforgeeks.org/number-of-triangles-in-directed-and-undirected-graphs/">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>368</td>
+            <td title="wolfkin">Graph</td>
+            <td>
+Minimise the cashflow among a given set of friends who have borrowed money from each other
+            </td>
+            <td>
+                <a target="_blank" href="https://www.geeksforgeeks.org/minimize-cash-flow-among-given-set-friends-borrowed-money/">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>369</td>
+            <td title="wolfkin">Graph</td>
+            <td>
+Two Clique Problem
+            </td>
+            <td>
+                <a target="_blank" href="https://www.geeksforgeeks.org/two-clique-problem-check-graph-can-divided-two-cliques/">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>370</td>
+            <td title="wolfkin">Trie</td>
+            <td>
+Construct a trie from scratch
+            </td>
+            <td>
+                <a target="_blank" href="https://www.geeksforgeeks.org/trie-insert-and-search/">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>371</td>
+            <td title="wolfkin">Trie</td>
+            <td>
+Find shortest unique prefix for every word in a given list
+            </td>
+            <td>
+                <a target="_blank" href="https://www.geeksforgeeks.org/find-all-shortest-unique-prefixes-to-represent-each-word-in-a-given-list/">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>372</td>
+            <td title="wolfkin">Trie</td>
+            <td>
+Word Break Problem | (Trie solution)
+            </td>
+            <td>
+                <a target="_blank" href="https://www.geeksforgeeks.org/word-break-problem-trie-solution/">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>373</td>
+            <td title="wolfkin">Trie</td>
+            <td>
+Given a sequence of words, print all anagrams together
+            </td>
+            <td>
+                <a target="_blank" href="https://practice.geeksforgeeks.org/problems/print-anagrams-together/1">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>374</td>
+            <td title="wolfkin">Trie</td>
+            <td>
+Implement a Phone Directory
+            </td>
+            <td>
+                <a target="_blank" href="https://practice.geeksforgeeks.org/problems/phone-directory4628/1">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>375</td>
+            <td title="wolfkin">Trie</td>
+            <td>
+Print unique rows in a given boolean matrix
+            </td>
+            <td>
+                <a target="_blank" href="https://practice.geeksforgeeks.org/problems/unique-rows-in-boolean-matrix/1">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>376</td>
+            <td title="wolfkin">Dynamic Programming</td>
+            <td>
+Coin ChangeProblem
+            </td>
+            <td>
+                <a target="_blank" href="https://practice.geeksforgeeks.org/problems/coin-change2448/1">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>377</td>
+            <td title="wolfkin">Dynamic Programming</td>
+            <td>
+Knapsack Problem
+            </td>
+            <td>
+                <a target="_blank" href="https://practice.geeksforgeeks.org/problems/0-1-knapsack-problem0945/1">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>378</td>
+            <td title="wolfkin">Dynamic Programming</td>
+            <td>
+Binomial CoefficientProblem
+            </td>
+            <td>
+                <a target="_blank" href="https://practice.geeksforgeeks.org/problems/ncr1019/1">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>379</td>
+            <td title="wolfkin">Dynamic Programming</td>
+            <td>
+Permutation CoefficientProblem
+            </td>
+            <td>
+                <a target="_blank" href="https://www.geeksforgeeks.org/permutation-coefficient/">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>380</td>
+            <td title="wolfkin">Dynamic Programming</td>
+            <td>
+Program for nth Catalan Number
+            </td>
+            <td>
+                <a target="_blank" href="https://www.geeksforgeeks.org/program-nth-catalan-number/">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>381</td>
+            <td title="wolfkin">Dynamic Programming</td>
+            <td>
+Matrix Chain Multiplication 
+            </td>
+            <td>
+                <a target="_blank" href="https://www.geeksforgeeks.org/matrix-chain-multiplication-dp-8/">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>382</td>
+            <td title="wolfkin">Dynamic Programming</td>
+            <td>
+Edit Distance 
+            </td>
+            <td>
+                <a target="_blank" href="https://practice.geeksforgeeks.org/problems/edit-distance3702/1/">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>383</td>
+            <td title="wolfkin">Dynamic Programming</td>
+            <td>
+Subset Sum Problem 
+            </td>
+            <td>
+                <a target="_blank" href="https://practice.geeksforgeeks.org/problems/subset-sum-problem2014/1/">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>384</td>
+            <td title="wolfkin">Dynamic Programming</td>
+            <td>
+Friends Pairing Problem
+            </td>
+            <td>
+                <a target="_blank" href="https://practice.geeksforgeeks.org/problems/friends-pairing-problem5425/1">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>385</td>
+            <td title="wolfkin">Dynamic Programming</td>
+            <td>
+Gold Mine Problem
+            </td>
+            <td>
+                <a target="_blank" href="https://www.geeksforgeeks.org/gold-mine-problem/">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>386</td>
+            <td title="wolfkin">Dynamic Programming</td>
+            <td>
+Assembly Line SchedulingProblem
+            </td>
+            <td>
+                <a target="_blank" href="https://www.geeksforgeeks.org/assembly-line-scheduling-dp-34/">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>387</td>
+            <td title="wolfkin">Dynamic Programming</td>
+            <td>
+Painting the Fenceproblem
+            </td>
+            <td>
+                <a target="_blank" href="https://practice.geeksforgeeks.org/problems/painting-the-fence3727/1">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>388</td>
+            <td title="wolfkin">Dynamic Programming</td>
+            <td>
+Maximize The Cut Segments
+            </td>
+            <td>
+                <a target="_blank" href="https://practice.geeksforgeeks.org/problems/cutted-segments1642/1">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>389</td>
+            <td title="wolfkin">Dynamic Programming</td>
+            <td>
+Longest Common Subsequence
+            </td>
+            <td>
+                <a target="_blank" href="https://practice.geeksforgeeks.org/problems/longest-common-subsequence-1587115620/1">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>390</td>
+            <td title="wolfkin">Dynamic Programming</td>
+            <td>
+Longest Repeated Subsequence
+            </td>
+            <td>
+                <a target="_blank" href="https://practice.geeksforgeeks.org/problems/longest-repeating-subsequence2004/1">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>391</td>
+            <td title="wolfkin">Dynamic Programming</td>
+            <td>
+Longest Increasing Subsequence
+            </td>
+            <td>
+                <a target="_blank" href="https://practice.geeksforgeeks.org/problems/longest-increasing-subsequence-1587115620/1">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>392</td>
+            <td title="wolfkin">Dynamic Programming</td>
+            <td>
+Space Optimized Solution of LCS
+            </td>
+            <td>
+                <a target="_blank" href="https://www.geeksforgeeks.org/space-optimized-solution-lcs/">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>393</td>
+            <td title="wolfkin">Dynamic Programming</td>
+            <td>
+LCS (Longest Common Subsequence) of three strings
+            </td>
+            <td>
+                <a target="_blank" href="https://practice.geeksforgeeks.org/problems/longest-repeating-subsequence2004/1">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>394</td>
+            <td title="wolfkin">Dynamic Programming</td>
+            <td>
+Maximum Sum Increasing Subsequence
+            </td>
+            <td>
+                <a target="_blank" href="https://practice.geeksforgeeks.org/problems/maximum-sum-increasing-subsequence4749/1">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>395</td>
+            <td title="wolfkin">Dynamic Programming</td>
+            <td>
+Count all subsequences having product less than K
+            </td>
+            <td>
+                <a target="_blank" href="https://www.geeksforgeeks.org/count-subsequences-product-less-k/">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>396</td>
+            <td title="wolfkin">Dynamic Programming</td>
+            <td>
+Longest subsequence such that difference between adjacent is one
+            </td>
+            <td>
+                <a target="_blank" href="https://practice.geeksforgeeks.org/problems/longest-subsequence-such-that-difference-between-adjacents-is-one4724/1">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>397</td>
+            <td title="wolfkin">Dynamic Programming</td>
+            <td>
+Maximum subsequence sum such that no three are consecutive
+            </td>
+            <td>
+                <a target="_blank" href="https://www.geeksforgeeks.org/maximum-subsequence-sum-such-that-no-three-are-consecutive/">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>398</td>
+            <td title="wolfkin">Dynamic Programming</td>
+            <td>
+Egg Dropping Problem
+            </td>
+            <td>
+                <a target="_blank" href="https://practice.geeksforgeeks.org/problems/egg-dropping-puzzle-1587115620/1">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>399</td>
+            <td title="wolfkin">Dynamic Programming</td>
+            <td>
+Maximum Length Chain of Pairs
+            </td>
+            <td>
+                <a target="_blank" href="https://practice.geeksforgeeks.org/problems/max-length-chain/1">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>400</td>
+            <td title="wolfkin">Dynamic Programming</td>
+            <td>
+Maximum size square sub-matrix with all 1s
+            </td>
+            <td>
+                <a target="_blank" href="https://practice.geeksforgeeks.org/problems/largest-square-formed-in-a-matrix0806/1">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>401</td>
+            <td title="wolfkin">Dynamic Programming</td>
+            <td>
+Maximum sum of pairs with specific difference
+            </td>
+            <td>
+                <a target="_blank" href="https://practice.geeksforgeeks.org/problems/pairs-with-specific-difference1533/1">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>402</td>
+            <td title="wolfkin">Dynamic Programming</td>
+            <td>
+Maximum sum of pairs with specific difference
+            </td>
+            <td>
+                <a target="_blank" href="https://practice.geeksforgeeks.org/problems/pairs-with-specific-difference1533/1">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>403</td>
+            <td title="wolfkin">Dynamic Programming</td>
+            <td>
+Min Cost PathProblem
+            </td>
+            <td>
+                <a target="_blank" href="https://practice.geeksforgeeks.org/problems/path-in-matrix3805/1">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>404</td>
+            <td title="wolfkin">Dynamic Programming</td>
+            <td>
+Maximum difference of zeros and ones in binary string
+            </td>
+            <td>
+                <a target="_blank" href="https://practice.geeksforgeeks.org/problems/maximum-difference-of-zeros-and-ones-in-binary-string4111/1">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>405</td>
+            <td title="wolfkin">Dynamic Programming</td>
+            <td>
+Minimum number of jumps to reach end
+            </td>
+            <td>
+                <a target="_blank" href="https://practice.geeksforgeeks.org/problems/minimum-number-of-jumps-1587115620/1">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>406</td>
+            <td title="wolfkin">Dynamic Programming</td>
+            <td>
+Minimum cost to fill given weight in a bag
+            </td>
+            <td>
+                <a target="_blank" href="https://practice.geeksforgeeks.org/problems/minimum-cost-to-fill-given-weight-in-a-bag1956/1">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>407</td>
+            <td title="wolfkin">Dynamic Programming</td>
+            <td>
+Minimum removals from array to make max – min <= K
+            </td>
+            <td>
+                <a target="_blank" href="https://www.geeksforgeeks.org/minimum-removals-array-make-max-min-k/">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>408</td>
+            <td title="wolfkin">Dynamic Programming</td>
+            <td>
+Longest Common Substring
+            </td>
+            <td>
+                <a target="_blank" href="https://practice.geeksforgeeks.org/problems/longest-common-substring1452/1">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>409</td>
+            <td title="wolfkin">Dynamic Programming</td>
+            <td>
+Count number of ways to reacha given score in a game
+            </td>
+            <td>
+                <a target="_blank" href="https://practice.geeksforgeeks.org/problems/reach-a-given-score-1587115621/1">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>410</td>
+            <td title="wolfkin">Dynamic Programming</td>
+            <td>
+Count Balanced Binary Trees of Height h
+            </td>
+            <td>
+                <a target="_blank" href="https://practice.geeksforgeeks.org/problems/bbt-counter4914/1">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>411</td>
+            <td title="wolfkin">Dynamic Programming</td>
+            <td>
+LargestSum Contiguous Subarray [V>V>V>V IMP ]
+            </td>
+            <td>
+                <a target="_blank" href="https://practice.geeksforgeeks.org/problems/kadanes-algorithm-1587115620/1">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>412</td>
+            <td title="wolfkin">Dynamic Programming</td>
+            <td>
+Smallest sum contiguous subarray
+            </td>
+            <td>
+                <a target="_blank" href="https://www.geeksforgeeks.org/smallest-sum-contiguous-subarray/">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>413</td>
+            <td title="wolfkin">Dynamic Programming</td>
+            <td>
+Unbounded Knapsack (Repetition of items allowed)
+            </td>
+            <td>
+                <a target="_blank" href="https://practice.geeksforgeeks.org/problems/knapsack-with-duplicate-items4201/1">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>414</td>
+            <td title="wolfkin">Dynamic Programming</td>
+            <td>
+Word Break Problem
+            </td>
+            <td>
+                <a target="_blank" href="https://practice.geeksforgeeks.org/problems/word-break1352/1">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>415</td>
+            <td title="wolfkin">Dynamic Programming</td>
+            <td>
+Largest Independent Set Problem
+            </td>
+            <td>
+                <a target="_blank" href="https://www.geeksforgeeks.org/largest-independent-set-problem-dp-26/">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>416</td>
+            <td title="wolfkin">Dynamic Programming</td>
+            <td>
+Partition problem
+            </td>
+            <td>
+                <a target="_blank" href="https://practice.geeksforgeeks.org/problems/subset-sum-problem2014/1">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>417</td>
+            <td title="wolfkin">Dynamic Programming</td>
+            <td>
+Longest Palindromic Subsequence
+            </td>
+            <td>
+                <a target="_blank" href="https://www.geeksforgeeks.org/longest-palindromic-subsequence-dp-12/">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>418</td>
+            <td title="wolfkin">Dynamic Programming</td>
+            <td>
+Count All Palindromic Subsequence in a given String
+            </td>
+            <td>
+                <a target="_blank" href="https://practice.geeksforgeeks.org/problems/count-palindromic-subsequences/1">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>419</td>
+            <td title="wolfkin">Dynamic Programming</td>
+            <td>
+Longest Palindromic Substring
+            </td>
+            <td>
+                <a target="_blank" href="https://leetcode.com/problems/longest-palindromic-substring/">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>420</td>
+            <td title="wolfkin">Dynamic Programming</td>
+            <td>
+Longest alternating subsequence
+            </td>
+            <td>
+                <a target="_blank" href="https://practice.geeksforgeeks.org/problems/longest-alternating-subsequence5951/1">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>421</td>
+            <td title="wolfkin">Dynamic Programming</td>
+            <td>
+Weighted Job Scheduling
+            </td>
+            <td>
+                <a target="_blank" href="https://www.geeksforgeeks.org/weighted-job-scheduling/">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>422</td>
+            <td title="wolfkin">Dynamic Programming</td>
+            <td>
+Coin game winner where every player has three choices
+            </td>
+            <td>
+                <a target="_blank" href="https://www.geeksforgeeks.org/coin-game-winner-every-player-three-choices/">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>423</td>
+            <td title="wolfkin">Dynamic Programming</td>
+            <td>
+Count Derangements (Permutation such that no element appears in its original position) [ IMPORTANT ]
+            </td>
+            <td>
+                <a target="_blank" href="https://www.geeksforgeeks.org/count-derangements-permutation-such-that-no-element-appears-in-its-original-position/">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>424</td>
+            <td title="wolfkin">Dynamic Programming</td>
+            <td>
+Maximum profit by buying and selling a share at most twice [ IMP ]
+            <td>
+                <a target="_blank" href="https://www.geeksforgeeks.org/maximum-profit-by-buying-and-selling-a-share-at-most-twice/">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>425</td>
+            <td title="wolfkin">Dynamic Programming</td>
+            <td>
+Optimal Strategy for a Game
+            <td>
+                <a target="_blank" href="https://practice.geeksforgeeks.org/problems/optimal-strategy-for-a-game-1587115620/1">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>426</td>
+            <td title="wolfkin">Dynamic Programming</td>
+            <td>
+Optimal Binary Search Tree
+            <td>
+                <a target="_blank" href="https://www.geeksforgeeks.org/optimal-binary-search-tree-dp-24/">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>427</td>
+            <td title="wolfkin">Dynamic Programming</td>
+            <td>
+Palindrome PartitioningProblem
+            <td>
+                <a target="_blank" href="https://practice.geeksforgeeks.org/problems/palindromic-patitioning4845/1">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>428</td>
+            <td title="wolfkin">Dynamic Programming</td>
+            <td>
+Word Wrap Problem
+            <td>
+                <a target="_blank" href="https://practice.geeksforgeeks.org/problems/word-wrap1646/1">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>429</td>
+            <td title="wolfkin">Dynamic Programming</td>
+            <td>
+Mobile Numeric Keypad Problem [ IMP ]
+            <td>
+                <a target="_blank" href="https://practice.geeksforgeeks.org/problems/mobile-numeric-keypad5456/1">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>430</td>
+            <td title="wolfkin">Dynamic Programming</td>
+            <td>
+Boolean Parenthesization Problem
+            <td>
+                <a target="_blank" href="https://practice.geeksforgeeks.org/problems/boolean-parenthesization5610/1">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>431</td>
+            <td title="wolfkin">Dynamic Programming</td>
+            <td>
+Largest rectangular sub-matrix whose sum is 0
+            <td>
+                <a target="_blank" href="https://www.geeksforgeeks.org/largest-rectangular-sub-matrix-whose-sum-0/">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>432</td>
+            <td title="wolfkin">Dynamic Programming</td>
+            <td>
+Largest area rectangular sub-matrix with equal number of 1’s and 0’s [ IMP ]
+            <td>
+                <a target="_blank" href="https://www.geeksforgeeks.org/largest-area-rectangular-sub-matrix-equal-number-1s-0s/">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>433</td>
+            <td title="wolfkin">Dynamic Programming</td>
+            <td>
+Maximum sum rectangle in a 2D matrix
+            <td>
+                <a target="_blank" href="https://practice.geeksforgeeks.org/problems/maximum-sum-rectangle2948/1/">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>434</td>
+            <td title="wolfkin">Dynamic Programming</td>
+            <td>
+Maximum profit by buying and selling a share at most k times
+            <td>
+                <a target="_blank" href="https://practice.geeksforgeeks.org/problems/maximum-profit4657/1">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>435</td>
+            <td title="wolfkin">Dynamic Programming</td>
+            <td>
+Find if a string is interleaved of two other strings
+            <td>
+                <a target="_blank" href="https://practice.geeksforgeeks.org/problems/interleaved-strings/1">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>436</td>
+            <td title="wolfkin">Dynamic Programming</td>
+            <td>
+Maximum Length of Pair Chain
+            <td>
+                <a target="_blank" href="https://leetcode.com/problems/maximum-length-of-pair-chain/">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>437</td>
+            <td title="wolfkin">Bit Manipulation</td>
+            <td>
+Count set bits in an integer
+            <td>
+                <a target="_blank" href="https://practice.geeksforgeeks.org/problems/set-bits0143/1">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>438</td>
+            <td title="wolfkin">Bit Manipulation</td>
+            <td>
+Find the two non-repeating elements in an array of repeating elements
+            <td>
+                <a target="_blank" href="https://practice.geeksforgeeks.org/problems/finding-the-numbers0215/1">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>439</td>
+            <td title="wolfkin">Bit Manipulation</td>
+            <td>
+Count number of bits to be flipped to convert A to B
+            <td>
+                <a target="_blank" href="https://practice.geeksforgeeks.org/problems/bit-difference-1587115620/1">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>440</td>
+            <td title="wolfkin">Bit Manipulation</td>
+            <td>
+Count total set bits in all numbers from 1 to n
+            <td>
+                <a target="_blank" href="https://practice.geeksforgeeks.org/problems/count-total-set-bits-1587115620/1">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>441</td>
+            <td title="wolfkin">Bit Manipulation</td>
+            <td>
+Program to find whether a no is power of two
+            <td>
+                <a target="_blank" href="https://practice.geeksforgeeks.org/problems/power-of-2-1587115620/1">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>442</td>
+            <td title="wolfkin">Bit Manipulation</td>
+            <td>
+Find position of the only set bit
+            <td>
+                <a target="_blank" href="https://practice.geeksforgeeks.org/problems/find-position-of-set-bit3706/1">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>443</td>
+            <td title="wolfkin">Bit Manipulation</td>
+            <td>
+Copy set bits in a range
+            <td>
+                <a target="_blank" href="https://www.geeksforgeeks.org/copy-set-bits-in-a-range/">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>444</td>
+            <td title="wolfkin">Bit Manipulation</td>
+            <td>
+Divide two integers without using multiplication, division and mod operator
+            <td>
+                <a target="_blank" href="https://www.geeksforgeeks.org/divide-two-integers-without-using-multiplication-division-mod-operator/">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>445</td>
+            <td title="wolfkin">Bit Manipulation</td>
+            <td>
+Calculate square of a number without using *, / and pow()
+            <td>
+                <a target="_blank" href="https://www.geeksforgeeks.org/calculate-square-of-a-number-without-using-and-pow/#:~:text=Given%20an%20integer%20n%2C%20calculate,*%2C%20%2F%20and%20pow().&text=A%20Simple%20Solution%20is%20to%20repeatedly%20add%20n%20to%20result.">Solve Here</a>
+            </td>
+        </tr>
+        <tr>
+            <td>446</td>
+            <td title="wolfkin">Bit Manipulation</td>
+            <td>
+Power Set
+            <td>
+                <a target="_blank" href="https://practice.geeksforgeeks.org/problems/power-set4302/1">Solve Here</a>
+            </td>
+        </tr>
+        </tbody>
+
+    </table>
+
+    {% comment %} <h3 style="background: crimson;color: white;font-weight: bold;padding:10px;text-align: center;">Random Generations</h3> {% endcomment %}
+   <center> <table id="cp_winners_table" class="widefat" style="background-color:#0088cc;color:#ddd;font-weight:bold;margin:15px;width:100%;box-shadow:  32px 32px 46px #6c6c6c,
+    -32px -32px 46px #ffffff;border-radius:0.5rem">
+
+        <thead>
+            <tr>
+                <th scope="col">Serial No.</th>
+                <th scope="col">Data Structure</th>
+                <th scope="col">Question Name</th>
+                <th scope="col">Link</th>
+            </tr>
+        </thead>
+
+
+        <tbody id="winners">
+        </tbody>
+
+    </table></center>
+    <hr>
+<br>
+    {% comment %} <a href="javascript:cplottopickwinner()" style="color: #0088cc;font-weight: bold;text-align: center;margin-left:1rem;display:block">Pick Random Question(s)</a> {% endcomment %}
+
+  
+    <div class="container">
+     <center> <div class="row">
+         <div class="col">
+             <a class="btn btn-lg" href="javascript:cplottopickwinner()" style='margin-bottom:1rem;margin-top:1rem'>
+                <span>Lets Explore</span>
+             </a>
+         </div>
+     </div> </center>
+ </div>
+ <hr>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+
+</body>
+<div class="card text-center" id="card_suggest" style='margin-bottom:3rem;margin-top:3rem;width:100%'>
+    <h5 class="card-header" style="background-color:#0088cc;color:white;font-weight:bolder">Credits Section</h5>
+    <div class="card-body" style='border-radius:1rem'>
+      
+      
+      <h5 class="card-title" style='font-weight:bold'>Thanks to <a href="https://www.linkedin.com/in/rahul-srivatsa-s-813062217/" target="_blank" style="color:crimson;">Rahul Srivatsa S</a> and <a href="https://www.linkedin.com/in/chethana-d-97b388219/" target="_blank" style='color:crimson'>Chethana D</a></h5>
+    </div>
+   
+  </div>
+<script>
+    function cplottopickwinner() {
+        var trs = document.getElementById("participants").getElementsByTagName("tr");
+        var rand = Math.floor(Math.random() * trs.length);
+        trs[rand].style.backgroundColor = "#161b22";
+        document.getElementById('winners').appendChild(trs[rand]);
+    }
+</script>
+
+</html>
+
+    {% endblock %}
+    {% block script %}
+    <script>
+    
+      var colors = ['#FB9797', '#FB84BD', '#EA84FB', '#FF6D3F', '#4270E7', 'green', 'blue'];
+        $('.add-border').each(function() {
+            $(this).css('border-top', "3px solid " + colors[Math.floor(Math.random() * colors.length)]);
+        });
+    
+    </script>
+    {% endblock %}
+    
+    
+    

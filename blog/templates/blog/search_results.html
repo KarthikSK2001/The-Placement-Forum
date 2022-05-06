@@ -1,0 +1,112 @@
+{% extends "blog/base.html" %}
+
+{% block title %}Search Results{% endblock %}
+
+{% block content %}
+<style>
+  #card_suggest_detail,#btntitle,col-md-10{
+      border-radius: 0.5rem;
+      
+      box-shadow:  8px 8px 4px #c5c5c5,
+                   -8px -8px 4px #fbfbfb;}
+</style>
+<div class="col-md-8 m-auto">
+  
+<div class="content-section" style='margin-bottom:2rem;border-radius: 0.5rem;
+        
+box-shadow:  8px 8px 4px #c5c5c5,
+             -8px -8px 4px #fbfbfb;margin-top:2rem'>
+             <div class="card text-center" id="card_suggest_detail" style='margin-bottom:1rem;margin-top:1rem'>
+              <h6 class="card-header" style="background-color:crimson;color:white;font-weight:bolder;border-radius:0.5rem;">Search Results ({{allposts|length}})</h6>
+             
+             
+            </div>
+  <h3></h3>
+</div>
+
+    {% if allposts|length == 0 %}
+      <div class="content-section">
+        <p>Your search did not match any posts ...</p>
+
+        <p class="text-muted">Suggestions:</p>
+        <ul class="text-muted">
+            <li>Make sure that all words are spelled correctly.</li> 
+            <li>Try different keywords.</li>
+        </ul> 
+      </div>
+      <br><br>
+    {% endif %}
+    {% for post in allposts %}
+
+    <article class="content-section" style="overflow: auto;margin-bottom:2rem;border-radius: 0.5rem;
+        
+    box-shadow:  8px 8px 4px #c5c5c5,
+                 -8px -8px 4px #fbfbfb;">
+      <div class="media">
+        <img class="rounded-circle article-img" src="https://i.ibb.co/71FNvw0/ds-logo.png" alt="image">
+          <div class="media-body">
+            <h4 class="d-inline" style='font-weight:bolder'>Code Studio</h4><br>
+              <small class="text-success" style="color:darkgreen;font-weight:bolder" >Difficulty = "{{ post.level}}"</small>
+            </div>
+      </div>
+      <hr>
+      <div class="card text-center" id="card_suggest_detail" style='margin-bottom:1rem;margin-top:1rem'>
+        <h6 class="card-header" style="background-color:crimson;color:white;font-weight:bolder;border-radius:0.5rem;">{{post.title}}</h6>
+       
+       
+      </div>
+      <div class="card text-center" id="card_suggest_detail" style='margin-bottom:1rem'>
+        <h6 class="card-header" style="background-color:#0088cc;color:white;font-weight:bolder;border-radius:0.5rem;">Description</h6>
+       
+       
+      </div>
+    <hr>
+    {% comment %} <p class="article-content" style="font-weight:bolder">{{ post.content|safe }}</p> {% endcomment %}
+    <hr>
+    
+    <hr>
+      <p class="article-content" style="font-weight:bolder">{{ post.content|safe|linebreaks|truncatewords_html:"20" }}<a href="{% url 'post-detail' post.id %}" style="font-weight:bolder">[Read full post]</a></p>
+    </article>
+
+    {% endfor %}
+
+    {% if is_paginated %}
+
+      {% if page_obj.has_previous %}
+        <a class="btn btn-outline-info mb-4" href="?page=1">First</a>
+        <a class="btn btn-outline-info mb-4" href="?page={{page_obj.previous_page_number}}">Previous</a>
+      {% endif %}
+
+      {% for num in page_obj.paginator.page_range %}
+        {% if page_obj.number == num %}
+          <a class="btn btn-info mb-4" href="?page={{num}}">{{num}}</a>
+        {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+        <a class="btn btn-outline-info mb-4" href="?page={{num}}">{{num}}</a>
+        {% endif %}
+      {% endfor %}
+
+      {% if page_obj.has_next %}
+        <a class="btn btn-outline-info mb-4" href="?page={{page_obj.next_page_number}}">Next</a>
+        <a class="btn btn-outline-info mb-4" href="?page={{page_obj.paginator.num_pages}}">Last</a>
+      {% endif %}
+
+    {% endif %}
+
+</div>
+
+<!-- SIDEBAR
+<div class="col-md-4">
+  <div class="content-section">
+      <h3>Our Sidebar</h3>
+      <p class="text-muted">You can put any information here you'd like.
+          <ul class="list-group">
+              <li class="list-group-item list-group-item-light">Latest Posts</li>
+              <li class="list-group-item list-group-item-light">Announcements</li>
+              <li class="list-group-item list-group-item-light">Calendars</li>
+              <li class="list-group-item list-group-item-light">etc</li>
+          </ul>
+      </p>
+  </div>
+</div>   -->
+
+{% endblock %}

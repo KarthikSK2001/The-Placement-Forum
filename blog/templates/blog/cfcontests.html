@@ -1,0 +1,337 @@
+
+
+
+    {% extends "blog/base.html" %}
+
+    {% block title %}CF TopicWise Randoms{% endblock %}
+    
+    {% block content %}
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <style>
+      body {
+        background: #eee
+    } * {
+      font-family: 'IBM Plex Sans Hebrew', sans-serif;
+    }
+    .btn{
+        color: #fff;
+        background: linear-gradient(135deg, #852d91, #312a6c);
+        font-family: 'Comfortaa', cursive;
+        font-size: 17px;
+        font-weight: 700;
+      
+        padding: 11px 11px;
+        border: none;
+        border-radius: 5px;
+        overflow: hidden;
+        position: relative;
+        transition: all 0.3s cubic-bezier(0.02, 0.01, 0.47, 1);
+      }
+      .btn:hover{
+        color: #fff;
+        border: none;
+        box-shadow: 0 0 10px rgba(0,0,0,0.3);
+        animation: rotate 0.7s ease-in-out both;
+      }
+      .btn:before,
+      .btn:after{
+        content: '';
+        background: #fff;
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        opacity: 0;
+        transform: translate(100%, -25%) translate3d(0, 0, 0);
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        z-index: -1;
+        transition: all 0.15s cubic-bezier(0.02, 0.01, 0.47, 1);
+      }
+      .btn:hover:before,
+      .btn:hover:after{
+        opacity: 0.15;
+      }
+      .btn:hover:before{ transform: translate3d(50%, 0, 0) scale(0.9); }
+      .btn:hover:after{ transform: translate(50%, 0) scale(1.1); }
+      @keyframes rotate{
+        0%{ transform: rotate(0deg); }
+        25%{ transform: rotate(3deg); }
+        50%{ transform: rotate(-3deg); }
+        75%{ transform: rotate(1deg); }
+        100%{ transform: rotate(0deg); }
+      }
+    .filter {
+        border-top-right-radius: 10px;
+        border-bottom-left-radius: 10px;
+        border-bottom-right-radius: 10px
+    }
+    
+    .profiles img {
+        margin-right: -6px
+    }
+    
+    .col-md-4 {
+        margin-top: 26px
+    }
+    .btn{
+      color: #fff;
+      background: linear-gradient(135deg, #852d91, #312a6c);
+      font-family: 'Comfortaa', cursive;
+      font-size: 17px;
+      font-weight: 700;
+    
+      padding: 11px 11px;
+      border: none;
+      border-radius: 5px;
+      overflow: hidden;
+      position: relative;
+      transition: all 0.3s cubic-bezier(0.02, 0.01, 0.47, 1);
+    }
+    .btn:hover{
+      color: #fff;
+      border: none;
+      box-shadow: 0 0 10px rgba(0,0,0,0.3);
+      animation: rotate 0.7s ease-in-out both;
+    }
+    .btn:before,
+    .btn:after{
+      content: '';
+      background: #fff;
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      opacity: 0;
+      transform: translate(100%, -25%) translate3d(0, 0, 0);
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      z-index: -1;
+      transition: all 0.15s cubic-bezier(0.02, 0.01, 0.47, 1);
+    }
+    .btn:hover:before,
+    .btn:hover:after{
+      opacity: 0.15;
+    }
+    .btn:hover:before{ transform: translate3d(50%, 0, 0) scale(0.9); }
+    .btn:hover:after{ transform: translate(50%, 0) scale(1.1); }
+    @keyframes rotate{
+      0%{ transform: rotate(0deg); }
+      25%{ transform: rotate(3deg); }
+      50%{ transform: rotate(-3deg); }
+      75%{ transform: rotate(1deg); }
+      100%{ transform: rotate(0deg); }
+    }
+    @media only screen and (max-width: 767px){
+      .btn{ margin-bottom: 20px; }
+    }.ratings i {
+      color: green;
+      margin-top:3px
+    }
+    .p-card,#card_suggest{
+      border-radius: 50px;
+      background: #e0e0e0;
+      box-shadow:  32px 32px 46px #6c6c6c,
+                   -32px -32px 46px #ffffff;
+    }
+    .basic-grid{
+        display: grid;
+        gap: 2rem;
+        margin-bottom:2rem;
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        }
+    .photo-grid{
+        display: grid;
+        gap: 1rem;
+    
+        grid-template-columns: repeat(auto-fit, minmax(440px, 1fr));
+        grid-auto-rows: 240px;
+    }
+    @media screen and (min-width: 600px){
+        .card-tall{
+            grid-row: span 2/ auto;
+        }
+        .card-wide{
+            grid-column: span 2/auto;
+        }
+    }
+
+    
+    .card {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        box-shadow:  32px 32px 46px #6c6c6c,
+        -32px -32px 46px #ffffff;
+        
+        color: black;
+       
+        width: 100%;
+        border-radius: 4px;
+        transition: all 500ms;
+        overflow: hidden;
+        display:block;
+        width:100%
+     }
+    
+    .card:hover {
+        box-shadow: rgba(2, 8, 20, 0.1) 0px 0.35em 1.175em, rgba(2, 8, 20, 0.08) 0px 0.175em 0.5em;
+        transform: translateY(-3px) scale(1.1);
+     }
+    
+     @media screen and (min-width: 600px){
+        .card{
+            font-size: 2rem;
+        }
+    }
+    </style>
+
+    
+    
+    <div class="card text-center" id="card_suggest"  style='margin-bottom:4rem'>
+        <h5 class="card-header" style="background-color:#0088cc;color:white;font-weight:bolder;width:100%">Codeforces Random DSA Generator</h5>
+        <div class="card-body" style='border-radius:1rem'>
+          
+            <center><img src="https://i.ibb.co/0MdfrJg/cflogo.png" class="img-fluid" alt="..." style='width:60px;height:60px;border:2px solid white;border-radius:2rem;margin-bottom:0.5rem'></center>
+
+          <h5 class="card-title" style='font-weight:bold'>This Feature allows you to select a Topic and also based on the ratings given "Question" will be generated which can be solved on CodeForces.</h5>
+        </div>
+      </div>
+      
+      <body>
+
+        <span style="color:white">sadadasdasdasdadasdsadasdadadadassadad</span>
+     <center>   <section class="basic-grid" id="timestamps">
+            <!-- <div class="card">1</div> -->
+    
+        </section></center>
+    
+    <script >
+        if("serviceWorker" in navigator){
+            navigator.serviceWorker.register("sw.js").then(registration => {
+                console.log("service worker registered");
+                console.log(registration);
+            }).catch(error => {
+                console.log("registration failed");
+                console.log(error);
+            });
+        }
+        function readTime(unix_timestamp){
+            var date = new Date(unix_timestamp * 1000);
+            var hours = date.getHours();
+            var minutes = "0" + date.getMinutes();
+            var seconds = "0" + date.getSeconds();
+            var formattedTime = hours + ':' + minutes.substr(-2) + ':' + seconds.substr(-2);
+            console.log(formattedTime);
+            return date.toString().substring(0, date.toString().length - 30);
+        
+        }
+        
+        function daysleft( c ){
+            let date1 = c*1000;
+            let date2 = Date.now();
+            let diffTime = Math.abs(date2 - date1);
+            let diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)); 
+            // let ans = "";
+            if(diffDays >= 2)
+                return ["within", diffDays.toString(),"days "].join(" ");
+            // withing 2 days
+            if(diffDays == 1){
+                let hours = Math.floor(diffTime / (1000 * 60 * 60 ));
+                let minutes = Math.ceil((diffTime / (1000 * 60 * 60 ) - hours)*60);
+                return ["within", hours.toString(), hours?"hr":"hrs ", minutes?minutes:"", "mins "].join(" ");
+            }
+            return diffDays;
+        }
+        
+        function createcards(info){
+            console.log("creating cards");
+            info = info.reverse();
+            // times = [];
+            // for(let i = 0; i < info.length ; i++){
+            //     var unix_timestamp = info[i].startTimeSeconds;
+            //     var date = new Date(unix_timestamp * 1000);
+                
+            //     var hours = date.getHours();
+                
+            //     var minutes = "0" + date.getMinutes();
+                
+            //     var seconds = "0" + date.getSeconds();
+        
+                
+            //     var formattedTime = hours + ':' + minutes.substr(-2) + ':' + seconds.substr(-2);
+        
+            //     console.log(formattedTime);
+            //     times.push(date.toString().substring(0, date.toString().length - 30));
+            /*
+            let date1 = cont.startTimeSeconds;
+            let date2 = Date.now();
+            let diffTime = Math.abs(date2 - date1);
+            let diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)); 
+            console.log(diffTime + " milliseconds");
+            console.log(diffDays + " days");
+            */
+            
+            // }
+        
+            document.getElementById('timestamps').innerHTML = `
+            ${info.map(function(cont){
+                return `
+               <center> <div class="card" style="width:100%;margin-bottom:2rem;padding:20px;padding-bottom:2rem">
+                <a href="https://codeforces.com/contests/${cont.id}" style="text-decoration: none; color: crimson;" target="_blank"><p>${cont.name}</p></a>
+
+                <p id="time" style="text-decoration: none; color: #0088cc;margin-bottom:2rem">${readTime(cont.startTimeSeconds)}<br>( ${daysleft(cont.startTimeSeconds)})</p>
+
+                </div></center>
+                 `
+            }).join('')
+            }
+            `
+        
+        
+        }var list_url = "https://codeforces.com/api/contest.list?lang=en";
+        var arr = [];
+        
+        function fillarr(data){
+            for(let i = 0; i < 10 ; i++){
+                if(data.result[i].phase == "BEFORE" && data.result[i].relativeTimeSeconds < 0)
+                    arr.push(data.result[i]);
+            }
+            // arr = data;
+            if(arr && arr.length > 0)
+                createcards(arr);
+            console.log(arr);
+        }
+        
+        fetch(list_url).then(resp => {
+            return resp.json();
+        }).then(data => {
+            console.log(data);
+            fillarr(data);
+        });
+    </script>
+
+    </body>
+    
+
+
+      
+
+
+    {% endblock %}
+    {% block script %}
+    <script>
+    
+      var colors = ['#FB9797', '#FB84BD', '#EA84FB', '#FF6D3F', '#4270E7', 'green', 'blue'];
+        $('.add-border').each(function() {
+            $(this).css('border-top', "3px solid " + colors[Math.floor(Math.random() * colors.length)]);
+        });
+    
+    </script>
+    {% endblock %}
+    
+    
+    

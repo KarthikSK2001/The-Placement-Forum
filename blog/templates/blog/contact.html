@@ -1,0 +1,218 @@
+
+
+
+    {% extends "blog/base.html" %}
+
+    {% block title %}CF TopicWise Randoms{% endblock %}
+    
+    {% block content %}
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <style>
+      body {
+        background: #eee
+    } * {
+      font-family: 'IBM Plex Sans Hebrew', sans-serif;
+    }
+    .btn{
+        color: #fff;
+        background: linear-gradient(135deg, #852d91, #312a6c);
+        font-family: 'Comfortaa', cursive;
+        font-size: 17px;
+        font-weight: 700;
+      
+        padding: 11px 11px;
+        border: none;
+        border-radius: 5px;
+        overflow: hidden;
+        position: relative;
+        transition: all 0.3s cubic-bezier(0.02, 0.01, 0.47, 1);
+      }
+      .btn:hover{
+        color: #fff;
+        border: none;
+        box-shadow: 0 0 10px rgba(0,0,0,0.3);
+        animation: rotate 0.7s ease-in-out both;
+      }
+      .btn:before,
+      .btn:after{
+        content: '';
+        background: #fff;
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        opacity: 0;
+        transform: translate(100%, -25%) translate3d(0, 0, 0);
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        z-index: -1;
+        transition: all 0.15s cubic-bezier(0.02, 0.01, 0.47, 1);
+      }
+      .btn:hover:before,
+      .btn:hover:after{
+        opacity: 0.15;
+      }
+      .btn:hover:before{ transform: translate3d(50%, 0, 0) scale(0.9); }
+      .btn:hover:after{ transform: translate(50%, 0) scale(1.1); }
+      @keyframes rotate{
+        0%{ transform: rotate(0deg); }
+        25%{ transform: rotate(3deg); }
+        50%{ transform: rotate(-3deg); }
+        75%{ transform: rotate(1deg); }
+        100%{ transform: rotate(0deg); }
+      }
+    .filter {
+        border-top-right-radius: 10px;
+        border-bottom-left-radius: 10px;
+        border-bottom-right-radius: 10px
+    }
+    
+    .profiles img {
+        margin-right: -6px
+    }
+    
+    .col-md-4 {
+        margin-top: 26px
+    }
+    .btn{
+      color: #fff;
+      background: linear-gradient(135deg, #852d91, #312a6c);
+      font-family: 'Comfortaa', cursive;
+      font-size: 17px;
+      font-weight: 700;
+    
+      padding: 11px 11px;
+      border: none;
+      border-radius: 5px;
+      overflow: hidden;
+      position: relative;
+      transition: all 0.3s cubic-bezier(0.02, 0.01, 0.47, 1);
+    }
+    .btn:hover{
+      color: #fff;
+      border: none;
+      box-shadow: 0 0 10px rgba(0,0,0,0.3);
+      animation: rotate 0.7s ease-in-out both;
+    }
+    .btn:before,
+    .btn:after{
+      content: '';
+      background: #fff;
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      opacity: 0;
+      transform: translate(100%, -25%) translate3d(0, 0, 0);
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      z-index: -1;
+      transition: all 0.15s cubic-bezier(0.02, 0.01, 0.47, 1);
+    }
+    .btn:hover:before,
+    .btn:hover:after{
+      opacity: 0.15;
+    }
+    .btn:hover:before{ transform: translate3d(50%, 0, 0) scale(0.9); }
+    .btn:hover:after{ transform: translate(50%, 0) scale(1.1); }
+    @keyframes rotate{
+      0%{ transform: rotate(0deg); }
+      25%{ transform: rotate(3deg); }
+      50%{ transform: rotate(-3deg); }
+      75%{ transform: rotate(1deg); }
+      100%{ transform: rotate(0deg); }
+    }
+    @media only screen and (max-width: 767px){
+      .btn{ margin-bottom: 20px; }
+    }.ratings i {
+      color: green;
+      margin-top:3px
+    }
+    .p-card,#card_suggest{
+      border-radius: 50px;
+      background: #e0e0e0;
+      box-shadow:  32px 32px 46px #6c6c6c,
+                   -32px -32px 46px #ffffff;
+    }
+    .basic-grid{
+        display: grid;
+        gap: 2rem;
+        margin-bottom:2rem;
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        }
+    .photo-grid{
+        display: grid;
+        gap: 1rem;
+    
+        grid-template-columns: repeat(auto-fit, minmax(440px, 1fr));
+        grid-auto-rows: 240px;
+    }
+    @media screen and (min-width: 600px){
+        .card-tall{
+            grid-row: span 2/ auto;
+        }
+        .card-wide{
+            grid-column: span 2/auto;
+        }
+    }
+
+    
+    .card {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        box-shadow:  32px 32px 46px #6c6c6c,
+        -32px -32px 46px #ffffff;
+        
+        color: black;
+       
+        width: 100%;
+        border-radius: 4px;
+        transition: all 500ms;
+        overflow: hidden;
+        display:block;
+        width:100%
+     }
+    
+    .card:hover {
+        box-shadow: rgba(2, 8, 20, 0.1) 0px 0.35em 1.175em, rgba(2, 8, 20, 0.08) 0px 0.175em 0.5em;
+        transform: translateY(-3px) scale(1.1);
+     }
+    
+     @media screen and (min-width: 600px){
+        .card{
+            font-size: 2rem;
+        }
+    }
+    </style>
+    <div class="container">
+        <div class="row align-items-center justify-content-center">
+            <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSeS1cQWFUUZiXt_rn63Kothps_LGLTs9oNzE0ewDd4mHwN2xw/viewform?embedded=true" width="1280" height="2000" frameborder="0" marginheight="10" marginwidth="10">Loading…</iframe>
+            <!-- <iframe src="https://docs.google.com/forms/d/e/1FAIpQLScLYSRjtiCiHEk8B6jvtbBZSM6PV9lI5oNllfB5-hKi6WhTHg/viewform?embedded=true" width="1280" height="2910" frameborder="0" marginheight="10" marginwidth="10" scrolling='no'>Loading…</iframe> -->
+        </div>
+    </div>
+    
+    {% comment %} <iframe src="" width="1000" height="1938" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe> {% endcomment %}
+    
+
+
+      
+
+
+    {% endblock %}
+    {% block script %}
+    <script>
+    
+      var colors = ['#FB9797', '#FB84BD', '#EA84FB', '#FF6D3F', '#4270E7', 'green', 'blue'];
+        $('.add-border').each(function() {
+            $(this).css('border-top', "3px solid " + colors[Math.floor(Math.random() * colors.length)]);
+        });
+    
+    </script>
+    {% endblock %}
+    
+    
+    

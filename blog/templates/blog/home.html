@@ -1,0 +1,304 @@
+{% extends "blog/base.html" %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+    
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Hebrew&display=swap" rel="stylesheet">
+<style>
+  body {
+    background: #eee
+} * {
+  font-family: 'IBM Plex Sans Hebrew', sans-serif;
+}
+
+.filter {
+    border-top-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px
+}
+
+.profiles img {
+    margin-right: -6px
+}
+
+.col-md-4 {
+    margin-top: 26px
+}
+.btn{
+  color: #fff;
+  background: linear-gradient(135deg, #852d91, #312a6c);
+  font-family: 'Comfortaa', cursive;
+  font-size: 17px;
+  font-weight: 700;
+
+  padding: 11px 11px;
+  border: none;
+  border-radius: 5px;
+  overflow: hidden;
+  position: relative;
+  transition: all 0.3s cubic-bezier(0.02, 0.01, 0.47, 1);
+}
+.btn:hover{
+  color: #fff;
+  border: none;
+  box-shadow: 0 0 10px rgba(0,0,0,0.3);
+  animation: rotate 0.7s ease-in-out both;
+}
+.btn:before,
+.btn:after{
+  content: '';
+  background: #fff;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  opacity: 0;
+  transform: translate(100%, -25%) translate3d(0, 0, 0);
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  z-index: -1;
+  transition: all 0.15s cubic-bezier(0.02, 0.01, 0.47, 1);
+}
+.btn:hover:before,
+.btn:hover:after{
+  opacity: 0.15;
+}
+.btn:hover:before{ transform: translate3d(50%, 0, 0) scale(0.9); }
+.btn:hover:after{ transform: translate(50%, 0) scale(1.1); }
+@keyframes rotate{
+  0%{ transform: rotate(0deg); }
+  25%{ transform: rotate(3deg); }
+  50%{ transform: rotate(-3deg); }
+  75%{ transform: rotate(1deg); }
+  100%{ transform: rotate(0deg); }
+}
+@media only screen and (max-width: 767px){
+  .btn{ margin-bottom: 20px; }
+}.ratings i {
+  color: green;
+  margin-top:3px
+}
+.p-card,#card_suggest{
+  border-radius: 50px;
+  background: #e0e0e0;
+  box-shadow:  32px 32px 46px #6c6c6c,
+               -32px -32px 46px #ffffff;
+}
+</style>
+{% comment %} <div class="col-md-8">
+
+    {% for post in posts %}
+
+    <article class="content-section" style="overflow: auto; ">
+      <div class="media">
+          <img class="rounded-circle article-img " src="{{post.author.profile.image.url}}" alt="image">
+          <div class="media-body">
+              <p class="mb-0">
+                <a class="mr-2 h4" href="{% url 'profile-detail-view' post.author.pk %}">{{ post.author }}</a>
+              </p>
+              <small class="text-muted">{{ post.date_posted|date:"F d, Y-h:i A" }}</small>
+          </div>
+      </div>
+      <hr>
+      <h3><a class="article-title" href="{% url 'post-detail' post.id %}">{{ post.title }}</a></h3>
+      <hr>
+      <p class="article-content">{{ post.content|safe|linebreaks|truncatewords_html:"20" }}<a href="{% url 'post-detail' post.id %}">[Read full post]</a></p>
+    </article>
+
+    {% endfor %} {% endcomment %}
+
+    {% comment %} {% if is_paginated %}
+
+      {% if page_obj.has_previous %}
+        <a class="btn btn-outline-info mb-4" href="?page=1">First</a>
+        <a class="btn btn-outline-info mb-4" href="?page={{page_obj.previous_page_number}}">Previous</a>
+      {% endif %}
+
+      {% for num in page_obj.paginator.page_range %}
+        {% if page_obj.number == num %}
+          <a class="btn btn-info mb-4" href="?page={{num}}">{{num}}</a>
+        {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+        <a class="btn btn-outline-info mb-4" href="?page={{num}}">{{num}}</a>
+        {% endif %}
+      {% endfor %}
+
+      {% if page_obj.has_next %}
+        <a class="btn btn-outline-info mb-4" href="?page={{page_obj.next_page_number}}">Next</a>
+        <a class="btn btn-outline-info mb-4" href="?page={{page_obj.paginator.num_pages}}">Last</a>
+      {% endif %}
+
+    {% endif %} {% endcomment %}
+
+{% comment %} </div> {% endcomment %}
+
+<!-- SIDEBAR -->
+{% comment %} <div class="col-md-4"> {% endcomment %}
+  {% comment %} <div class="content-section" style="border-top: 4px solid red;">
+      <h4>Recent Posts</h4>
+      <br>
+      <!-- <p class="text-muted">You can put any information here you'd like. -->
+          <ul class="list-group">
+              {% if posts.0 %}
+                <a href="{% url 'post-detail' posts.0.pk %}"><li class="list-group-item list-group-item-light">{{ posts.0.title }}</li></a>
+              {% endif %}
+              {% if posts.1 %}
+                <a href="{% url 'post-detail' posts.1.pk %}"><li class="list-group-item list-group-item-light">{{ posts.1.title }}</li></a>
+              {% endif %}
+              {% if posts.2 %}
+                <a href="{% url 'post-detail' posts.2.pk %}"><li class="list-group-item list-group-item-light">{{ posts.2.title }}</li></a>
+              {% endif %}
+              {% if posts.3 %}
+                <a href="{% url 'post-detail' posts.3.pk %}"><li class="list-group-item list-group-item-light">{{ posts.3.title }}</li></a>
+              {% endif %}
+              {% if posts.4 %}
+                <a href="{% url 'post-detail' posts.4.pk %}"><li class="list-group-item list-group-item-light">{{ posts.4.title }}</li></a>
+              {% endif %}
+          </ul>
+          <br>
+  </div> {% endcomment %}
+
+  <!-- PEOPLE YOU CAN FOLLOW -->
+
+  {% comment %} <div class="content-section " style="border-top: 4px solid blue;">
+    <h4>You can follow</h4>
+    <br>
+        <ul class="list-group">
+          {% for user in random_users %}
+            <a href="{% url 'profile-detail-view' user.pk %}"><li class="list-group-item list-group-item-light">{{ user.username }}</li></a>
+          {% endfor %}
+  
+        </ul>
+        <br>
+  </div> {% endcomment %}
+{% comment %} 
+</div>   {% endcomment %}
+
+  <div class="row mb-4">
+      <div class="col-md-4">
+          <div class="p-card bg-white p-2 rounded px-3">
+              <div class="d-flex align-items-center credits"><img src="https://i.imgur.com/hlz6G90.png" width="16px"><span class="text-black-50 ml-2" style="font-weight:bolder">Level - 1</div>
+                <span class="ratings"><i class="fa fa-star"></i></span></span>
+                <hr>
+              <h6 class="card-header mb-2" style="background-color:#0088cc;color:white;font-weight:bolder;text-align:center;border-radius:5px">Programming Languages</h6><span class="badge badge-danger p-2 mb-2">Beginner</span><span class="d-block mb-2" style="font-weight:bold">Learn Modern "Programming Languages" in a easiest Guided Topic wise Path with curated Questions to improve your Skills.</span>
+              <hr>
+               <div class="container">
+                <center> <div class="row">
+                    <div class="col">
+                        <a class="btn btn-lg" href="/languages/">
+                           <span>Lets Go</span>
+                        </a>
+                    </div>
+                </div> </center>
+            </div>
+            <hr>
+          </div>
+      </div>
+      <div class="col-md-4">
+        <div class="p-card bg-white p-2 rounded px-3">
+            <div class="d-flex align-items-center credits"><img src="https://i.imgur.com/hlz6G90.png" width="16px"><span class="text-black-50 ml-2" style="font-weight:bolder">Level - 2</span></div>
+            <span class="ratings"><i class="fa fa-star"></i></span></span><span class="ratings"><i class="fa fa-star"></i></span></span><hr>
+            <h6 class="card-header mb-2" style="background-color:#0088cc;color:white;font-weight:bolder;text-align:center;border-radius:5px">Data Structures</h6><span class="badge badge-danger p-2 mb-2">Mediocre</span><span class="d-block mb-2" style="font-weight:bold">Learn different "Data Structures" in a easiest Guided Topic wise Path with curated Questions to improve your Skills.</span>
+            <hr>
+             <div class="container">
+              <center> <div class="row">
+                  <div class="col">
+                      <a class="btn btn-lg" href="/topics/list/">
+                         <span>Lets Go</span>
+                      </a>
+                  </div>
+              </div> </center>
+          </div>
+          <hr>
+        </div>
+    </div>
+    <div class="col-md-4">
+      <div class="p-card bg-white p-2 rounded px-3">
+          <div class="d-flex align-items-center credits"><img src="https://i.imgur.com/hlz6G90.png" width="16px"><span class="text-black-50 ml-2" style="font-weight:bolder">Level - 3</span></div>
+          <span class="ratings"><i class="fa fa-star"></i></span></span><span class="ratings"><i class="fa fa-star"></i></span></span><span class="ratings"><i class="fa fa-star"></i></span></span>
+          <hr>
+          <h6 class="card-header mb-2" style="background-color:#0088cc;color:white;font-weight:bolder;text-align:center;border-radius:5px">LeetCode Questions</h6><span class="badge badge-danger p-2 mb-2">Advanced</span><span class="d-block mb-2" style="font-weight:bold">Solve "LeetCode Questions" in a easiest Guided Topic wise Path with curated Questions to improve your Skills.</span>
+          <hr>
+           <div class="container">
+            <center> <div class="row">
+                <div class="col">
+                    <a class="btn btn-lg" href="/topics/list/leetcode">
+                       <span>Lets Go</span>
+                    </a>
+                </div>
+            </div> </center>
+        </div>
+        <hr>
+      </div>
+  </div>
+  <div class="col-md-4">
+    <div class="p-card bg-white p-2 rounded px-3">
+        <div class="d-flex align-items-center credits"><img src="https://i.imgur.com/hlz6G90.png" width="16px"><span class="text-black-50 ml-2" style="font-weight:bolder">Level - 4</span></div>
+        <span class="ratings"><i class="fa fa-star"></i></span></span><span class="ratings"><i class="fa fa-star"></i></span></span><span class="ratings"><i class="fa fa-star"></i></span></span><span class="ratings"><i class="fa fa-star"></i></span></span><hr>
+        <h6 class="card-header mb-2" style="background-color:#0088cc;color:white;font-weight:bolder;text-align:center;border-radius:5px">Company Wise Questions</h6><span class="badge badge-danger p-2 mb-2">Extra</span><span class="d-block mb-2" style="font-weight:bold">Solve Company Based "Coding Questions" in the PDF Wise Resource Content provided Under Our Site and Target your Company.</span>
+        <hr>
+         <div class="container">
+          <center> <div class="row">
+              <div class="col">
+                  <a class="btn btn-lg" href="/company-PDF/">
+                     <span>Lets Go</span>
+                  </a>
+              </div>
+          </div> </center>
+      </div>
+      <hr>
+    </div>
+</div>
+<div class="col-md-4">
+  <div class="p-card bg-white p-2 rounded px-3">
+      <div class="d-flex align-items-center credits"><img src="https://i.imgur.com/hlz6G90.png" width="16px"><span class="text-black-50 ml-2" style="font-weight:bolder">Level - 5</span></div>
+      <span class="ratings"><i class="fa fa-star"></i></span></span><span class="ratings"><i class="fa fa-star"></i></span></span><span class="ratings"><i class="fa fa-star"></i></span></span><span class="ratings"><i class="fa fa-star"></i></span></span><span class="ratings"><i class="fa fa-star"></i></span></span>
+      <hr>
+      <h6 class="card-header mb-2" style="background-color:#0088cc;color:white;font-weight:bolder;text-align:center;border-radius:5px">Core Subjects</h6><span class="badge badge-danger p-2 mb-2">Subjective</span><span class="d-block mb-2" style="font-weight:bold">Prepare Core Subjects for your Interviews from the best possible and accurate resources in a short amount of Time.</span>
+      <hr>
+       <div class="container">
+        <center> <div class="row">
+            <div class="col">
+                <a class="btn btn-lg" href="/languages/">
+                   <span>Lets Go</span>
+                </a>
+            </div>
+        </div> </center>
+    </div>
+    <hr>
+  </div>
+</div>  <div class="col-md-4">
+  <div class="p-card bg-white p-2 rounded px-3">
+      <div class="d-flex align-items-center credits"><img src="https://i.imgur.com/hlz6G90.png" width="16px"><span class="text-black-50 ml-2" style="font-weight:bolder">Level - 6</span></div>
+      <span class="ratings"><i class="fa fa-star"></i></span></span><span class="ratings"><i class="fa fa-star"></i></span></span><span class="ratings"><i class="fa fa-star"></i></span></span><span class="ratings"><i class="fa fa-star"></i></span></span><span class="ratings"><i class="fa fa-star"></i></span></span><span class="ratings"><i class="fa fa-star"></i></span></span>
+      <hr>
+      <h6 class="card-header mb-2" style="background-color:#0088cc;color:white;font-weight:bolder;text-align:center;border-radius:5px">Projects</h6><span class="badge badge-danger p-2 mb-2">X Factor</span><span class="d-block mb-2" style="font-weight:bold">Learn How to build Cool Projects from the step by step resources to learn different Technologies and ace your Interviews.</span>
+      <hr>
+       <div class="container">
+        <center> <div class="row">
+            <div class="col">
+                <a class="btn btn-lg" href="/languages/">
+                   <span>Lets Go</span>
+                </a>
+            </div>
+        </div> </center>
+    </div>
+    <hr>
+  </div>
+</div>
+      
+  </div>
+ 
+</div>
+{% endblock %}
+{% block script %}
+<script>
+
+  var colors = ['#FB9797', '#FB84BD', '#EA84FB', '#FF6D3F', '#4270E7', 'green', 'blue'];
+    $('.add-border').each(function() {
+        $(this).css('border-top', "3px solid " + colors[Math.floor(Math.random() * colors.length)]);
+    });
+
+</script>
+{% endblock %}
+

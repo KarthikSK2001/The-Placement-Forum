@@ -1,0 +1,108 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-steel fixed-top" style="background-color:crimson">
+    <div class="container">
+      <a class="navbar-brand " href="/" >
+        <img src="/static/blog/images/main-logo.PNG" alt="" width="35" height="35" style="border-radius:10rem;border:3px solid white">
+       <span style="margin-left:0.5rem;color:white;font-weight:bolder" style=""> Placement-Forum </span>
+      </a>
+      {% comment %} <a class="navbar-brand mr-4 pr-3" href="/">Word-Bucket</a> {% endcomment %}
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarToggle">
+        <div class="navbar-nav mr-auto">
+          <!-- SEARCHBAR -->
+          {% if user.is_authenticated %}
+          <div id="searchbar" >
+            <form method="GET" action="/search">
+              <input required name="query" id="search" type="text" placeholder="Search">
+              <button class="search-btn" type="submit"><i class="fas fa-search"></i></button>
+            </form>
+          </div>
+        </div>
+        {% endif %}
+        
+        
+        <div class="navbar-nav mr-auto">
+         
+          {% comment %} <a class="nav-item nav-link" href="{% url 'blog-about' %}">About</a> {% endcomment %}
+          {% if user.is_authenticated %}
+           <a class="nav-item nav-link" href="{% url 'blog-home' %}" style="color:white;font-weight:bolder;margin-top:0.2rem"><i class="fas fa-home"></i> Home</a>
+           <a class="nav-item nav-link" href="{% url 'blog-home' %}" style="color:white;font-weight:bolder;margin-top:0.2rem"><i class="fas fa-home"></i> Home</a>
+
+           <div class="dropdown" >
+            <a class="dropdown-toggle nav-link" href="#" role="button" id="dropdownMenuLink1" style="color:white;font-weight:bolder;margin-top:0.2rem" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <i class="fas fa-code"></i> Coding
+            </a>                  
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink1">
+              <a class="nav-item nav-link" href="{% url 'blog-languages' %}" style="color:black;font-weight:bolder"><i class="fas fa-info-circle"></i> Languages</a>
+              <a class="nav-item nav-link" href="{% url 'category-list-lb' %}" style="color:black;font-weight:bolder"><i class="fas fa-info-circle"></i> Logic Builder</a>
+              <a class="nav-item nav-link"  href="{% url 'category-list' %}"  style="color:black;font-weight:bolder" ><i class="fas fa-info-circle"></i> DSA</a>
+              <a class="nav-item nav-link"  href="{% url 'category-list-leetcode' %}"  style="color:black;font-weight:bolder"><i class="fas fa-info-circle"></i> LeetCode</a>
+
+            </div>
+          </div>
+          {% comment %} <a class="nav-item nav-link" href="{% url 'blog-languages' %}">Languages</a>
+         
+          <a class="nav-item nav-link"  href="{% url 'category-list' %}" >DSA</a>
+          <a class="nav-item nav-link"  href="{% url 'category-list-leetcode' %}" >LeetCode</a> {% endcomment %}
+          {% endif %}
+          {% if user.is_authenticated %}
+          <div class="dropdown" >
+            <a class="dropdown-toggle nav-link" href="#" role="button" id="dropdownMenuLink1" style="color:white;font-weight:bolder" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color:white">
+              <span class="fa-stack" data-count="1" style='color:black' >
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-bell fa-stack-1x fa-inverse"></i>
+              </span> & Chats
+            </a>                  
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink1">
+              <a class="nav-item nav-link" href="{% url 'show-notifications' %}" style="color:black;font-weight:bolder"><i class="fas fa-bell"></i> Notifications</a>
+              <a class="nav-item nav-link"  href="{% url 'room-enroll' %}"  style="color:black;font-weight:bolder" ><i class="fas fa-comment"></i> Chats</a>
+
+            </div>
+          </div>
+          {% comment %} <a class="nav-item nav-link" href="{% url 'show-notifications' %}"></a>
+          <a class="nav-item nav-link" href="{% url 'room-enroll' %}">Chats</a> {% endcomment %}
+          <div class="dropdown">
+            <a class="dropdown-toggle nav-link" href="#" role="button" id="dropdownMenuLink1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color:white;font-weight:bolder;margin-top:0.2rem">
+              <i class="fas fa-sticky-note"></i> Posts
+            </a>                  
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink1">
+              <a class="dropdown-item" href="{% url 'post-create' %}"><i class="fas fa-plus-circle"></i>&nbsp;&nbsp;New Post DSA</a>
+              <a class="dropdown-item" href="{% url 'post-create-lb' %}"><i class="fas fa-plus-circle"></i>&nbsp;&nbsp;New Post Logic Building</a>
+              <a class="dropdown-item" href="{% url 'post-create-leetcode' %}"><i class="fas fa-plus-circle"></i>&nbsp;&nbsp;New Post LeetCode</a>
+              <a class="dropdown-item" href="{% url 'post-create-cpp' %}"><i class="fas fa-plus-circle"></i>&nbsp;&nbsp;New Post C++</a>
+              <a class="dropdown-item" href="{% url 'post-create-java' %}"><i class="fas fa-plus-circle"></i>&nbsp;&nbsp;New Post Java</a>
+              <a class="dropdown-item" href="{% url 'post-create-python' %}"><i class="fas fa-plus-circle"></i>&nbsp;&nbsp;New Post Python</a>
+
+              <a class="nav-item nav-link" href="{% url 'posts-follow-view' %}" style='font-weight:bolder;color:black'><i class="fas fa-code" style='margin-left:-0.2rem'></i> Random Questions</a>
+              <a class="nav-item nav-link" href="{% url 'all-like' %}" style='font-weight:bolder;color:black'><i class="fas fa-heart"></i>  Solved DSA Qns.</a>
+              <a class="nav-item nav-link" href="{% url 'all-save' %}" style='font-weight:bolder;color:black'><i class="fas fa-save" style='margin-left:0.1rem'></i>  Saved DSA Qns</a>
+              {% comment %} <a class="dropdown-item" href="{% url 'blog-home' %}">All Posts</a> {% endcomment %}
+              {% comment %} <a class="dropdown-item" href="{% url 'user-posts' user %}">My Posts</a> {% endcomment %}
+            </div>
+          </div>
+          {% endif %}
+          
+          {% if user.is_authenticated %}
+            <div class="dropdown">
+              <a class="dropdown-toggle nav-link" href="#" role="button" id="dropdownMenuLink2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color:white;font-weight:bolder;margin-top:0.2rem">
+                <img class="rounded-circle" style="height: 22px; width:22px;border:3px solid white" src="{{user.profile.image.url}}" alt="">&nbsp;{{user|truncatechars:"10"}}
+                
+              </a>                  
+              <div class="dropdown-menu" aria-labelledby="dropdownMenuLink2">
+                <a class="dropdown-item" href="{% url 'profile-detail-view' user.id %}"><i class="far fa-user"></i>&nbsp;&nbsp;Profile</a>
+                <a class="dropdown-item" href="{% url 'public-profile' user %}"><i class="far fa-eye"></i>&nbsp;&nbsp;Public-Profile</a>
+                <a class="dropdown-item" href="{% url 'profile' %}"><i class="fas fa-sliders-h"></i>&nbsp;&nbsp;Settings</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="{% url 'logout' %}"><i class="fas fa-power-off"></i>&nbsp;&nbsp;Logout</a>
+              </div>
+            </div>
+          {% else %}
+            <a class="nav-item nav-link" href="{% url 'account_login' %}">Login</a>
+            <a class="nav-item nav-link" href="{% url 'register' %}">Register</a>
+          {% endif %}
+        </div>
+        
+      </div>
+    </div>
+</nav>

@@ -1,0 +1,111 @@
+
+
+
+    {% extends "blog/base.html" %}
+
+    {% block title %}{{cats }}{% endblock %}
+    
+    {% block content %}
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <style>
+      article,#card_suggest{
+        border-radius: 50px;
+        background: #e0e0e0;
+        box-shadow:  32px 32px 46px #6c6c6c,
+                     -32px -32px 46px #ffffff;
+      }
+      #card_suggest_detail,#btntitle{border-radius: 0.5rem;
+        
+        box-shadow:  8px 8px 4px #c5c5c5,
+                     -8px -8px 4px #fbfbfb;}
+    </style>
+   
+    <div class="col-md-8 m-auto">
+      <div class="card text-center" id="card_suggest" style='margin-bottom:3rem'>
+        <h5 class="card-header" style="background-color:#0088cc;color:white;font-weight:bolder">Master "{{cats}}" From Zero to Hero</h5>
+        <div class="card-body" style='border-radius:1rem'>
+          
+          
+          <h5 class="card-title" style='font-weight:bold'>Solve All important {{cats}} Questions asked in Service & Product Based Companies</h5>
+        </div>
+       
+      </div>
+        {% if category_posts %}
+      
+      {% for post in category_posts   %}
+         
+          <article class="content-section" style="overflow: auto;border-top: 4px solid #0088cc;border-bottom: 4px solid crimson;">
+            <div class="media">
+              <img class="rounded-circle article-img" src="https://i.ibb.co/71FNvw0/ds-logo.png" alt="image">
+                <div class="media-body">
+                  <div class="card text-center" id="card_suggest_detail" style='margin-bottom:1rem'>
+                    <h5 class="card-header" style="background-color:#0088cc;color:white;font-weight:bolder;border-radius:0.5rem;">{{post.title}}</h5>
+                   
+                   
+                  </div>
+                    <h4 ><button id="btntitle" type="button" class="btn btn-success" style="border-radius:0.5rem;pointer-events:none"><a class="article-title" href="#" style="color:white;">Difficulty Level - "{{post.level}}"</a></button></h4>
+                    <small class="text" style="font-weight:bold;font-family: 'Roboto', sans-serif;color:crimson"> </small>
+                </div>
+            </div>
+        
+            <hr>
+            <p class="article-content" style="font-weight:bold;font-family: 'Roboto', sans-serif;">{{post.content}}</p><hr>
+            <center> <button type="button" id="btntitle" class="btn btn-danger" style="border-radius:0.5rem;background-color:crimson"><a class="article-title" href="{% url 'post-detail' post.id %}" style="color:white;">Read Full Question</a></button>
+            </center>
+      
+            <hr>
+       
+            
+          </article>
+          {% endfor %}
+          {% endif %}
+
+        </ul>
+      </div>
+
+
+
+
+    
+     
+    
+    
+        
+    
+
+    </div>
+
+
+{% comment %} {% if category_posts %}
+
+    <h1> Categorised by {{cats }} </h1>
+   
+    <ul>
+   
+    {% for post in category_posts   %}
+  
+    <a href="{% url 'post-detail' post.id %}">
+        {{ post.category }}</a>
+        <li>
+           
+       <a href="">{{ post.title }}</a> 
+       <a href="">{{ post.content }}</a> 
+       <a href="">{{ post.link }}</a> 
+       <h4>{{ post.inputfield }}</h4> 
+       <h4>{{ post.outputfield }}</h4> 
+       <h4>{{ post.explanation }}</h4> 
+
+        <br/>
+
+    
+    {% endfor %}
+    </ul>
+{% else%}
+    sorry this page does not exist.
+
+{% endif %} {% endcomment %}
+
+
+{% endblock %}

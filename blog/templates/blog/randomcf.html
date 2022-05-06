@@ -1,0 +1,632 @@
+
+
+
+    {% extends "blog/base.html" %}
+
+    {% block title %}CF TopicWise Randoms{% endblock %}
+    
+    {% block content %}
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <style>
+      body {
+        background: #eee
+    } * {
+      font-family: 'IBM Plex Sans Hebrew', sans-serif;
+    }
+    .btn{
+        color: #fff;
+        background: linear-gradient(135deg, #852d91, #312a6c);
+        font-family: 'Comfortaa', cursive;
+        font-size: 17px;
+        font-weight: 700;
+      
+        padding: 11px 11px;
+        border: none;
+        border-radius: 5px;
+        overflow: hidden;
+        position: relative;
+        transition: all 0.3s cubic-bezier(0.02, 0.01, 0.47, 1);
+      }
+      .btn:hover{
+        color: #fff;
+        border: none;
+        box-shadow: 0 0 10px rgba(0,0,0,0.3);
+        animation: rotate 0.7s ease-in-out both;
+      }
+      .btn:before,
+      .btn:after{
+        content: '';
+        background: #fff;
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        opacity: 0;
+        transform: translate(100%, -25%) translate3d(0, 0, 0);
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        z-index: -1;
+        transition: all 0.15s cubic-bezier(0.02, 0.01, 0.47, 1);
+      }
+      .btn:hover:before,
+      .btn:hover:after{
+        opacity: 0.15;
+      }
+      .btn:hover:before{ transform: translate3d(50%, 0, 0) scale(0.9); }
+      .btn:hover:after{ transform: translate(50%, 0) scale(1.1); }
+      @keyframes rotate{
+        0%{ transform: rotate(0deg); }
+        25%{ transform: rotate(3deg); }
+        50%{ transform: rotate(-3deg); }
+        75%{ transform: rotate(1deg); }
+        100%{ transform: rotate(0deg); }
+      }
+    .filter {
+        border-top-right-radius: 10px;
+        border-bottom-left-radius: 10px;
+        border-bottom-right-radius: 10px
+    }
+    
+    .profiles img {
+        margin-right: -6px
+    }
+    
+    .col-md-4 {
+        margin-top: 26px
+    }
+    .btn{
+      color: #fff;
+      background: linear-gradient(135deg, #852d91, #312a6c);
+      font-family: 'Comfortaa', cursive;
+      font-size: 17px;
+      font-weight: 700;
+    
+      padding: 11px 11px;
+      border: none;
+      border-radius: 5px;
+      overflow: hidden;
+      position: relative;
+      transition: all 0.3s cubic-bezier(0.02, 0.01, 0.47, 1);
+    }
+    .btn:hover{
+      color: #fff;
+      border: none;
+      box-shadow: 0 0 10px rgba(0,0,0,0.3);
+      animation: rotate 0.7s ease-in-out both;
+    }
+    .btn:before,
+    .btn:after{
+      content: '';
+      background: #fff;
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      opacity: 0;
+      transform: translate(100%, -25%) translate3d(0, 0, 0);
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      z-index: -1;
+      transition: all 0.15s cubic-bezier(0.02, 0.01, 0.47, 1);
+    }
+    .btn:hover:before,
+    .btn:hover:after{
+      opacity: 0.15;
+    }
+    .btn:hover:before{ transform: translate3d(50%, 0, 0) scale(0.9); }
+    .btn:hover:after{ transform: translate(50%, 0) scale(1.1); }
+    @keyframes rotate{
+      0%{ transform: rotate(0deg); }
+      25%{ transform: rotate(3deg); }
+      50%{ transform: rotate(-3deg); }
+      75%{ transform: rotate(1deg); }
+      100%{ transform: rotate(0deg); }
+    }
+    @media only screen and (max-width: 767px){
+      .btn{ margin-bottom: 20px; }
+    }.ratings i {
+      color: green;
+      margin-top:3px
+    }
+    .p-card,#card_suggest{
+      border-radius: 50px;
+      background: #e0e0e0;
+      box-shadow:  32px 32px 46px #6c6c6c,
+                   -32px -32px 46px #ffffff;
+    }
+    </style>
+
+    
+    
+    <div class="card text-center" id="card_suggest"  style='margin-bottom:4rem'>
+        <h5 class="card-header" style="background-color:#0088cc;color:white;font-weight:bolder">Codeforces Random DSA Generator</h5>
+        <div class="card-body" style='border-radius:1rem'>
+          
+            <center><img src="https://i.ibb.co/0MdfrJg/cflogo.png" class="img-fluid" alt="..." style='width:60px;height:60px;border:2px solid white;border-radius:2rem;margin-bottom:0.5rem'></center>
+
+          <h5 class="card-title" style='font-weight:bold'>This Feature allows you to select a Topic and also based on the ratings given "Question" will be generated which can be solved on CodeForces.</h5>
+        </div>
+      </div>
+      
+
+
+
+      
+   
+      <style>
+       
+        
+        .oneLine {
+            {% comment %} display: flex;
+            max-width: 100%;
+            height: auto;
+            margin-top: 20px {% endcomment %}
+        }
+        
+        .up {
+            {% comment %} margin-top: -1% {% endcomment %}
+        }
+        
+        .down {
+            {% comment %} margin-top: 30px {% endcomment %}
+        }
+        
+        #rating,
+        #tags {
+            display: block;
+            width: 100%
+        }
+        
+        #doNotShowTags,
+        #doNotShowTags-label,
+        #start {
+            display: block
+        }
+        
+        #doNotShowTags {
+            {% comment %} margin-left: 17%;
+            margin-top: 12px {% endcomment %}
+        }
+        
+        #doNotShowTags-label {
+            {% comment %} margin-right: 25%;
+            margin-left: 1% {% endcomment %}
+        }
+        
+        #min_num,
+        #max_num {
+            {% comment %} max-width: 30%;
+            height: 30px;
+            margin-top: -1%;
+            background-color: black;
+            color: white;
+            border-color: black;
+            margin-left: 41% {% endcomment %}
+        }
+        
+        #min_num_text,
+        #max_num_text {
+            font-size: 0.7em
+        }
+        
+        #min_num_text {
+            {% comment %} margin-left: 60% {% endcomment %}
+        }
+        
+        #max_num_text {
+            {% comment %} margin-left: 3% {% endcomment %}
+        }
+        
+        #user-res {
+            width: 60%
+        }
+        
+        #choose {
+            width: 50%;
+            height: 35px;
+            margin-left: 3%
+        }
+        
+        #choose,
+        #choose-child {
+            background-color: whte;
+            border-color: #0088cc;
+            color: black;
+            text-transform:capitalize;
+            font-weight:bolder;
+            padding:2px;
+            border-radius:1rem
+        }
+        
+        #start {
+            width: 20%;
+            background-color: #0f0f52;
+            color: white;
+            border: #0f0f52
+        }
+        
+        #start:hover {
+            background-color: #1212cd;
+            color: white;
+            border: #1212cd;
+            transition: 1.5s
+        }
+        
+        #start:not(:hover) {
+            transition: 1s
+        }
+        
+        
+        html,
+        body {
+       
+        height: 15em;
+     
+        margin: 0;
+        position: relative;
+        top: 50%;
+        text-align: center
+        }
+        input[type=checkbox] + label {
+  display: block;
+  margin: 0.2em;
+  cursor: pointer;
+  padding: 0.2em;
+}
+
+input[type=checkbox] {
+  display: none;
+}
+
+input[type=checkbox] {
+  content: "\2714";
+  border: 0.1em solid #000;
+  border-radius: 0.2em;
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  padding-left: 0.2em;
+  padding-bottom: 0.3em;
+  margin-right: 0.2em;
+ border:2px solid crimson
+}
+#name>a{
+    font-weight:bolder;
+
+}
+
+      </style>
+      <body>
+       
+
+          <div id="name" style='display:block;width:100%'>
+            <h6 style="background: #0088cc;color: white;font-weight: bold;padding:10px;text-align: center;border-radius:1rem">Select the complexity of the task, its topic. Or just click "Generate!"</h6>
+          </div>
+          <div class="oneLine">
+              {% comment %} <p id="min_num_text">Minimum rating</p>
+              <p id="max_num_text">Max Rating</p> {% endcomment %}
+          </div>
+          <div class="oneLine up" style='display:block;width:100%'>
+            {% comment %} <h6 style="background: crimson;color: white;font-weight: bold;padding:10px;text-align: center;border-radius:1rem">Issue Ratings</h6> {% endcomment %}
+              <div id="rating" style='margin-top:1rem;background: crimson;color: white;font-weight: bold;padding:8px;text-align: center;border-radius:1rem;margin-bottom:2rem'>Issued Rating =  </div>
+              <div class="oneLine" style='margin-bottom:2rem'>
+               <span style='font-weight:bolder;color:crimson;margin-right:0.5rem'> Minimum Rating</span>  <input type="number" id="min_num" placeholder="0" style='border:2px solid #0088cc;
+               border-radius:1rem'>
+               <span style='font-weight:bolder;color:crimson;margin-right:0.5rem;margin-left:0.5rem'> Maximum Rating</span> <input type="number" id="max_num" placeholder="3800" style='border:2px solid #0088cc;
+               border-radius:1rem'>
+              </div>
+          </div>
+          <div class="oneLine" style='display:block;width:100%;            text-transform:capitalize;
+'>
+            <div id="tags" style='margin-top:1rem;background: crimson;color: white;font-weight: bold;padding:8px;text-align: center;border-radius:1rem;margin-bottom:2rem'>Issued Themes =  </div>
+  
+            {% comment %} <div id="tags">Themes: </div> {% endcomment %}
+              <select id="choose">
+                  <option id="choose-child">Choose tag</option>
+              </select>
+          </div>
+          <div class="oneLine down" style='display:block;width:100%'>
+              <input type="checkbox" id="doNotShowTags"style='display:block;width:100%;margin-top:1rem;border:2px solid crimson'>
+              <label id="doNotShowTags-label" for="doNotShowTags" style='display:block;width:100%;font-weight:bolder;color:purple'>Click above to now show task topics</label>
+              <button type="button" id="start" style='display:block;width:100%;margin-bottom:2rem;padding:5px;font-weight:bold;border-radius:1rem'>Generate!</button>
+          </div>
+          <script >
+            function putToCache(elem, cache) {
+                if (cache.indexOf(elem) != -1)
+                    return;
+                cache.splice(Math.floor(Math.random() * (cache.length + 1)), 0, elem)
+            }
+            
+            function bezumiye() {
+                let cache = [];
+                return function(a, b) {
+                    putToCache(a, cache)
+                    putToCache(b, cache)
+                    return cache.indexOf(b) - cache.indexOf(a)
+                }
+            }
+            
+            const shuffle = (arr) => arr.sort(bezumiye())
+            
+            
+            const tags = [{
+                name: "2-sat",
+                value: "2 - sat",
+                title: "2-SAT (2-satisfiability)"
+            },
+            {
+                name: "meet-in-the-middle",
+                value: "meet-in-the-middle",
+                title: "Meet-in-the-Middle"
+            }, {
+                name: "binary search",
+                value: "binary search",
+                title: "Binary Search"
+        
+            }, {
+                name: "bitmasks",
+                value: "bitmasks",
+                title: "Bitmaps"
+            }, {
+                name: "bpf",
+                value: "ft",
+                title: "Fast Fourier Transform"
+        
+            }, {
+                name: "geometry",
+                value: "geometry",
+                title: "Geometry"
+            }, {
+                name: "graphs",
+                value: "graph",
+                title: "Counts"
+            }, {
+                name: "two pointers",
+                value: "two pointers",
+                title: "Two pointers"
+            }, {
+                name: "trees",
+                value: "trees",
+                title: "Trees"
+            }, {
+                name: "dp",
+                value: "dp",
+                title: "Dynamic Programming"
+        
+            }, {
+                name: "greedy",
+                value: "greedy",
+                title: "Greedy Algorithms"
+            }, {
+                name: "games",
+                value: "games",
+                title: "Games, the Sprague-Grundy function"
+            }, {
+                name: "interactive",
+                value: "interactive",
+                title: "Interactive Challenge"
+            }, {
+                name: "Chinese Remainder Theorem",
+                value: "chinese remainder theorem",
+                title: "Chinese Remainder Theorem, Garner's Algorithm"
+        
+            }, {
+                name: "combinatorics",
+                value: "combinatorics",
+                title: "Combinatorics"
+        
+            }, {
+                name: "construct",
+                value: "constructive algorithms",
+                title: "Constructive Algorithms"
+        
+            }, {
+                name: "short cuts",
+                value: "shortest paths",
+                title: "Shortest Paths on Graphs"
+        
+            }, {
+                name: "math",
+                value: "math",
+                title: "Integration, Diffuses, etc."
+        
+            }, {
+                name: "matrices",
+                value: "matrices",
+                title: "Product of matrices, determinant, Cramer's rule, systems of linear equations"
+            }, {
+                name: "matches",
+                value: "graph matching",
+                title: "Matchings, König's theorem, vertex and edge coverings in bipartite graphs"
+        
+            }, {
+                name: "brute force",
+                value: "brute force",
+                title: "Busting"
+        
+            }, {
+                name: "DFS and similar",
+                value: "dfs and similar",
+                title: "DFS and Similar Algorithms"
+            }, {
+                name: "threads",
+                value: "flow",
+                title: "Flows in Graphs"
+            }, {
+                name: "expression parsing",
+                value: "expression parsing",
+                title: "Expression Parsing"
+        
+            }, {
+                name: "divide and conquer",
+                value: "divide and conquer",
+                title: "Divide and Conquer"
+        
+            }, {
+                name: "schedules",
+                value: "schedules",
+                title: "Algorithms of scheduling theory"
+            }, {
+                name: "implementation",
+                value: "implementation",
+                title: "Implementation, programming technique, simulation"
+            }, {
+                name: "snm",
+                value: "dsu",
+                title: "Disjoint Set System"
+            }, {
+                name: "sort",
+                value: "sortings",
+                title: "Sorting, Ordering"
+            }, {
+                name: "strings",
+                value: "strings",
+                title: "Prefix- and Z-functions, suffix structures, Knuth-Morris-Pratt algorithm, etc."
+        
+            }, {
+                name: "string suff.structures",
+                value: "string suffix structures",
+                title: "Suffix Arrays, Trees, and Automata"
+        
+            }, {
+                name: "data structures",
+                value: "data structures",
+                title: "Heaps, Segment Trees, Search Trees, and More."
+        
+            }, {
+                name: "probability theory",
+                value: "probability",
+                title: "Probabilities, Expectations, Random Variables, etc."
+        
+            }, {
+                name: "number theory",
+                value: "number theory",
+                title: "Number theory: Euler function, gcd, divisibility, etc."
+        
+            }, {
+                name: "ternary search",
+                value: "ternary search",
+                title: "Ternary Search"
+        
+            }, {
+                name: "hashes",
+                value: "hashing",
+                title: "Hash Tables"
+        
+            }
+        ]
+        let localize_tags = (arg) => {
+            for (let i in tags) {
+                if (tags[i].value == arg) {
+                    return tags[i].name
+                }
+            }
+        }
+        
+       
+            const disableAll = () => {
+                document.getElementById('doNotShowTags').disabled = true
+                document.getElementById("start").disabled = true
+                document.getElementById("choose").disabled = true
+                document.getElementById("min_num").disabled = true
+                document.getElementById("max_num").disabled = true
+            },
+            enableAll = () => {
+                document.getElementById('doNotShowTags').disabled = false
+                document.getElementById("start").disabled = false
+                document.getElementById("choose").disabled = false
+                document.getElementById("min_num").disabled = false
+                document.getElementById("max_num").disabled = false
+            }
+    
+            
+            document.getElementById('choose').innerHTML += tags.map(arg =>
+                `<option value="${arg.value}" title="${arg.title}">${arg.name}`).join('')
+            
+            start.onclick = async function() {
+                disableAll()
+                document.getElementById("name").innerHTML = "Searching for tasks..."
+                document.getElementById("rating").innerHTML = "Issue Rating: [upload]"
+                document.getElementById("tags").innerHTML = "Topics: [loading]"
+                console.log("Check inputs...")
+                let min_value = document.getElementById('min_num').value,
+                    max_value = document.getElementById('max_num').value,
+                    tag_value = document.getElementById('choose').value
+                if (+(min_value) < 0 || min_value == "") {
+                    min_value = 0
+                }
+                if (+(max_value) > 3800 || max_value == "") {
+                    max_value = 3800
+                }
+                if (+min_value > +max_value) {
+                    document.getElementById("name").innerHTML = ("The minimum cannot be greater than the maximum.")
+                    document.getElementById("rating").innerHTML = "-____-"
+                    document.getElementById("tags").innerHTML = "-____-"
+                    console.log("Min > Max? :hmm:")
+                    enableAll()
+                    return -1
+                }
+                let json, link = "https://codeforces.com/api/problemset.problems?tags="
+                if (tag_value != "Choose tag") {
+                    link += tag_value
+                }
+                let response = await fetch(link)
+                if (response.ok) {
+                    console.log("Yeah, Codeforces is working...")
+                    document.getElementById("name").innerHTML = "There is very little left..."
+                    json = await response.json()
+                    let problems = []
+                    for (let i = json.result.problems.length - 1; i >= 0; i--) {
+                        if (min_value <= json.result.problems[i].rating && json.result.problems[i].rating <= max_value) {
+                            problems.push(json.result.problems[i])
+                        }
+                    }
+                    problems = shuffle(problems)
+                    if (!problems.length) {
+                        document.getElementById("name").innerHTML = "There is no task according to your parameters."
+                        document.getElementById("rating").innerHTML = "Issue Rating: :("
+                        document.getElementById("tags").innerHTML = "Themes: :("
+                        console.log("Nothing... :sob:")
+                    } else {
+                        let res = problems[0]
+                        console.log(res)
+                        document.getElementById("name").innerHTML = `<a href="${"https://codeforces.com/problemset/problem/" + res.contestId + "/" + res.index}"target="_blank">${res.name}</a>`
+                        document.getElementById("rating").innerHTML = "Issue Rating: " + ((res.rating != undefined) ? res.rating : "unknown")
+                        if (!document.getElementById('doNotShowTags').checked && res.tags.length) {
+                            document.getElementById("tags").innerHTML = "Themes: " + res.tags.map((arg) => localize_tags(arg)).join(", ")
+                        } else if (!res.tags.length) {
+                            document.getElementById("tags").innerHTML = "Не found topics of this task"
+                        } else {
+                            document.getElementById("tags").innerHTML = "We don't show topics. :)"
+                        }
+                        console.log("We did it!!!")
+                    }
+                } else {
+                    document.getElementById("name").innerHTML = "Mistake HTTP: " + response.status
+                    console.log("Codeforces is down... F")
+                }
+                enableAll()
+            }
+
+    
+          </script>
+      </body>
+      
+      </html>
+
+    {% endblock %}
+    {% block script %}
+    <script>
+    
+      var colors = ['#FB9797', '#FB84BD', '#EA84FB', '#FF6D3F', '#4270E7', 'green', 'blue'];
+        $('.add-border').each(function() {
+            $(this).css('border-top', "3px solid " + colors[Math.floor(Math.random() * colors.length)]);
+        });
+    
+    </script>
+    {% endblock %}
+    
+    
+    

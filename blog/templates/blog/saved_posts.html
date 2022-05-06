@@ -1,0 +1,103 @@
+{% extends "blog/base.html" %}
+
+{% block title %}Saved Section{% endblock %}
+
+{% block content %}
+<style>
+  .p-card,#card_suggest{
+    border-radius: 50px;
+    background: #e0e0e0;
+    box-shadow:  8px 8px 4px #c5c5c5,
+    -8px -8px 4px #fbfbfb;
+  }
+  article{
+    border-radius: 90px;
+  
+    box-shadow:  8px 8px 4px #c5c5c5,
+                       -8px -8px 4px #fbfbfb;
+  }
+  </style>
+<div class="col-md-8 m-auto">
+
+{% comment %} <div class="content-section">
+  <h3>Saved Posts ({{saved_posts|length}})</h3>
+</div> {% endcomment %}
+<div class="card text-center" id="card_suggest" style='margin-bottom:4rem'>
+  <h5 class="card-header" style="background-color:#0088cc;color:white;font-weight:bolder">Saved Data Structures Questions -  ({{saved_posts|length}})</h5>
+  <div class="card-body" style='border-radius:1rem'>
+    
+    
+    <h5 class="card-title" style='font-weight:bold'>This Section contains all the Saved "DSA" Questions</h5>
+  </div>
+  
+</div>
+{% if not saved_posts %}
+    <p class="content-section">You have not saved any post.</p>
+{% endif %}
+
+    {% for post in saved_posts %}
+
+    <article class="content-section" style="overflow: auto;">
+      <div class="media">
+          <img class="rounded-circle article-img" src="{{post.author.profile.image.url}}" alt="image">
+          <div class="media-body">
+            <p>
+              <a class="mr-2 h4" href="#" style='font-weight:bolder;color:crimson;pointer-events:none'>Code Studio</a>
+            </p>
+            <small class="text-muted" style='font-weight:bolder;color:dark-green;pointer-events:none'>{{ post.date_posted|date:"F d, Y-h:i A" }}</small>
+        </div>
+      </div>
+      <hr>
+      <div class="card text-center" id="card_suggest" style='margin-bottom:2rem'>
+        <a  href="{% url 'post-detail' post.id %}"> <h5 class="card-header" style="background-color:#0088cc;color:white;font-weight:bolder;border-radius:0.5rem;box-shadow:  8px 8px 4px #c5c5c5,
+         -8px -8px 4px #fbfbfb;">{{post.title}}</h5></a>
+         
+       
+       </div>
+      {% comment %} <h3><a class="article-title" href="{% url 'post-detail' post.id %}">{{ post.title }}</a></h3> {% endcomment %}
+      <hr>
+      <p class="article-content">{{ post.content|safe|linebreaks|truncatewords_html:"20" }}<a href="{% url 'post-detail' post.id %}" style="font-weight:bolder">[Read full post]</a></p>
+    </article>
+
+    {% endfor %}
+
+    {% if is_paginated %}
+
+      {% if page_obj.has_previous %}
+        <a class="btn btn-outline-info mb-4" href="?page=1">First</a>
+        <a class="btn btn-outline-info mb-4" href="?page={{page_obj.previous_page_number}}">Previous</a>
+      {% endif %}
+
+      {% for num in page_obj.paginator.page_range %}
+        {% if page_obj.number == num %}
+          <a class="btn btn-info mb-4" href="?page={{num}}">{{num}}</a>
+        {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+        <a class="btn btn-outline-info mb-4" href="?page={{num}}">{{num}}</a>
+        {% endif %}
+      {% endfor %}
+
+      {% if page_obj.has_next %}
+        <a class="btn btn-outline-info mb-4" href="?page={{page_obj.next_page_number}}">Next</a>
+        <a class="btn btn-outline-info mb-4" href="?page={{page_obj.paginator.num_pages}}">Last</a>
+      {% endif %}
+
+    {% endif %}
+
+</div>
+
+<!-- SIDEBAR
+<div class="col-md-4">
+  <div class="content-section">
+      <h3>Our Sidebar</h3>
+      <p class="text-muted">You can put any information here you'd like.
+          <ul class="list-group">
+              <li class="list-group-item list-group-item-light">Latest Posts</li>
+              <li class="list-group-item list-group-item-light">Announcements</li>
+              <li class="list-group-item list-group-item-light">Calendars</li>
+              <li class="list-group-item list-group-item-light">etc</li>
+          </ul>
+      </p>
+  </div>
+</div>   -->
+
+{% endblock %}

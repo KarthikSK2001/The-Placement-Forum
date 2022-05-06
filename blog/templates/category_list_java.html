@@ -1,0 +1,736 @@
+
+
+
+    {% extends "blog/base.html" %}
+
+    {% block title %}Java{% endblock %}
+    
+    {% block content %}
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Hebrew&display=swap" rel="stylesheet">
+<style>
+  body {
+    background: #eee
+} * {
+  font-family: 'IBM Plex Sans Hebrew', sans-serif;
+}
+
+.filter {
+    border-top-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px
+}
+
+.profiles img {
+    margin-right: -6px
+}
+
+.col-md-4 {
+    margin-top: 26px;
+    
+}
+.rowmb-4 {
+  
+}
+.btn{
+  color: #fff;
+  background: linear-gradient(135deg, #852d91, #312a6c);
+  font-family: 'Comfortaa', cursive;
+  font-size: 17px;
+  font-weight: 700;
+
+  padding: 11px 11px;
+  border: none;
+  border-radius: 5px;
+  overflow: hidden;
+  position: relative;
+  transition: all 0.3s cubic-bezier(0.02, 0.01, 0.47, 1);
+}
+.btn:hover{
+  color: #fff;
+  border: none;
+  box-shadow: 0 0 10px rgba(0,0,0,0.3);
+  animation: rotate 0.7s ease-in-out both;
+}
+.btn:before,
+.btn:after{
+  content: '';
+  background: #fff;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  opacity: 0;
+  transform: translate(100%, -25%) translate3d(0, 0, 0);
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  z-index: -1;
+  transition: all 0.15s cubic-bezier(0.02, 0.01, 0.47, 1);
+}
+.btn:hover:before,
+.btn:hover:after{
+  opacity: 0.15;
+}
+.btn:hover:before{ transform: translate3d(50%, 0, 0) scale(0.9); }
+.btn:hover:after{ transform: translate(50%, 0) scale(1.1); }
+@keyframes rotate{
+  0%{ transform: rotate(0deg); }
+  25%{ transform: rotate(3deg); }
+  50%{ transform: rotate(-3deg); }
+  75%{ transform: rotate(1deg); }
+  100%{ transform: rotate(0deg); }
+}
+@media only screen and (max-width: 767px){
+  .btn{ margin-bottom: 20px; }
+}.ratings i {
+  color: green;
+  margin-top:3px
+}
+.p-card,#card_suggest{
+  border-radius: 50px;
+  background: #e0e0e0;
+  box-shadow:  32px 32px 46px #6c6c6c,
+               -32px -32px 46px #ffffff;
+}
+</style>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <div class="card text-center" id="card_suggest" style='margin-bottom:2rem'>
+      <h5 class="card-header" style="background-color:#0088cc;color:white;font-weight:bolder">Master Java From Zero to Hero</h5>
+      <div class="card-body" style='border-radius:1rem'>
+        
+        
+        <h5 class="card-title" style='font-weight:bold'>Here we have provided a complete guided path for "32" Days where you can master Java with Videos and By practising Questions which improvises your logic Building.</h5>
+      </div>
+      <p style="color:#0088cc;font-weight:bolder">Here <span style="color:crimson">*</span> <span style="color:purple;">TAL</span> Means = To Be Allolated Later</p>
+      <p style="color:#0088cc;font-weight:bolder">Here <span style="color:crimson">*</span> <span style="color:purple;">In Videos</span> Means = Questions are covered in the Videos</p>
+
+    </div>
+    <div class="row mb-4" style=''>
+      <div class="col-md-4" style=''>
+          <div class="p-card bg-white p-2 rounded px-3" style=''>
+              <div class="d-flex align-items-center credits"><img src="https://i.imgur.com/hlz6G90.png" width="16px"><span class="text-black-50 ml-2" style="font-weight:bolder">Day - 1</div>
+                <hr>
+                
+                
+              <h6 class="card-header mb-2" style="background-color:#0088cc;color:white;font-weight:bolder;text-align:center;border-radius:5px">Introduction </h6><span class="badge badge-success p-2 mb-2 mr-2">Total Questions - TAL</span><span class="badge badge-danger p-2 mb-2 ">Basics</span><span class="d-block mb-2" style="font-weight:bold">
+                This Section contains all the basics on Programming and Java.</span>
+              <hr>
+               <div class="container">
+                <center> <div class="row">
+                    <div class="col">
+                        <a class="btn btn-lg" href="/category/Arrays/">
+                           <span>Lets Solve</span>
+                        </a>
+                    </div>
+                </div> </center>
+            </div>
+            <hr>
+          </div>
+      </div>
+      <div class="col-md-4">
+        <div class="p-card bg-white p-2 rounded px-3">
+            <div class="d-flex align-items-center credits"><img src="https://i.imgur.com/hlz6G90.png" width="16px"><span class="text-black-50 ml-2" style="font-weight:bolder">Day - 2</div>
+              <hr>
+              
+              
+            <h6 class="card-header mb-2" style="background-color:#0088cc;color:white;font-weight:bolder;text-align:center;border-radius:5px">Basic Questions</h6><span class="badge badge-success p-2 mb-2 mr-2">Total Questions - 8</span><span class="badge badge-danger p-2 mb-2 ">Basics</span><span class="d-block mb-2" style="font-weight:bold">
+              This Section contains all the Basic Topics Coding Questions.</span>
+            <hr>
+             <div class="container">
+              <center> <div class="row">
+                  <div class="col">
+                      <a class="btn btn-lg" href="/category/Matrix/">
+                         <span>Lets Solve</span>
+                      </a>
+                  </div>
+              </div> </center>
+          </div>
+          <hr>
+        </div>
+    </div>
+      <div class="col-md-4">
+        <div class="p-card bg-white p-2 rounded px-3">
+            <div class="d-flex align-items-center credits"><img src="https://i.imgur.com/hlz6G90.png" width="16px"><span class="text-black-50 ml-2" style="font-weight:bolder">Day - 3</span></div>
+         <hr>
+         <h6 class="card-header mb-2" style="background-color:#0088cc;color:white;font-weight:bolder;text-align:center;border-radius:5px">If Else & Switch</h6><span class="badge badge-success p-2 mb-2 mr-2">Total Questions - TAL</span><span class="badge badge-danger p-2 mb-2 ">Basics</span><span class="d-block mb-2" style="font-weight:bold">
+           This Section contains all Basics of If Else and Switch Statements.</span>
+         <hr>
+             <div class="container">
+              <center> <div class="row">
+                  <div class="col">
+                      <a class="btn btn-lg" href="/category/Strings/">
+                         <span>Lets Solve</span>
+                      </a>
+                  </div>
+              </div> </center>
+          </div>
+          <hr>
+        </div>
+    </div>
+    <div class="col-md-4">
+      <div class="p-card bg-white p-2 rounded px-3">
+          <div class="d-flex align-items-center credits"><img src="https://i.imgur.com/hlz6G90.png" width="16px"><span class="text-black-50 ml-2" style="font-weight:bolder">Day - 4</span></div>
+             
+          <hr>
+          <h6 class="card-header mb-2" style="background-color:#0088cc;color:white;font-weight:bolder;text-align:center;border-radius:5px">If Else & Switch</h6><span class="badge badge-success p-2 mb-2 mr-2">Total Questions - 5</span><span class="badge badge-danger p-2 mb-2 ">Basics</span><span class="d-block mb-2" style="font-weight:bold">
+            This Section contains all the Basic Coding Questions.</span>
+          <hr>
+           <div class="container">
+            <center> <div class="row">
+                <div class="col">
+                    <a class="btn btn-lg" href="/category/Searching_Sorting/">
+                       <span>Lets Solve</span>
+                    </a>
+                </div>
+            </div> </center>
+        </div>
+        <hr>
+      </div>
+  </div>
+  <div class="col-md-4">
+    <div class="p-card bg-white p-2 rounded px-3">
+        <div class="d-flex align-items-center credits"><img src="https://i.imgur.com/hlz6G90.png" width="16px"><span class="text-black-50 ml-2" style="font-weight:bolder">Day - 5</span></div>
+            <hr>
+        <h6 class="card-header mb-2" style="background-color:#0088cc;color:white;font-weight:bolder;text-align:center;border-radius:5px">Loops  </h6><span class="badge badge-success p-2 mb-2 mr-2">Total Questions - TAL</span><span class="badge badge-danger p-2 mb-2 ">Basics</span><span class="d-block mb-2" style="font-weight:bold">
+          This Section contains all the Basics of Loops Concept.</span>
+        <hr>
+         <div class="container">
+          <center> <div class="row">
+              <div class="col">
+                  <a class="btn btn-lg" href="/category/LinkedList/">
+                     <span>Lets Solve</span>
+                  </a>
+              </div>
+          </div> </center>
+      </div>
+      <hr>
+    </div>
+  </div>
+  <div class="col-md-4">
+  <div class="p-card bg-white p-2 rounded px-3">
+      <div class="d-flex align-items-center credits"><img src="https://i.imgur.com/hlz6G90.png" width="16px"><span class="text-black-50 ml-2" style="font-weight:bolder">Day - 6</span></div>
+           
+      <hr>
+      <h6 class="card-header mb-2" style="background-color:#0088cc;color:white;font-weight:bolder;text-align:center;border-radius:5px">Loops Questions</h6><span class="badge badge-success p-2 mb-2 mr-2">Total Questions - 10</span><span class="badge badge-danger p-2 mb-2 ">Basics</span><span class="d-block mb-2" style="font-weight:bold">
+        This Section contains all the Variations of Loops Questions.</span>
+      <hr>
+       <div class="container">
+        <center> <div class="row">
+            <div class="col">
+                <a class="btn btn-lg" href="/category/BinaryTrees/">
+                   <span>Lets Solve</span>
+                </a>
+            </div>
+        </div> </center>
+    </div>
+    <hr>
+  </div>
+  </div>  <div class="col-md-4">
+  <div class="p-card bg-white p-2 rounded px-3">
+      <div class="d-flex align-items-center credits"><img src="https://i.imgur.com/hlz6G90.png" width="16px"><span class="text-black-50 ml-2" style="font-weight:bolder">Day - 7</span></div>
+            
+      <hr>
+      <h6 class="card-header mb-2" style="background-color:#0088cc;color:white;font-weight:bolder;text-align:center;border-radius:5px">Backlog / Break</h6><span class="badge badge-success p-2 mb-2 mr-2">Total Questions - Backlogs</span><span class="badge badge-danger p-2 mb-2 ">All Difficulty</span><span class="d-block mb-2" style="font-weight:bold">
+        This is a section which is considered as a Break.</span>
+      <hr>
+       <div class="container">
+        <center> <div class="row">
+            <div class="col">
+                <a class="btn btn-lg" href="/category/BinarySearchTrees/">
+                   <span>Lets Solve</span>
+                </a>
+            </div>
+        </div> </center>
+    </div>
+    <hr>
+  </div>
+  </div>
+  <div class="col-md-4">
+    <div class="p-card bg-white p-2 rounded px-3">
+        <div class="d-flex align-items-center credits"><img src="https://i.imgur.com/hlz6G90.png" width="16px"><span class="text-black-50 ml-2" style="font-weight:bolder">Day - 8</span></div>
+            <hr>
+        <h6 class="card-header mb-2" style="background-color:#0088cc;color:white;font-weight:bolder;text-align:center;border-radius:5px">Pattern Printing</h6><span class="badge badge-success p-2 mb-2 mr-2">Total Questions - 5</span><span class="badge badge-danger p-2 mb-2 ">Basics</span><span class="d-block mb-2" style="font-weight:bold">
+          This Section covers the basics Questions on Pattern Printing.</span>
+        <hr>
+         <div class="container">
+          <center> <div class="row">
+              <div class="col">
+                  <a class="btn btn-lg" href="/category/DP/">
+                     <span>Lets Solve</span>
+                  </a>
+              </div>
+          </div> </center>
+      </div>
+      <hr>
+    </div>
+  </div>  <div class="col-md-4">
+    <div class="p-card bg-white p-2 rounded px-3">
+        <div class="d-flex align-items-center credits"><img src="https://i.imgur.com/hlz6G90.png" width="16px"><span class="text-black-50 ml-2" style="font-weight:bolder">Day - 9</span></div>
+            <hr>
+        <h6 class="card-header mb-2" style="background-color:#0088cc;color:white;font-weight:bolder;text-align:center;border-radius:5px">Advanced Pattern Printing</h6><span class="badge badge-success p-2 mb-2 mr-2">Total Questions - 9</span><span class="badge badge-danger p-2 mb-2 ">Mediocre</span><span class="d-block mb-2" style="font-weight:bold">
+            This Section covers the Advacned Questions on Pattern Printing.</span>
+        <hr>
+         <div class="container">
+          <center> <div class="row">
+              <div class="col">
+                  <a class="btn btn-lg" href="/category/DP/">
+                     <span>Lets Solve</span>
+                  </a>
+              </div>
+          </div> </center>
+      </div>
+      <hr>
+    </div>
+  </div>
+  </div>
+  
+  <div class="row mb-4">
+    <div class="col-md-4">
+        <div class="p-card bg-white p-2 rounded px-3">
+            <div class="d-flex align-items-center credits"><img src="https://i.imgur.com/hlz6G90.png" width="16px"><span class="text-black-50 ml-2" style="font-weight:bolder">Day - 10</div>
+               
+              <hr>
+              <h6 class="card-header mb-2" style="background-color:#0088cc;color:white;font-weight:bolder;text-align:center;border-radius:5px">Strings </h6><span class="badge badge-success p-2 mb-2 mr-2">Total Questions - TAL</span><span class="badge badge-danger p-2 mb-2 ">Basics</span><span class="d-block mb-2" style="font-weight:bold">
+                This Section consists of the Basic concepts on String.</span>
+            <hr>
+             <div class="container">
+              <center> <div class="row">
+                  <div class="col">
+                      <a class="btn btn-lg" href="/category/Greedy/">
+                         <span>Lets Solve</span>
+                      </a>
+                  </div>
+              </div> </center>
+          </div>
+          <hr>
+        </div>
+    </div>
+    <div class="col-md-4">
+      <div class="p-card bg-white p-2 rounded px-3">
+          <div class="d-flex align-items-center credits"><img src="https://i.imgur.com/hlz6G90.png" width="16px"><span class="text-black-50 ml-2" style="font-weight:bolder">Day - 11</span></div>
+            <hr>
+          <h6 class="card-header mb-2" style="background-color:#0088cc;color:white;font-weight:bolder;text-align:center;border-radius:5px">String Questions</h6><span class="badge badge-success p-2 mb-2 mr-2">Total Questions - 10</span><span class="badge badge-danger p-2 mb-2 ">Mediocre</span><span class="d-block mb-2" style="font-weight:bold">
+            This Section consists of the Questions of Strings Concept. </span>
+          <hr>
+           <div class="container">
+            <center> <div class="row">
+                <div class="col">
+                    <a class="btn btn-lg" href="/category/BackTracking/">
+                       <span>Lets Solve</span>
+                    </a>
+                </div>
+            </div> </center>
+        </div>
+        <hr>
+      </div>
+  </div>
+  <div class="col-md-4">
+    <div class="p-card bg-white p-2 rounded px-3">
+        <div class="d-flex align-items-center credits"><img src="https://i.imgur.com/hlz6G90.png" width="16px"><span class="text-black-50 ml-2" style="font-weight:bolder">Day - 12</span></div>
+           
+        <hr>
+        <h6 class="card-header mb-2" style="background-color:#0088cc;color:white;font-weight:bolder;text-align:center;border-radius:5px">Array </h6><span class="badge badge-success p-2 mb-2 mr-2">Total Questions - TAL</span><span class="badge badge-danger p-2 mb-2 ">All Difficulty</span><span class="d-block mb-2" style="font-weight:bold">
+          This Section consists of the Basics from "Arrays" Concept.</span>
+        <hr>
+         <div class="container">
+          <center> <div class="row">
+              <div class="col">
+                  <a class="btn btn-lg" href="/category/stacks_and_queues/">
+                     <span>Lets Solve</span>
+                  </a>
+              </div>
+          </div> </center>
+      </div>
+      <hr>
+    </div>
+  </div>
+  <div class="col-md-4">
+  <div class="p-card bg-white p-2 rounded px-3">
+      <div class="d-flex align-items-center credits"><img src="https://i.imgur.com/hlz6G90.png" width="16px"><span class="text-black-50 ml-2" style="font-weight:bolder">Day - 13</span></div>
+          <hr>
+      <h6 class="card-header mb-2" style="background-color:#0088cc;color:white;font-weight:bolder;text-align:center;border-radius:5px">Questions :  Arrays</h6><span class="badge badge-success p-2 mb-2 mr-2">Total Questions - 7</span><span class="badge badge-danger p-2 mb-2 ">All Difficulty</span><span class="d-block mb-2" style="font-weight:bold">
+        This Section consists of the Questions from the Arrays concept.</span>
+      <hr>
+       <div class="container">
+        <center> <div class="row">
+            <div class="col">
+                <a class="btn btn-lg" href="/category/Heap/">
+                   <span>Lets Solve</span>
+                </a>
+            </div>
+        </div> </center>
+    </div>
+    <hr>
+  </div>
+  </div>
+  <div class="col-md-4">
+  <div class="p-card bg-white p-2 rounded px-3">
+    <div class="d-flex align-items-center credits"><img src="https://i.imgur.com/hlz6G90.png" width="16px"><span class="text-black-50 ml-2" style="font-weight:bolder">Day - 14</span></div>
+         
+    <hr>
+    <h6 class="card-header mb-2" style="background-color:#0088cc;color:white;font-weight:bolder;text-align:center;border-radius:5px">Backlog / Break</h6><span class="badge badge-success p-2 mb-2 mr-2">Total Questions - Backlogs</span><span class="badge badge-danger p-2 mb-2 ">All Difficulty</span><span class="d-block mb-2" style="font-weight:bold">
+      This is a section which is considered as a Break.</span>
+    <hr>
+     <div class="container">
+      <center> <div class="row">
+          <div class="col">
+              <a class="btn btn-lg" href="/category/Graph/">
+                 <span>Lets Solve</span>
+              </a>
+          </div>
+      </div> </center>
+  </div>
+  <hr>
+  </div>
+  </div>  <div class="col-md-4">
+  <div class="p-card bg-white p-2 rounded px-3">
+    <div class="d-flex align-items-center credits"><img src="https://i.imgur.com/hlz6G90.png" width="16px"><span class="text-black-50 ml-2" style="font-weight:bolder">Day - 15</span></div>
+          
+    <hr>
+    <h6 class="card-header mb-2" style="background-color:#0088cc;color:white;font-weight:bolder;text-align:center;border-radius:5px">Functions / Methods</h6><span class="badge badge-success p-2 mb-2 mr-2">Total Questions - TAL</span><span class="badge badge-danger p-2 mb-2 ">Basics</span><span class="d-block mb-2" style="font-weight:bold">
+      This Section consists of the basics of Functions Concept.</span>
+    <hr>
+     <div class="container">
+      <center> <div class="row">
+          <div class="col">
+              <a class="btn btn-lg" href="/category/Trie/">
+                 <span>Lets Solve</span>
+              </a>
+          </div>
+      </div> </center>
+  </div>
+  <hr>
+  </div>
+  </div>
+  <div class="col-md-4">
+    <div class="p-card bg-white p-2 rounded px-3">
+        <div class="d-flex align-items-center credits"><img src="https://i.imgur.com/hlz6G90.png" width="16px"><span class="text-black-50 ml-2" style="font-weight:bolder">Day - 16</span></div>
+            <hr>
+        <h6 class="card-header mb-2" style="background-color:#0088cc;color:white;font-weight:bolder;text-align:center;border-radius:5px">Recursion</h6><span class="badge badge-success p-2 mb-2 mr-2">Total Questions - TAL</span><span class="badge badge-danger p-2 mb-2 ">Basics</span><span class="d-block mb-2" style="font-weight:bold">
+          This Section covers the basics of Recursion Concept.</span>
+        <hr>
+         <div class="container">
+          <center> <div class="row">
+              <div class="col">
+                  <a class="btn btn-lg" href="/category/DP/">
+                     <span>Lets Solve</span>
+                  </a>
+              </div>
+          </div> </center>
+      </div>
+      <hr>
+    </div>
+  </div>
+  <div class="col-md-4">
+  <div class="p-card bg-white p-2 rounded px-3">
+      <div class="d-flex align-items-center credits"><img src="https://i.imgur.com/hlz6G90.png" width="16px"><span class="text-black-50 ml-2" style="font-weight:bolder">Day - 17</span></div>
+           
+      <hr>
+      <h6 class="card-header mb-2" style="background-color:#0088cc;color:white;font-weight:bolder;text-align:center;border-radius:5px">Question: Recursion & Functions</h6><span class="badge badge-success p-2 mb-2 mr-2">Total Questions - 8</span><span class="badge badge-danger p-2 mb-2 ">All Difficulty</span><span class="d-block mb-2" style="font-weight:bold">
+        This Section covers the Questions on Recursion and Functions.</span>
+      <hr>
+       <div class="container">
+        <center> <div class="row">
+            <div class="col">
+                <a class="btn btn-lg" href="/category/BitManipulation/">
+                   <span>Lets Solve</span>
+                </a>
+            </div>
+        </div> </center>
+    </div>
+    <hr>
+  </div>
+  </div>  
+  <div class="col-md-4">
+    <div class="p-card bg-white p-2 rounded px-3">
+        <div class="d-flex align-items-center credits"><img src="https://i.imgur.com/hlz6G90.png" width="16px"><span class="text-black-50 ml-2" style="font-weight:bolder">Day - 18</span></div>
+            <hr>
+        <h6 class="card-header mb-2" style="background-color:#0088cc;color:white;font-weight:bolder;text-align:center;border-radius:5px">Object Oriented Programming - 1</h6><span class="badge badge-success p-2 mb-2 mr-2">Total Questions - TAL</span><span class="badge badge-danger p-2 mb-2 ">All Difficulty</span><span class="d-block mb-2" style="font-weight:bold">
+          This Section covers the important topics on Object Oriented Programming part-1.</span>
+        <hr>
+         <div class="container">
+          <center> <div class="row">
+              <div class="col">
+                  <a class="btn btn-lg" href="/category/DP/">
+                     <span>Lets Solve</span>
+                  </a>
+              </div>
+          </div> </center>
+      </div>
+      <hr>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="p-card bg-white p-2 rounded px-3">
+        <div class="d-flex align-items-center credits"><img src="https://i.imgur.com/hlz6G90.png" width="16px"><span class="text-black-50 ml-2" style="font-weight:bolder">Day - 19</span></div>
+            <hr>
+        <h6 class="card-header mb-2" style="background-color:#0088cc;color:white;font-weight:bolder;text-align:center;border-radius:5px">Object Oriented Programming - 2</h6><span class="badge badge-success p-2 mb-2 mr-2">Total Questions - TAL</span><span class="badge badge-danger p-2 mb-2 ">All Difficulty</span><span class="d-block mb-2" style="font-weight:bold">
+          This Section covers the important topics on Object Oriented Programming part-2.</span>
+        <hr>
+         <div class="container">
+          <center> <div class="row">
+              <div class="col">
+                  <a class="btn btn-lg" href="/category/DP/">
+                     <span>Lets Solve</span>
+                  </a>
+              </div>
+          </div> </center>
+      </div>
+      <hr>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="p-card bg-white p-2 rounded px-3">
+        <div class="d-flex align-items-center credits"><img src="https://i.imgur.com/hlz6G90.png" width="16px"><span class="text-black-50 ml-2" style="font-weight:bolder">Day - 20</span></div>
+            <hr>
+        <h6 class="card-header mb-2" style="background-color:#0088cc;color:white;font-weight:bolder;text-align:center;border-radius:5px">Object Oriented Programming - 3</h6><span class="badge badge-success p-2 mb-2 mr-2">Total Questions - TAL</span><span class="badge badge-danger p-2 mb-2 ">All Difficulty</span><span class="d-block mb-2" style="font-weight:bold">
+          This Section covers the important topics on Object Oriented Programming part-3.</span>
+        <hr>
+         <div class="container">
+          <center> <div class="row">
+              <div class="col">
+                  <a class="btn btn-lg" href="/category/DP/">
+                     <span>Lets Solve</span>
+                  </a>
+              </div>
+          </div> </center>
+      </div>
+      <hr>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="p-card bg-white p-2 rounded px-3">
+        <div class="d-flex align-items-center credits"><img src="https://i.imgur.com/hlz6G90.png" width="16px"><span class="text-black-50 ml-2" style="font-weight:bolder">Day - 21</span></div>
+            <hr>
+        <h6 class="card-header mb-2" style="background-color:#0088cc;color:white;font-weight:bolder;text-align:center;border-radius:5px">Backlog / Break</h6><span class="badge badge-success p-2 mb-2 mr-2">Total Questions - Backlogs</span><span class="badge badge-danger p-2 mb-2 ">All Difficulty</span><span class="d-block mb-2" style="font-weight:bold">
+          This is a section which is considered as a Break</span>
+        <hr>
+         <div class="container">
+          <center> <div class="row">
+              <div class="col">
+                  <a class="btn btn-lg" href="/category/DP/">
+                     <span>Lets Solve</span>
+                  </a>
+              </div>
+          </div> </center>
+      </div>
+      <hr>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="p-card bg-white p-2 rounded px-3">
+        <div class="d-flex align-items-center credits"><img src="https://i.imgur.com/hlz6G90.png" width="16px"><span class="text-black-50 ml-2" style="font-weight:bolder">Day - 22</span></div>
+            <hr>
+        <h6 class="card-header mb-2" style="background-color:#0088cc;color:white;font-weight:bolder;text-align:center;border-radius:5px">Object Oriented Programming - 4</h6><span class="badge badge-success p-2 mb-2 mr-2">Total Questions - TAL</span><span class="badge badge-danger p-2 mb-2 ">All Difficulty</span><span class="d-block mb-2" style="font-weight:bold">
+          This Section covers the important topics on Object Oriented Programming part-4.</span>
+        <hr>
+         <div class="container">
+          <center> <div class="row">
+              <div class="col">
+                  <a class="btn btn-lg" href="/category/DP/">
+                     <span>Lets Solve</span>
+                  </a>
+              </div>
+          </div> </center>
+      </div>
+      <hr>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="p-card bg-white p-2 rounded px-3">
+        <div class="d-flex align-items-center credits"><img src="https://i.imgur.com/hlz6G90.png" width="16px"><span class="text-black-50 ml-2" style="font-weight:bolder">Day - 23</span></div>
+            <hr>
+        <h6 class="card-header mb-2" style="background-color:#0088cc;color:white;font-weight:bolder;text-align:center;border-radius:5px">Object Oriented Programming - 5</h6><span class="badge badge-success p-2 mb-2 mr-2">Total Questions - TAL</span><span class="badge badge-danger p-2 mb-2 ">All Difficulty</span><span class="d-block mb-2" style="font-weight:bold">
+          This Section covers the important topics on Object Oriented Programming part-5.</span>
+        <hr>
+         <div class="container">
+          <center> <div class="row">
+              <div class="col">
+                  <a class="btn btn-lg" href="/category/DP/">
+                     <span>Lets Solve</span>
+                  </a>
+              </div>
+          </div> </center>
+      </div>
+      <hr>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="p-card bg-white p-2 rounded px-3">
+        <div class="d-flex align-items-center credits"><img src="https://i.imgur.com/hlz6G90.png" width="16px"><span class="text-black-50 ml-2" style="font-weight:bolder">Day - 24</span></div>
+            <hr>
+        <h6 class="card-header mb-2" style="background-color:#0088cc;color:white;font-weight:bolder;text-align:center;border-radius:5px">Object Oriented Programming - 6</h6><span class="badge badge-success p-2 mb-2 mr-2">Total Questions - TAL</span><span class="badge badge-danger p-2 mb-2 ">All Difficulty</span><span class="d-block mb-2" style="font-weight:bold">
+          This Section covers the important topics on Object Oriented Programming part-6.</span>
+        <hr>
+         <div class="container">
+          <center> <div class="row">
+              <div class="col">
+                  <a class="btn btn-lg" href="/category/DP/">
+                     <span>Lets Solve</span>
+                  </a>
+              </div>
+          </div> </center>
+      </div>
+      <hr>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="p-card bg-white p-2 rounded px-3">
+        <div class="d-flex align-items-center credits"><img src="https://i.imgur.com/hlz6G90.png" width="16px"><span class="text-black-50 ml-2" style="font-weight:bolder">Day - 25</span></div>
+            <hr>
+        <h6 class="card-header mb-2" style="background-color:#0088cc;color:white;font-weight:bolder;text-align:center;border-radius:5px">Object Oriented Programming - 7</h6><span class="badge badge-success p-2 mb-2 mr-2">Total Questions - TAL</span><span class="badge badge-danger p-2 mb-2 ">All Difficulty</span><span class="d-block mb-2" style="font-weight:bold">
+          This Section covers the important topics on Object Oriented Programming part-7.</span>
+        <hr>
+         <div class="container">
+          <center> <div class="row">
+              <div class="col">
+                  <a class="btn btn-lg" href="/category/DP/">
+                     <span>Lets Solve</span>
+                  </a>
+              </div>
+          </div> </center>
+      </div>
+      <hr>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="p-card bg-white p-2 rounded px-3">
+        <div class="d-flex align-items-center credits"><img src="https://i.imgur.com/hlz6G90.png" width="16px"><span class="text-black-50 ml-2" style="font-weight:bolder">Day - 26</span></div>
+            <hr>
+        <h6 class="card-header mb-2" style="background-color:#0088cc;color:white;font-weight:bolder;text-align:center;border-radius:5px">Errors and Exceptions - 1</h6><span class="badge badge-success p-2 mb-2 mr-2">Total Questions - In Videos</span><span class="badge badge-danger p-2 mb-2 ">Basics</span><span class="d-block mb-2" style="font-weight:bold">
+          This Section consists of Errors and Exceptions part-1.</span>
+        <hr>
+         <div class="container">
+          <center> <div class="row">
+              <div class="col">
+                  <a class="btn btn-lg" href="/category/DP/">
+                     <span>Lets Solve</span>
+                  </a>
+              </div>
+          </div> </center>
+      </div>
+      <hr>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="p-card bg-white p-2 rounded px-3">
+        <div class="d-flex align-items-center credits"><img src="https://i.imgur.com/hlz6G90.png" width="16px"><span class="text-black-50 ml-2" style="font-weight:bolder">Day - 27</span></div>
+            <hr>
+        <h6 class="card-header mb-2" style="background-color:#0088cc;color:white;font-weight:bolder;text-align:center;border-radius:5px">Errors and Exceptions - 2</h6><span class="badge badge-success p-2 mb-2 mr-2">Total Questions - In Videos</span><span class="badge badge-danger p-2 mb-2 ">Mediocre</span><span class="d-block mb-2" style="font-weight:bold">
+          This Section consists of Errors and Exceptions part-2.</span>
+        <hr>
+         <div class="container">
+          <center> <div class="row">
+              <div class="col">
+                  <a class="btn btn-lg" href="/category/DP/">
+                     <span>Lets Solve</span>
+                  </a>
+              </div>
+          </div> </center>
+      </div>
+      <hr>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="p-card bg-white p-2 rounded px-3">
+        <div class="d-flex align-items-center credits"><img src="https://i.imgur.com/hlz6G90.png" width="16px"><span class="text-black-50 ml-2" style="font-weight:bolder">Day - 28</span></div>
+            <hr>
+        <h6 class="card-header mb-2" style="background-color:#0088cc;color:white;font-weight:bolder;text-align:center;border-radius:5px">Backlog / Break</h6><span class="badge badge-success p-2 mb-2 mr-2">Total Questions - Backlogs</span><span class="badge badge-danger p-2 mb-2 ">All Difficulty</span><span class="d-block mb-2" style="font-weight:bold">
+          This is a section which is considered as a Break</span>
+        <hr>
+         <div class="container">
+          <center> <div class="row">
+              <div class="col">
+                  <a class="btn btn-lg" href="/category/DP/">
+                     <span>Lets Solve</span>
+                  </a>
+              </div>
+          </div> </center>
+      </div>
+      <hr>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="p-card bg-white p-2 rounded px-3">
+        <div class="d-flex align-items-center credits"><img src="https://i.imgur.com/hlz6G90.png" width="16px"><span class="text-black-50 ml-2" style="font-weight:bolder">Day - 29</span></div>
+            <hr>
+        <h6 class="card-header mb-2" style="background-color:#0088cc;color:white;font-weight:bolder;text-align:center;border-radius:5px">Java Collections</h6><span class="badge badge-success p-2 mb-2 mr-2">Total Questions - In Videos</span><span class="badge badge-danger p-2 mb-2 ">Basics</span><span class="d-block mb-2" style="font-weight:bold">
+          This Section consists of Basics of Java Collections Concept.</span>
+        <hr>
+         <div class="container">
+          <center> <div class="row">
+              <div class="col">
+                  <a class="btn btn-lg" href="/category/DP/">
+                     <span>Lets Solve</span>
+                  </a>
+              </div>
+          </div> </center>
+      </div>
+      <hr>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="p-card bg-white p-2 rounded px-3">
+        <div class="d-flex align-items-center credits"><img src="https://i.imgur.com/hlz6G90.png" width="16px"><span class="text-black-50 ml-2" style="font-weight:bolder">Day - 30</span></div>
+            <hr>
+        <h6 class="card-header mb-2" style="background-color:#0088cc;color:white;font-weight:bolder;text-align:center;border-radius:5px">Advanced Java - 1</h6><span class="badge badge-success p-2 mb-2 mr-2">Total Questions - In Videos</span><span class="badge badge-danger p-2 mb-2 ">Basics</span><span class="d-block mb-2" style="font-weight:bold">
+          This Section consists of Advanced Java Concepts and Questions part-1.</span>
+        <hr>
+         <div class="container">
+          <center> <div class="row">
+              <div class="col">
+                  <a class="btn btn-lg" href="/category/DP/">
+                     <span>Lets Solve</span>
+                  </a>
+              </div>
+          </div> </center>
+      </div>
+      <hr>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="p-card bg-white p-2 rounded px-3">
+        <div class="d-flex align-items-center credits"><img src="https://i.imgur.com/hlz6G90.png" width="16px"><span class="text-black-50 ml-2" style="font-weight:bolder">Day - 31</span></div>
+            <hr>
+        <h6 class="card-header mb-2" style="background-color:#0088cc;color:white;font-weight:bolder;text-align:center;border-radius:5px">Advanced Java - 2</h6><span class="badge badge-success p-2 mb-2 mr-2">Total Questions - In Videos</span><span class="badge badge-danger p-2 mb-2 ">Mediocre</span><span class="d-block mb-2" style="font-weight:bold">
+          This Section consists of Advanced Java Concepts and Questions part-2.</span>
+        <hr>
+         <div class="container">
+          <center> <div class="row">
+              <div class="col">
+                  <a class="btn btn-lg" href="/category/DP/">
+                     <span>Lets Solve</span>
+                  </a>
+              </div>
+          </div> </center>
+      </div>
+      <hr>
+    </div>
+  </div>
+
+  <div class="col-md-4">
+    <div class="p-card bg-white p-2 rounded px-3">
+        <div class="d-flex align-items-center credits"><img src="https://i.imgur.com/hlz6G90.png" width="16px"><span class="text-black-50 ml-2" style="font-weight:bolder">Day - 32</span></div>
+            <hr>
+        <h6 class="card-header mb-2" style="background-color:#0088cc;color:white;font-weight:bolder;text-align:center;border-radius:5px">Advanced Java - 3</h6><span class="badge badge-success p-2 mb-2 mr-2">Total Questions - In Videos</span><span class="badge badge-danger p-2 mb-2 ">Advanced</span><span class="d-block mb-2" style="font-weight:bold">
+          This Section consists of Advanced Java Concepts and Questions part-3.</span>
+        <hr>
+         <div class="container">
+          <center> <div class="row">
+              <div class="col">
+                  <a class="btn btn-lg" href="/category/DP/">
+                     <span>Lets Solve</span>
+                  </a>
+              </div>
+          </div> </center>
+      </div>
+      <hr>
+    </div>
+  </div>
+  </div>
+  </div>
+  
+  </div>
+
+   {%endblock%}

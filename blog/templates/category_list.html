@@ -1,0 +1,693 @@
+
+
+
+    {% extends "blog/base.html" %}
+
+{% block title %}Data Structures{% endblock %}
+
+{% block content %}
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+<style>
+  body {
+    background: #eee
+} * {
+  font-family: 'IBM Plex Sans Hebrew', sans-serif;
+}
+
+.filter {
+    border-top-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px
+}
+
+.profiles img {
+    margin-right: -6px
+}
+
+.col-md-4 {
+    margin-top: 26px
+}
+.btn{
+  color: #fff;
+  background: linear-gradient(135deg, #852d91, #312a6c);
+  font-family: 'Comfortaa', cursive;
+  font-size: 17px;
+  font-weight: 700;
+
+  padding: 11px 11px;
+  border: none;
+  border-radius: 5px;
+  overflow: hidden;
+  position: relative;
+  transition: all 0.3s cubic-bezier(0.02, 0.01, 0.47, 1);
+}
+.btn:hover{
+  color: #fff;
+  border: none;
+  box-shadow: 0 0 10px rgba(0,0,0,0.3);
+  animation: rotate 0.7s ease-in-out both;
+}
+.btn:before,
+.btn:after{
+  content: '';
+  background: #fff;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  opacity: 0;
+  transform: translate(100%, -25%) translate3d(0, 0, 0);
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  z-index: -1;
+  transition: all 0.15s cubic-bezier(0.02, 0.01, 0.47, 1);
+}
+.btn:hover:before,
+.btn:hover:after{
+  opacity: 0.15;
+}
+.btn:hover:before{ transform: translate3d(50%, 0, 0) scale(0.9); }
+.btn:hover:after{ transform: translate(50%, 0) scale(1.1); }
+@keyframes rotate{
+  0%{ transform: rotate(0deg); }
+  25%{ transform: rotate(3deg); }
+  50%{ transform: rotate(-3deg); }
+  75%{ transform: rotate(1deg); }
+  100%{ transform: rotate(0deg); }
+}
+@media only screen and (max-width: 767px){
+  .btn{ margin-bottom: 20px; }
+}.ratings i {
+  color: green;
+  margin-top:3px
+}
+.p-card,#card_suggest{
+  border-radius: 50px;
+  background: #e0e0e0;
+  box-shadow:  32px 32px 46px #6c6c6c,
+               -32px -32px 46px #ffffff;
+}
+</style>
+{% comment %} <div class="col-md-8 m-auto">
+
+  <div class="content-section" style="overflow: auto;border-top: 4px solid #0088cc;border-bottom: 4px solid crimson;" >
+    <center><h2 class="mb-3"style="font-weight:bold;font-family: 'Roboto', sans-serif;">Data Structures List</h2></center>
+  </div>
+  
+     
+      <article class="content-section" style="overflow: auto;border-top: 4px solid #0088cc;border-bottom: 4px solid crimson;">
+        <div class="media">
+          <img class="rounded-circle article-img" src="https://i.ibb.co/71FNvw0/ds-logo.png" alt="image">
+            <div class="media-body">
+                <h4 ><button type="button" class="btn btn-success" style="border-radius:0.5rem"><a class="article-title" href="/category/Arrays/" style="color:white;">Arrays</a></button></h4>
+                <small class="text" style="font-weight:bold;font-family: 'Roboto', sans-serif;color:crimson">Total Questions - 36 </small>
+            </div>
+        </div>
+        <hr>
+        <p class="article-content" style="font-weight:bold;font-family: 'Roboto', sans-serif;">This Section contains all the Hand picked and most repeated Questions asked by Top Product and Service Based Companies from Arrays.</p>
+        <center> <button type="button" class="btn btn-primary" style="border-radius:0.5rem"><a class="article-title" href="/category/Arrays/" style="color:white;">Lets Solve</a></button>
+        </center>
+  
+        <hr>
+        
+        
+      </article>
+      <article class="content-section" style="overflow: auto;border-top: 4px solid #0088cc;border-bottom: 4px solid crimson;">
+        <div class="media">
+          <img class="rounded-circle article-img" src="https://i.ibb.co/71FNvw0/ds-logo.png" alt="image">
+            <div class="media-body">
+                <h4 ><button type="button" class="btn btn-success" style="border-radius:0.5rem"><a class="article-title" href="/category/Matrix/" style="color:white;">Matrix
+                </a></button></h4>
+                <small class="text" style="font-weight:bold;font-family: 'Roboto', sans-serif;color:crimson">Total Questions - 10 </small>
+            </div>
+        </div>
+        <hr>
+        <p class="article-content" style="font-weight:bold;font-family: 'Roboto', sans-serif;">This Section contains all the Hand picked and most repeated Questions asked by Top Product and Service Based Companies from Matrix.         .</p>
+        <center> <button type="button" class="btn btn-primary" style="border-radius:0.5rem"><a class="article-title" href="/category/Matrix/" style="color:white;">Lets Solve</a></button>
+        </center>
+  
+        <hr>
+        
+        
+      </article>
+      <article class="content-section" style="overflow: auto;border-top: 4px solid #0088cc;border-bottom: 4px solid crimson;">
+        <div class="media">
+          <img class="rounded-circle article-img" src="https://i.ibb.co/71FNvw0/ds-logo.png" alt="image">
+            <div class="media-body">
+                <h4 ><button type="button" class="btn btn-success" style="border-radius:0.5rem"><a class="article-title" href="/category/Strings/" style="color:white;">Strings</a></button></h4>
+                <small class="text" style="font-weight:bold;font-family: 'Roboto', sans-serif;color:crimson">Total Questions - 43 </small>
+            </div>
+        </div>
+        <hr>
+        <p class="article-content" style="font-weight:bold;font-family: 'Roboto', sans-serif;">This Section contains all the Hand picked and most repeated Questions asked by Top Product and Service Based Companies from Strings.</p>
+        <center> <button type="button" class="btn btn-primary" style="border-radius:0.5rem"><a class="article-title" href="/category/Strings/" style="color:white;">Lets Solve</a></button>
+        </center>
+  
+        <hr>
+        
+        
+      </article>
+   
+      <article class="content-section" style="overflow: auto;border-top: 4px solid #0088cc;border-bottom: 4px solid crimson;">
+        <div class="media">
+          <img class="rounded-circle article-img" src="https://i.ibb.co/71FNvw0/ds-logo.png" alt="image">
+            <div class="media-body">
+                <h4 ><button type="button" class="btn btn-success" style="border-radius:0.5rem"><a class="article-title" href="/category/Searching_Sorting/" style="color:white;">Searching & Sorting</a></button></h4>
+                <small class="text" style="font-weight:bold;font-family: 'Roboto', sans-serif;color:crimson">Total Questions - 36 </small>
+            </div>
+        </div>
+        <hr>
+        <p class="article-content" style="font-weight:bold;font-family: 'Roboto', sans-serif;">This Section contains all the Hand picked and most repeated Questions asked by Top Product and Service Based Companies from Searching & Sorting.</p>
+        <center> <button type="button" class="btn btn-primary" style="border-radius:0.5rem"><a class="article-title" href="/category/Searching_Sorting/" style="color:white;">Lets Solve</a></button>
+        </center>
+  
+        <hr>
+        
+        
+      </article>
+  
+      <article class="content-section" style="overflow: auto;border-top: 4px solid #0088cc;border-bottom: 4px solid crimson;">
+        <div class="media">
+          <img class="rounded-circle article-img" src="https://i.ibb.co/71FNvw0/ds-logo.png" alt="image">
+            <div class="media-body">
+                <h4 ><button type="button" class="btn btn-success" style="border-radius:0.5rem"><a class="article-title" href="/category/LinkedList/" style="color:white;">LinkedList
+                </a></button></h4>
+                <small class="text" style="font-weight:bold;font-family: 'Roboto', sans-serif;color:crimson">Total Questions - 36 </small>
+            </div>
+        </div>
+        <hr>
+        <p class="article-content" style="font-weight:bold;font-family: 'Roboto', sans-serif;">This Section contains all the Hand picked and most repeated Questions asked by Top Product and Service Based Companies from LinkedList          .</p>
+        <center> <button type="button" class="btn btn-primary" style="border-radius:0.5rem"><a class="article-title" href="/category/LinkedList/" style="color:white;">Lets Solve</a></button>
+        </center>
+  
+        <hr>
+        
+        
+      </article>
+      <article class="content-section" style="overflow: auto;border-top: 4px solid #0088cc;border-bottom: 4px solid crimson;">
+        <div class="media">
+          <img class="rounded-circle article-img" src="https://i.ibb.co/71FNvw0/ds-logo.png" alt="image">
+            <div class="media-body">
+                <h4 ><button type="button" class="btn btn-success" style="border-radius:0.5rem"><a class="article-title" href="/category/LinkedList/" style="color:white;">Binary Trees
+                </a></button></h4>
+                <small class="text" style="font-weight:bold;font-family: 'Roboto', sans-serif;color:crimson">Total Questions - 35 </small>
+            </div>
+        </div>
+        <hr>
+        <p class="article-content" style="font-weight:bold;font-family: 'Roboto', sans-serif;">This Section contains all the Hand picked and most repeated Questions asked by Top Product and Service Based Companies from Binary Trees          .</p>
+        <center> <button type="button" class="btn btn-primary" style="border-radius:0.5rem"><a class="article-title" href="/category/BinaryTrees/" style="color:white;">Lets Solve</a></button>
+        </center>
+  
+        <hr>
+        
+        
+      </article>
+      <article class="content-section" style="overflow: auto;border-top: 4px solid #0088cc;border-bottom: 4px solid crimson;">
+        <div class="media">
+          <img class="rounded-circle article-img" src="https://i.ibb.co/71FNvw0/ds-logo.png" alt="image">
+            <div class="media-body">
+                <h4 ><button type="button" class="btn btn-success" style="border-radius:0.5rem"><a class="article-title" href="/category/BinarySearchTrees/" style="color:white;">Binary Search Trees
+                </a></button></h4>
+                <small class="text" style="font-weight:bold;font-family: 'Roboto', sans-serif;color:crimson">Total Questions - 22 </small>
+            </div>
+        </div>
+        <hr>
+        <p class="article-content" style="font-weight:bold;font-family: 'Roboto', sans-serif;">This Section contains all the Hand picked and most repeated Questions asked by Top Product and Service Based Companies from Binary Search Trees.          .</p>
+        <center> <button type="button" class="btn btn-primary" style="border-radius:0.5rem"><a class="article-title" href="/category/BinarySearchTrees/" style="color:white;">Lets Solve</a></button>
+        </center>
+  
+        <hr>
+        
+        
+      </article>
+
+      <article class="content-section" style="overflow: auto;border-top: 4px solid #0088cc;border-bottom: 4px solid crimson;">
+        <div class="media">
+          <img class="rounded-circle article-img" src="https://i.ibb.co/71FNvw0/ds-logo.png" alt="image">
+            <div class="media-body">
+                <h4 ><button type="button" class="btn btn-success" style="border-radius:0.5rem"><a class="article-title" href="/category/Greedy/" style="color:white;">Greedy
+                </a></button></h4>
+                <small class="text" style="font-weight:bold;font-family: 'Roboto', sans-serif;color:crimson">Total Questions - 35 </small>
+            </div>
+        </div>
+        <hr>
+        <p class="article-content" style="font-weight:bold;font-family: 'Roboto', sans-serif;">This Section contains all the Hand picked and most repeated Questions asked by Top Product and Service Based Companies from Greedy.         .</p>
+        <center> <button type="button" class="btn btn-primary" style="border-radius:0.5rem"><a class="article-title" href="/category/Greedy/" style="color:white;">Lets Solve</a></button>
+        </center>
+  
+        <hr>
+        
+        
+      </article>
+      <article class="content-section" style="overflow: auto;border-top: 4px solid #0088cc;border-bottom: 4px solid crimson;">
+        <div class="media">
+          <img class="rounded-circle article-img" src="https://i.ibb.co/71FNvw0/ds-logo.png" alt="image">
+            <div class="media-body">
+                <h4 ><button type="button" class="btn btn-success" style="border-radius:0.5rem"><a class="article-title" href="/category/BackTracking/" style="color:white;">BackTracking</a></button></h4>
+                <small class="text" style="font-weight:bold;font-family: 'Roboto', sans-serif;color:crimson">Total Questions - 22 </small>
+            </div>
+        </div>
+        <hr>
+        <p class="article-content" style="font-weight:bold;font-family: 'Roboto', sans-serif;">This Section contains all the Hand picked and most repeated Questions asked by Top Product and Service Based Companies from BackTracking.</p>
+        <center> <button type="button" class="btn btn-primary" style="border-radius:0.5rem"><a class="article-title" href="/category/BackTracking/" style="color:white;">Lets Solve</a></button>
+        </center>
+  
+        <hr>
+        
+        
+      </article>
+      <article class="content-section" style="overflow: auto;border-top: 4px solid #0088cc;border-bottom: 4px solid crimson;">
+        <div class="media">
+          <img class="rounded-circle article-img" src="https://i.ibb.co/71FNvw0/ds-logo.png" alt="image">
+            <div class="media-body">
+                <h4 ><button type="button" class="btn btn-success" style="border-radius:0.5rem"><a class="article-title" href="/category/stacks_and_queues/" style="color:white;">Stacks and Queues
+                </a></button></h4>
+                <small class="text" style="font-weight:bold;font-family: 'Roboto', sans-serif;color:crimson">Total Questions - 38 </small>
+            </div>
+        </div>
+        <hr>
+        <p class="article-content" style="font-weight:bold;font-family: 'Roboto', sans-serif;">This Section contains all the Hand picked and most repeated Questions asked by Top Product and Service Based Companies from Stacks and Queues.         .</p>
+        <center> <button type="button" class="btn btn-primary" style="border-radius:0.5rem"><a class="article-title" href="/category/stacks_and_queues/" style="color:white;">Lets Solve</a></button>
+        </center>
+  
+        <hr>
+        
+        
+      </article>
+      <article class="content-section" style="overflow: auto;border-top: 4px solid #0088cc;border-bottom: 4px solid crimson;">
+        <div class="media">
+          <img class="rounded-circle article-img" src="https://i.ibb.co/71FNvw0/ds-logo.png" alt="image">
+            <div class="media-body">
+                <h4 ><button type="button" class="btn btn-success" style="border-radius:0.5rem"><a class="article-title" href="/category/Heap/" style="color:white;">Heap
+                </a></button></h4>
+                <small class="text" style="font-weight:bold;font-family: 'Roboto', sans-serif;color:crimson">Total Questions - 18 </small>
+            </div>
+        </div>
+        <hr>
+        <p class="article-content" style="font-weight:bold;font-family: 'Roboto', sans-serif;">This Section contains all the Hand picked and most repeated Questions asked by Top Product and Service Based Companies from Heap.         .</p>
+        <center> <button type="button" class="btn btn-primary" style="border-radius:0.5rem"><a class="article-title" href="/category/Heap/" style="color:white;">Lets Solve</a></button>
+        </center>
+  
+        <hr>
+        
+        
+      </article>
+      <article class="content-section" style="overflow: auto;border-top: 4px solid #0088cc;border-bottom: 4px solid crimson;">
+        <div class="media">
+          <img class="rounded-circle article-img" src="https://i.ibb.co/71FNvw0/ds-logo.png" alt="image">
+            <div class="media-body">
+                <h4 ><button type="button" class="btn btn-success" style="border-radius:0.5rem"><a class="article-title" href="/category/Graph/" style="color:white;">Graph
+                </a></button></h4>
+                <small class="text" style="font-weight:bold;font-family: 'Roboto', sans-serif;color:crimson">Total Questions - 44 </small>
+            </div>
+        </div>
+        <hr>
+        <p class="article-content" style="font-weight:bold;font-family: 'Roboto', sans-serif;">This Section contains all the Hand picked and most repeated Questions asked by Top Product and Service Based Companies from Graph.         .</p>
+        <center> <button type="button" class="btn btn-primary" style="border-radius:0.5rem"><a class="article-title" href="/category/Graph/" style="color:white;">Lets Solve</a></button>
+        </center>
+  
+        <hr>
+        
+        
+      </article>
+      <article class="content-section" style="overflow: auto;border-top: 4px solid #0088cc;border-bottom: 4px solid crimson;">
+        <div class="media">
+          <img class="rounded-circle article-img" src="https://i.ibb.co/71FNvw0/ds-logo.png" alt="image">
+            <div class="media-body">
+                <h4 ><button type="button" class="btn btn-success" style="border-radius:0.5rem"><a class="article-title" href="/category/Trie/" style="color:white;">Trie
+                </a></button></h4>
+                <small class="text" style="font-weight:bold;font-family: 'Roboto', sans-serif;color:crimson">Total Questions - 6 </small>
+            </div>
+        </div>
+        <hr>
+        <p class="article-content" style="font-weight:bold;font-family: 'Roboto', sans-serif;">This Section contains all the Hand picked and most repeated Questions asked by Top Product and Service Based Companies from Trie.         .</p>
+        <center> <button type="button" class="btn btn-primary" style="border-radius:0.5rem"><a class="article-title" href="/category/Trie/" style="color:white;">Lets Solve</a></button>
+        </center>
+  
+        <hr>
+        
+        
+      </article>
+
+      <article class="content-section" style="overflow: auto;border-top: 4px solid #0088cc;border-bottom: 4px solid crimson;">
+        <div class="media">
+          <img class="rounded-circle article-img" src="https://i.ibb.co/71FNvw0/ds-logo.png" alt="image">
+            <div class="media-body">
+                <h4 ><button type="button" class="btn btn-success" style="border-radius:0.5rem"><a class="article-title" href="/category/DP/" style="color:white;">Dynamic Programming
+                </a></button></h4>
+                <small class="text" style="font-weight:bold;font-family: 'Roboto', sans-serif;color:crimson">Total Questions - 60 </small>
+            </div>
+        </div>
+        <hr>
+        <p class="article-content" style="font-weight:bold;font-family: 'Roboto', sans-serif;">This Section contains all the Hand picked and most repeated Questions asked by Top Product and Service Based Companies from Dynamic Programming.         .</p>
+        <center> <button type="button" class="btn btn-primary" style="border-radius:0.5rem"><a class="article-title" href="/category/DP/" style="color:white;">Lets Solve</a></button>
+        </center>
+  
+        <hr>
+        
+        
+      </article>
+
+      
+      <article class="content-section" style="overflow: auto;border-top: 4px solid #0088cc;border-bottom: 4px solid crimson;">
+        <div class="media">
+          <img class="rounded-circle article-img" src="https://i.ibb.co/71FNvw0/ds-logo.png" alt="image">
+            <div class="media-body">
+                <h4 ><button type="button" class="btn btn-success" style="border-radius:0.5rem"><a class="article-title" href="/category/BitManipulation/" style="color:white;">Bit Manipulation
+                </a></button></h4>
+                <small class="text" style="font-weight:bold;font-family: 'Roboto', sans-serif;color:crimson">Total Questions - 10 </small>
+            </div>
+        </div>
+        <hr>
+        <p class="article-content" style="font-weight:bold;font-family: 'Roboto', sans-serif;">This Section contains all the Hand picked and most repeated Questions asked by Top Product and Service Based Companies from Bit Manipulation.         .</p>
+        <center> <button type="button" class="btn btn-primary" style="border-radius:0.5rem"><a class="article-title" href="/category/BitManipulation/" style="color:white;">Lets Solve</a></button>
+        </center>
+  
+        <hr>
+        
+        
+      </article>
+
+            
+
+  </div> {% endcomment %}
+  <div class="card text-center" id="card_suggest" style='margin-bottom:2rem'>
+    <h5 class="card-header" style="background-color:#0088cc;color:white;font-weight:bolder">Master Data Structures From Zero to Hero</h5>
+    <div class="card-body" style='border-radius:1rem'>
+      
+      
+      <h5 class="card-title" style='font-weight:bold'>Here we have provided a complete guided path where you can master Data Structures practising Questions. You can also Save Your Favourite Questions.</h5>
+    </div>
+   
+  </div>
+  <div class="row mb-4">
+    <div class="col-md-4">
+        <div class="p-card bg-white p-2 rounded px-3">
+            <div class="d-flex align-items-center credits"><img src="https://i.imgur.com/hlz6G90.png" width="16px"><span class="text-black-50 ml-2" style="font-weight:bolder">Level - 1</div>
+              <hr>
+              
+              
+            <h6 class="card-header mb-2" style="background-color:#0088cc;color:white;font-weight:bolder;text-align:center;border-radius:5px">Arrays</h6><span class="badge badge-success p-2 mb-2 mr-2">Total Questions - 36</span><span class="badge badge-danger p-2 mb-2 ">All Difficulty</span><span class="d-block mb-2" style="font-weight:bold">This Section contains all the Hand picked and most repeated Questions asked by Top Product and Service Based Companies from Arrays.</span>
+            <hr>
+             <div class="container">
+              <center> <div class="row">
+                  <div class="col">
+                      <a class="btn btn-lg" href="/category/Arrays/">
+                         <span>Lets Solve</span>
+                      </a>
+                  </div>
+              </div> </center>
+          </div>
+          <hr>
+        </div>
+    </div>
+    <div class="col-md-4">
+      <div class="p-card bg-white p-2 rounded px-3">
+          <div class="d-flex align-items-center credits"><img src="https://i.imgur.com/hlz6G90.png" width="16px"><span class="text-black-50 ml-2" style="font-weight:bolder">Level - 2</div>
+            <hr>
+            
+            
+          <h6 class="card-header mb-2" style="background-color:#0088cc;color:white;font-weight:bolder;text-align:center;border-radius:5px">Matrix</h6><span class="badge badge-success p-2 mb-2 mr-2">Total Questions - 10</span><span class="badge badge-danger p-2 mb-2 ">All Difficulty</span><span class="d-block mb-2" style="font-weight:bold">This Section contains all the Hand picked and most repeated Questions asked by Top Product and Service Based Companies from Matrix.</span>
+          <hr>
+           <div class="container">
+            <center> <div class="row">
+                <div class="col">
+                    <a class="btn btn-lg" href="/category/Matrix/">
+                       <span>Lets Solve</span>
+                    </a>
+                </div>
+            </div> </center>
+        </div>
+        <hr>
+      </div>
+  </div>
+    <div class="col-md-4">
+      <div class="p-card bg-white p-2 rounded px-3">
+          <div class="d-flex align-items-center credits"><img src="https://i.imgur.com/hlz6G90.png" width="16px"><span class="text-black-50 ml-2" style="font-weight:bolder">Level - 3</span></div>
+       <hr>
+       <h6 class="card-header mb-2" style="background-color:#0088cc;color:white;font-weight:bolder;text-align:center;border-radius:5px">Strings</h6><span class="badge badge-success p-2 mb-2 mr-2">Total Questions - 43</span><span class="badge badge-danger p-2 mb-2 ">All Difficulty</span><span class="d-block mb-2" style="font-weight:bold">This Section contains all the Hand picked and most repeated Questions asked by Top Product and Service Based Companies from Strings.</span>
+       <hr>
+           <div class="container">
+            <center> <div class="row">
+                <div class="col">
+                    <a class="btn btn-lg" href="/category/Strings/">
+                       <span>Lets Solve</span>
+                    </a>
+                </div>
+            </div> </center>
+        </div>
+        <hr>
+      </div>
+  </div>
+  <div class="col-md-4">
+    <div class="p-card bg-white p-2 rounded px-3">
+        <div class="d-flex align-items-center credits"><img src="https://i.imgur.com/hlz6G90.png" width="16px"><span class="text-black-50 ml-2" style="font-weight:bolder">Level - 4</span></div>
+           
+        <hr>
+        <h6 class="card-header mb-2" style="background-color:#0088cc;color:white;font-weight:bolder;text-align:center;border-radius:5px">Searching & Sorting</h6><span class="badge badge-success p-2 mb-2 mr-2">Total Questions - 36</span><span class="badge badge-danger p-2 mb-2 ">All Difficulty</span><span class="d-block mb-2" style="font-weight:bold">This Section contains all the Hand picked and most repeated Questions asked by Top Product and Service Based Companies from Searching & Sorting.</span>
+        <hr>
+         <div class="container">
+          <center> <div class="row">
+              <div class="col">
+                  <a class="btn btn-lg" href="/category/Searching_Sorting/">
+                     <span>Lets Solve</span>
+                  </a>
+              </div>
+          </div> </center>
+      </div>
+      <hr>
+    </div>
+</div>
+<div class="col-md-4">
+  <div class="p-card bg-white p-2 rounded px-3">
+      <div class="d-flex align-items-center credits"><img src="https://i.imgur.com/hlz6G90.png" width="16px"><span class="text-black-50 ml-2" style="font-weight:bolder">Level - 5</span></div>
+          <hr>
+      <h6 class="card-header mb-2" style="background-color:#0088cc;color:white;font-weight:bolder;text-align:center;border-radius:5px">LinkedList </h6><span class="badge badge-success p-2 mb-2 mr-2">Total Questions - 36</span><span class="badge badge-danger p-2 mb-2 ">All Difficulty</span><span class="d-block mb-2" style="font-weight:bold">This Section contains all the Hand picked and most repeated Questions asked by Top Product and Service Based Companies from LinkedList .</span>
+      <hr>
+       <div class="container">
+        <center> <div class="row">
+            <div class="col">
+                <a class="btn btn-lg" href="/category/LinkedList/">
+                   <span>Lets Solve</span>
+                </a>
+            </div>
+        </div> </center>
+    </div>
+    <hr>
+  </div>
+</div>
+<div class="col-md-4">
+<div class="p-card bg-white p-2 rounded px-3">
+    <div class="d-flex align-items-center credits"><img src="https://i.imgur.com/hlz6G90.png" width="16px"><span class="text-black-50 ml-2" style="font-weight:bolder">Level - 6</span></div>
+         
+    <hr>
+    <h6 class="card-header mb-2" style="background-color:#0088cc;color:white;font-weight:bolder;text-align:center;border-radius:5px">Binary Trees</h6><span class="badge badge-success p-2 mb-2 mr-2">Total Questions - 35</span><span class="badge badge-danger p-2 mb-2 ">All Difficulty</span><span class="d-block mb-2" style="font-weight:bold">This Section contains all the Hand picked and most repeated Questions asked by Top Product and Service Based Companies from Binary Trees.</span>
+    <hr>
+     <div class="container">
+      <center> <div class="row">
+          <div class="col">
+              <a class="btn btn-lg" href="/category/BinaryTrees/">
+                 <span>Lets Solve</span>
+              </a>
+          </div>
+      </div> </center>
+  </div>
+  <hr>
+</div>
+</div>  <div class="col-md-4">
+<div class="p-card bg-white p-2 rounded px-3">
+    <div class="d-flex align-items-center credits"><img src="https://i.imgur.com/hlz6G90.png" width="16px"><span class="text-black-50 ml-2" style="font-weight:bolder">Level - 7</span></div>
+          
+    <hr>
+    <h6 class="card-header mb-2" style="background-color:#0088cc;color:white;font-weight:bolder;text-align:center;border-radius:5px">Binary Search Trees</h6><span class="badge badge-success p-2 mb-2 mr-2">Total Questions - 22</span><span class="badge badge-danger p-2 mb-2 ">All Difficulty</span><span class="d-block mb-2" style="font-weight:bold">This Section contains all the Hand picked and most repeated Questions asked by Top Product and Service Based Companies from Binary Search Trees.</span>
+    <hr>
+     <div class="container">
+      <center> <div class="row">
+          <div class="col">
+              <a class="btn btn-lg" href="/category/BinarySearchTrees/">
+                 <span>Lets Solve</span>
+              </a>
+          </div>
+      </div> </center>
+  </div>
+  <hr>
+</div>
+</div>
+<div class="col-md-4">
+  <div class="p-card bg-white p-2 rounded px-3">
+      <div class="d-flex align-items-center credits"><img src="https://i.imgur.com/hlz6G90.png" width="16px"><span class="text-black-50 ml-2" style="font-weight:bolder">Level - 8</div>
+         
+        <hr>
+        <h6 class="card-header mb-2" style="background-color:#0088cc;color:white;font-weight:bolder;text-align:center;border-radius:5px">Greedy</h6><span class="badge badge-success p-2 mb-2 mr-2">Total Questions - 35</span><span class="badge badge-danger p-2 mb-2 ">All Difficulty</span><span class="d-block mb-2" style="font-weight:bold">This Section contains all the Hand picked and most repeated Questions asked by Top Product and Service Based Companies from Greedy.</span>
+      <hr>
+       <div class="container">
+        <center> <div class="row">
+            <div class="col">
+                <a class="btn btn-lg" href="/category/Greedy/">
+                   <span>Lets Solve</span>
+                </a>
+            </div>
+        </div> </center>
+    </div>
+    <hr>
+  </div>
+</div>
+<div class="col-md-4">
+  <div class="p-card bg-white p-2 rounded px-3">
+      <div class="d-flex align-items-center credits"><img src="https://i.imgur.com/hlz6G90.png" width="16px"><span class="text-black-50 ml-2" style="font-weight:bolder">Level - 9</span></div>
+        <hr>
+      <h6 class="card-header mb-2" style="background-color:#0088cc;color:white;font-weight:bolder;text-align:center;border-radius:5px">BackTracking</h6><span class="badge badge-success p-2 mb-2 mr-2">Total Questions - 22</span><span class="badge badge-danger p-2 mb-2 ">All Difficulty</span><span class="d-block mb-2" style="font-weight:bold">This Section contains all the Hand picked and most repeated Questions asked by Top Product and Service Based Companies from BackTracking.</span>
+      <hr>
+       <div class="container">
+        <center> <div class="row">
+            <div class="col">
+                <a class="btn btn-lg" href="/category/BackTracking/">
+                   <span>Lets Solve</span>
+                </a>
+            </div>
+        </div> </center>
+    </div>
+    <hr>
+  </div>
+</div>
+<div class="col-md-4">
+  <div class="p-card bg-white p-2 rounded px-3">
+      <div class="d-flex align-items-center credits"><img src="https://i.imgur.com/hlz6G90.png" width="16px"><span class="text-black-50 ml-2" style="font-weight:bolder">Level - 10</span></div>
+         
+      <hr>
+      <h6 class="card-header mb-2" style="background-color:#0088cc;color:white;font-weight:bolder;text-align:center;border-radius:5px">Stacks and Queues</h6><span class="badge badge-success p-2 mb-2 mr-2">Total Questions - 38</span><span class="badge badge-danger p-2 mb-2 ">All Difficulty</span><span class="d-block mb-2" style="font-weight:bold">This Section contains all the Hand picked and most repeated Questions asked by Top Product and Service Based Companies from Stacks and Queues.</span>
+      <hr>
+       <div class="container">
+        <center> <div class="row">
+            <div class="col">
+                <a class="btn btn-lg" href="/category/stacks_and_queues/">
+                   <span>Lets Solve</span>
+                </a>
+            </div>
+        </div> </center>
+    </div>
+    <hr>
+  </div>
+</div>
+<div class="col-md-4">
+  <div class="p-card bg-white p-2 rounded px-3">
+      <div class="d-flex align-items-center credits"><img src="https://i.imgur.com/hlz6G90.png" width="16px"><span class="text-black-50 ml-2" style="font-weight:bolder">Level - 12</span></div>
+          <hr>
+      <h6 class="card-header mb-2" style="background-color:#0088cc;color:white;font-weight:bolder;text-align:center;border-radius:5px">Heaps</h6><span class="badge badge-success p-2 mb-2 mr-2">Total Questions - 18</span><span class="badge badge-danger p-2 mb-2 ">All Difficulty</span><span class="d-block mb-2" style="font-weight:bold">This Section contains all the Hand picked and most repeated Questions asked by Top Product and Service Based Companies from Heaps.</span>
+      <hr>
+       <div class="container">
+        <center> <div class="row">
+            <div class="col">
+                <a class="btn btn-lg" href="/category/Heap/">
+                   <span>Lets Solve</span>
+                </a>
+            </div>
+        </div> </center>
+    </div>
+    <hr>
+  </div>
+  </div>
+  <div class="col-md-4">
+    <div class="p-card bg-white p-2 rounded px-3">
+      <div class="d-flex align-items-center credits"><img src="https://i.imgur.com/hlz6G90.png" width="16px"><span class="text-black-50 ml-2" style="font-weight:bolder">Level - 13</span></div>
+           
+      <hr>
+      <h6 class="card-header mb-2" style="background-color:#0088cc;color:white;font-weight:bolder;text-align:center;border-radius:5px">Graphs</h6><span class="badge badge-success p-2 mb-2 mr-2">Total Questions - 44</span><span class="badge badge-danger p-2 mb-2 ">All Difficulty</span><span class="d-block mb-2" style="font-weight:bold">This Section contains all the Hand picked and most repeated Questions asked by Top Product and Service Based Companies from Graphs.</span>
+      <hr>
+       <div class="container">
+        <center> <div class="row">
+            <div class="col">
+                <a class="btn btn-lg" href="/category/Graph/">
+                   <span>Lets Solve</span>
+                </a>
+            </div>
+        </div> </center>
+    </div>
+    <hr>
+    </div>
+    </div> 
+    <div class="col-md-4">
+      <div class="p-card bg-white p-2 rounded px-3">
+        <div class="d-flex align-items-center credits"><img src="https://i.imgur.com/hlz6G90.png" width="16px"><span class="text-black-50 ml-2" style="font-weight:bolder">Level - 14</span></div>
+              
+        <hr>
+        <h6 class="card-header mb-2" style="background-color:#0088cc;color:white;font-weight:bolder;text-align:center;border-radius:5px">Tries</h6><span class="badge badge-success p-2 mb-2 mr-2">Total Questions - 6</span><span class="badge badge-danger p-2 mb-2 ">All Difficulty</span><span class="d-block mb-2" style="font-weight:bold">This Section contains all the Hand picked and most repeated Questions asked by Top Product and Service Based Companies from Tries.</span>
+        <hr>
+         <div class="container">
+          <center> <div class="row">
+              <div class="col">
+                  <a class="btn btn-lg" href="/category/Trie/">
+                     <span>Lets Solve</span>
+                  </a>
+              </div>
+          </div> </center>
+      </div>
+      <hr>
+      </div>
+      </div>
+      <div class="col-md-4">
+        <div class="p-card bg-white p-2 rounded px-3">
+            <div class="d-flex align-items-center credits"><img src="https://i.imgur.com/hlz6G90.png" width="16px"><span class="text-black-50 ml-2" style="font-weight:bolder">Level - 15</span></div>
+                <hr>
+            <h6 class="card-header mb-2" style="background-color:#0088cc;color:white;font-weight:bolder;text-align:center;border-radius:5px">Dynamic Programming</h6><span class="badge badge-success p-2 mb-2 mr-2">Total Questions - 60</span><span class="badge badge-danger p-2 mb-2 ">All Difficulty</span><span class="d-block mb-2" style="font-weight:bold">This Section contains all the Hand picked and most repeated Questions asked by Top Product and Service Based Companies from Dynamic Programming.</span>
+            <hr>
+             <div class="container">
+              <center> <div class="row">
+                  <div class="col">
+                      <a class="btn btn-lg" href="/category/DP/">
+                         <span>Lets Solve</span>
+                      </a>
+                  </div>
+              </div> </center>
+          </div>
+          <hr>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="p-card bg-white p-2 rounded px-3">
+            <div class="d-flex align-items-center credits"><img src="https://i.imgur.com/hlz6G90.png" width="16px"><span class="text-black-50 ml-2" style="font-weight:bolder">Level - 16</span></div>
+                 
+            <hr>
+            <h6 class="card-header mb-2" style="background-color:#0088cc;color:white;font-weight:bolder;text-align:center;border-radius:5px">Bit Manipulation</h6><span class="badge badge-success p-2 mb-2 mr-2">Total Questions - 10</span><span class="badge badge-danger p-2 mb-2 ">All Difficulty</span><span class="d-block mb-2" style="font-weight:bold">This Section contains all the Hand picked and most repeated Questions asked by Top Product and Service Based Companies from Bit Manipulation.</span>
+            <hr>
+             <div class="container">
+              <center> <div class="row">
+                  <div class="col">
+                      <a class="btn btn-lg" href="/category/BitManipulation/">
+                         <span>Lets Solve</span>
+                      </a>
+                  </div>
+              </div> </center>
+          </div>
+          <hr>
+        </div>
+        </div>  
+</div>
+
+<div class="row mb-4">
+  
+  
+
+
+
+
+
+</div>
+</div>
+
+</div>
+{% endblock %}
+{% block script %}
+<script>
+
+  var colors = ['#FB9797', '#FB84BD', '#EA84FB', '#FF6D3F', '#4270E7', 'green', 'blue'];
+    $('.add-border').each(function() {
+        $(this).css('border-top', "3px solid " + colors[Math.floor(Math.random() * colors.length)]);
+    });
+
+</script>
+{% endblock %}
+
+

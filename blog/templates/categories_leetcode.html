@@ -1,0 +1,86 @@
+
+
+
+    {% extends "blog/base.html" %}
+
+    {% block title %}Home{% endblock %}
+    
+    {% block content %}
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    
+    <div class="col-md-8 m-auto">
+        {% if category_posts %}
+      <div class="content-section" style="overflow: auto;border-top: 4px solid #0088cc;border-bottom: 4px solid crimson;" >
+        <center><h2 class="mb-3"style="font-weight:bold;font-family: 'Roboto', sans-serif;"> Data Structure - {{cats }} ({{cats | length}})</h2></center>
+      </div>
+      {% for post in category_posts %}
+         
+          <article class="content-section" style="overflow: auto;border-top: 4px solid #0088cc;border-bottom: 4px solid crimson;">
+            <div class="media">
+              <img class="rounded-circle article-img" src="https://i.ibb.co/71FNvw0/ds-logo.png" alt="image">
+                <div class="media-body">
+                    <h4 ><button type="button" class="btn btn-success" style="border-radius:0.5rem"><a class="article-title" href="{% url 'post-detail' post.id %}" style="color:white;">{{ post.titleleetcode }}</a></button></h4>
+                    <small class="text" style="font-weight:bold;font-family: 'Roboto', sans-serif;color:crimson">Difficulty Level - "{{post.level}}" </small>
+                </div>
+            </div>
+        
+            <hr>
+            <p class="article-content" style="font-weight:bold;font-family: 'Roboto', sans-serif;">{{post.content}}</p>
+            <center> <button type="button" class="btn btn-primary" style="border-radius:0.5rem"><a class="article-title" href="{% url 'post-detail' post.id %}" style="color:white;">Read Full Question</a></button>
+            </center>
+      
+            <hr>
+       
+            
+          </article>
+          {% endfor %}
+          {% endif %}
+
+        </ul>
+      </div>
+
+
+
+
+    
+     
+    
+    
+        
+    
+
+    </div>
+
+{% if category_posts %}
+
+    <h1> Categorised by {{cats }} </h1>
+   
+    <ul>
+   
+    {% for post in category_posts   %}
+  
+    <a href="{% url 'post-detail' post.id %}">
+        {{ post.categoryleetcode }}</a>
+        <li>
+           
+       <a href="">{{ post.titleleetcode }}</a> 
+       <a href="">{{ post.content }}</a> 
+       <a href="">{{ post.link }}</a> 
+       <h4>{{ post.inputfield }}</h4> 
+       <h4>{{ post.outputfield }}</h4> 
+       <h4>{{ post.explanation }}</h4> 
+
+        <br/>
+
+    
+    {% endfor %}
+    </ul>
+{% else%}
+    sorry this page does not exist.
+
+{% endif %}
+
+
+{% endblock %}

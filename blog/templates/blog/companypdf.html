@@ -1,0 +1,885 @@
+
+
+
+    {% extends "blog/base.html" %}
+
+    {% block title %}Company Wise{% endblock %}
+    
+    {% block content %}
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <style>
+      body {
+        background: #eee
+    } * {
+      font-family: 'IBM Plex Sans Hebrew', sans-serif;
+    }
+    
+    .filter {
+        border-top-right-radius: 10px;
+        border-bottom-left-radius: 10px;
+        border-bottom-right-radius: 10px
+    }
+    
+    .profiles img {
+        margin-right: -6px
+    }
+    
+    .col-md-4 {
+        margin-top: 26px
+    }
+    .btn{
+      color: #fff;
+      background: linear-gradient(135deg, #852d91, #312a6c);
+      font-family: 'Comfortaa', cursive;
+      font-size: 17px;
+      font-weight: 700;
+    
+      padding: 11px 11px;
+      border: none;
+      border-radius: 5px;
+      overflow: hidden;
+      position: relative;
+      transition: all 0.3s cubic-bezier(0.02, 0.01, 0.47, 1);
+    }
+    .btn:hover{
+      color: #fff;
+      border: none;
+      box-shadow: 0 0 10px rgba(0,0,0,0.3);
+      animation: rotate 0.7s ease-in-out both;
+    }
+    .btn:before,
+    .btn:after{
+      content: '';
+      background: #fff;
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      opacity: 0;
+      transform: translate(100%, -25%) translate3d(0, 0, 0);
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      z-index: -1;
+      transition: all 0.15s cubic-bezier(0.02, 0.01, 0.47, 1);
+    }
+    .btn:hover:before,
+    .btn:hover:after{
+      opacity: 0.15;
+    }
+    .btn:hover:before{ transform: translate3d(50%, 0, 0) scale(0.9); }
+    .btn:hover:after{ transform: translate(50%, 0) scale(1.1); }
+    @keyframes rotate{
+      0%{ transform: rotate(0deg); }
+      25%{ transform: rotate(3deg); }
+      50%{ transform: rotate(-3deg); }
+      75%{ transform: rotate(1deg); }
+      100%{ transform: rotate(0deg); }
+    }
+    @media only screen and (max-width: 767px){
+      .btn{ margin-bottom: 20px; }
+    }.ratings i {
+      color: green;
+      margin-top:3px
+    }
+    .p-card,#card_suggest{
+      border-radius: 50px;
+      background: #e0e0e0;
+      box-shadow:  32px 32px 46px #6c6c6c,
+                   -32px -32px 46px #ffffff;
+    }
+    </style>
+
+      <div class="card text-center" id="card_suggest" style='margin-bottom:2rem'>
+        <h5 class="card-header" style="background-color:#0088cc;color:white;font-weight:bolder">Master Company Wise Preparation From Zero to Hero</h5>
+        <div class="card-body" style='border-radius:1rem'>
+          
+          
+          <h5 class="card-title" style='font-weight:bold'>Here we have provided company wise important LeetCode Questions. Through this you can master their coding rounds and ace their Interviews.</h5>
+        </div>
+       
+      </div>
+      <div class="row mb-4">
+        <div class="col-md-4">
+            <div class="p-card bg-white p-2 rounded px-3">
+                <div class="d-flex align-items-center credits"><img src="https://i.imgur.com/hlz6G90.png" width="16px"><span class="text-black-50 ml-2" style="font-weight:bolder">Company - 1</div>
+                  <hr>
+                  
+                  
+                <h6 class="card-header mb-2" style="background-color:#0088cc;color:white;font-weight:bolder;text-align:center;border-radius:5px">Adobe</h6><span class="badge badge-success p-2 mb-2 mr-2">LeetCode</span><span class="badge badge-danger p-2 mb-2 ">All Difficulty</span><span class="d-block mb-2" style="font-weight:bold">This PDF contains the most repeated Coding Questions from LeetCode asked By Adobe.</span>
+                <hr>
+                 <div class="container">
+                  <center> <div class="row">
+                      <div class="col">
+                          <a class="btn btn-lg" href="https://cutt.ly/HGdFFvp"target="_blank" >
+                             <span>Lets Explore</span>
+                          </a>
+                      </div>
+                  </div> </center>
+              </div>
+              <hr>
+            </div>
+        </div>
+        <div class="col-md-4">
+          <div class="p-card bg-white p-2 rounded px-3">
+              <div class="d-flex align-items-center credits"><img src="https://i.imgur.com/hlz6G90.png" width="16px"><span class="text-black-50 ml-2" style="font-weight:bolder">Company - 2</div>
+                <hr>
+                
+                
+              <h6 class="card-header mb-2" style="background-color:#0088cc;color:white;font-weight:bolder;text-align:center;border-radius:5px">Akamai</h6><span class="badge badge-success p-2 mb-2 mr-2">LeetCode</span><span class="badge badge-danger p-2 mb-2 ">All Difficulty</span><span class="d-block mb-2" style="font-weight:bold">This PDF contains the most repeated Coding Questions from LeetCode asked By Akamai.</span>
+              <hr>
+               <div class="container">
+                <center> <div class="row">
+                    <div class="col">
+                        <a class="btn btn-lg" href="https://cutt.ly/xGdGquw"target="_blank">
+                           <span>Lets Explore</span>
+                        </a>
+                    </div>
+                </div> </center>
+            </div>
+            <hr>
+          </div>
+      </div>
+        <div class="col-md-4">
+          <div class="p-card bg-white p-2 rounded px-3">
+              <div class="d-flex align-items-center credits"><img src="https://i.imgur.com/hlz6G90.png" width="16px"><span class="text-black-50 ml-2" style="font-weight:bolder">Company - 3</span></div>
+           <hr>
+           <h6 class="card-header mb-2" style="background-color:#0088cc;color:white;font-weight:bolder;text-align:center;border-radius:5px">Amazon</h6><span class="badge badge-success p-2 mb-2 mr-2">LeetCode</span><span class="badge badge-danger p-2 mb-2 ">All Difficulty</span><span class="d-block mb-2" style="font-weight:bold">This PDF contains the most repeated Coding Questions from LeetCode asked By Amazon.</span>
+           <hr>
+               <div class="container">
+                <center> <div class="row">
+                    <div class="col">
+                        <a class="btn btn-lg" href="https://cutt.ly/3GdGrjw"target="_blank">
+                           <span>Lets Explore</span>
+                        </a>
+                    </div>
+                </div> </center>
+            </div>
+            <hr>
+          </div>
+      </div>
+      <div class="col-md-4">
+        <div class="p-card bg-white p-2 rounded px-3">
+            <div class="d-flex align-items-center credits"><img src="https://i.imgur.com/hlz6G90.png" width="16px"><span class="text-black-50 ml-2" style="font-weight:bolder">Company - 4</span></div>
+               
+            <hr>
+            <h6 class="card-header mb-2" style="background-color:#0088cc;color:white;font-weight:bolder;text-align:center;border-radius:5px">Apple</h6><span class="badge badge-success p-2 mb-2 mr-2">LeetCode</span><span class="badge badge-danger p-2 mb-2 ">All Difficulty</span><span class="d-block mb-2" style="font-weight:bold">This PDF contains the most repeated Coding Questions from LeetCode asked By Apple.</span>
+            <hr>
+             <div class="container">
+              <center> <div class="row">
+                  <div class="col">
+                      <a class="btn btn-lg" href="https://cutt.ly/UGdGdKJ"target="_blank">
+                         <span>Lets Explore</span>
+                      </a>
+                  </div>
+              </div> </center>
+          </div>
+          <hr>
+        </div>
+    </div>
+    <div class="col-md-4">
+      <div class="p-card bg-white p-2 rounded px-3">
+          <div class="d-flex align-items-center credits"><img src="https://i.imgur.com/hlz6G90.png" width="16px"><span class="text-black-50 ml-2" style="font-weight:bolder">Company - 5</span></div>
+              <hr>
+          <h6 class="card-header mb-2" style="background-color:#0088cc;color:white;font-weight:bolder;text-align:center;border-radius:5px">Bloomberg </h6><span class="badge badge-success p-2 mb-2 mr-2">LeetCode</span><span class="badge badge-danger p-2 mb-2 ">All Difficulty</span><span class="d-block mb-2" style="font-weight:bold">This PDF has the repeated Coding Questions from LeetCode asked By Bloomberg.</span>
+          <hr>
+           <div class="container">
+            <center> <div class="row">
+                <div class="col">
+                    <a class="btn btn-lg" href="https://cutt.ly/sGdGj6r"target="_blank">
+                       <span>Lets Explore</span>
+                    </a>
+                </div>
+            </div> </center>
+        </div>
+        <hr>
+      </div>
+    </div>
+    <div class="col-md-4">
+    <div class="p-card bg-white p-2 rounded px-3">
+        <div class="d-flex align-items-center credits"><img src="https://i.imgur.com/hlz6G90.png" width="16px"><span class="text-black-50 ml-2" style="font-weight:bolder">Company - 6</span></div>
+             
+        <hr>
+        <h6 class="card-header mb-2" style="background-color:#0088cc;color:white;font-weight:bolder;text-align:center;border-radius:5px">Cisco</h6><span class="badge badge-success p-2 mb-2 mr-2">LeetCode</span><span class="badge badge-danger p-2 mb-2 ">All Difficulty</span><span class="d-block mb-2" style="font-weight:bold">This PDF contains the most repeated Coding Questions from LeetCode asked By Cisco.</span>
+        <hr>
+         <div class="container">
+          <center> <div class="row">
+              <div class="col">
+                  <a class="btn btn-lg" href="https://cutt.ly/GGdGWge"target="_blank">
+                     <span>Lets Explore</span>
+                  </a>
+              </div>
+          </div> </center>
+      </div>
+      <hr>
+    </div>
+    </div>  <div class="col-md-4">
+    <div class="p-card bg-white p-2 rounded px-3">
+        <div class="d-flex align-items-center credits"><img src="https://i.imgur.com/hlz6G90.png" width="16px"><span class="text-black-50 ml-2" style="font-weight:bolder">Company - 7</span></div>
+              
+        <hr>
+        <h6 class="card-header mb-2" style="background-color:#0088cc;color:white;font-weight:bolder;text-align:center;border-radius:5px">Citrix</h6><span class="badge badge-success p-2 mb-2 mr-2">LeetCode</span><span class="badge badge-danger p-2 mb-2 ">All Difficulty</span><span class="d-block mb-2" style="font-weight:bold">This PDF contains the most repeated Coding Questions from LeetCode asked By Citrix.</span>
+        <hr>
+         <div class="container">
+          <center> <div class="row">
+              <div class="col">
+                  <a class="btn btn-lg" href="https://cutt.ly/MGdGIwA"target="_blank">
+                     <span>Lets Explore</span>
+                  </a>
+              </div>
+          </div> </center>
+      </div>
+      <hr>
+    </div>
+    </div>
+    <div class="col-md-4">
+      <div class="p-card bg-white p-2 rounded px-3">
+          <div class="d-flex align-items-center credits"><img src="https://i.imgur.com/hlz6G90.png" width="16px"><span class="text-black-50 ml-2" style="font-weight:bolder">Company - 8</div>
+             
+            <hr>
+            <h6 class="card-header mb-2" style="background-color:#0088cc;color:white;font-weight:bolder;text-align:center;border-radius:5px">DoorDash</h6><span class="badge badge-success p-2 mb-2 mr-2">LeetCode</span><span class="badge badge-danger p-2 mb-2 ">All Difficulty</span><span class="d-block mb-2" style="font-weight:bold">This PDF has the repeated Coding Questions from LeetCode asked By DoorDash.</span>
+          <hr>
+           <div class="container">
+            <center> <div class="row">
+                <div class="col">
+                    <a class="btn btn-lg" href="https://cutt.ly/3GdGDIs"target="_blank">
+                       <span>Lets Explore</span>
+                    </a>
+                </div>
+            </div> </center>
+        </div>
+        <hr>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="p-card bg-white p-2 rounded px-3">
+          <div class="d-flex align-items-center credits"><img src="https://i.imgur.com/hlz6G90.png" width="16px"><span class="text-black-50 ml-2" style="font-weight:bolder">Company - 9</span></div>
+            <hr>
+          <h6 class="card-header mb-2" style="background-color:#0088cc;color:white;font-weight:bolder;text-align:center;border-radius:5px">EBay</h6><span class="badge badge-success p-2 mb-2 mr-2">LeetCode</span><span class="badge badge-danger p-2 mb-2 ">All Difficulty</span><span class="d-block mb-2" style="font-weight:bold">This PDF contains the most repeated Coding Questions from LeetCode asked By EBay.</span>
+          <hr>
+           <div class="container">
+            <center> <div class="row">
+                <div class="col">
+                    <a class="btn btn-lg" href="https://cutt.ly/BGdGVX8"target="_blank">
+                       <span>Lets Explore</span>
+                    </a>
+                </div>
+            </div> </center>
+        </div>
+        <hr>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="p-card bg-white p-2 rounded px-3">
+          <div class="d-flex align-items-center credits"><img src="https://i.imgur.com/hlz6G90.png" width="16px"><span class="text-black-50 ml-2" style="font-weight:bolder">Company - 10</span></div>
+             
+          <hr>
+          <h6 class="card-header mb-2" style="background-color:#0088cc;color:white;font-weight:bolder;text-align:center;border-radius:5px">Facebook</h6><span class="badge badge-success p-2 mb-2 mr-2">LeetCode</span><span class="badge badge-danger p-2 mb-2 ">All Difficulty</span><span class="d-block mb-2" style="font-weight:bold">This PDF contains the most repeated Coding Questions from LeetCode asked By Facebook.</span>
+          <hr>
+           <div class="container">
+            <center> <div class="row">
+                <div class="col">
+                    <a class="btn btn-lg" href="https://cutt.ly/kGdG38l"target="_blank">
+                       <span>Lets Explore</span>
+                    </a>
+                </div>
+            </div> </center>
+        </div>
+        <hr>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="p-card bg-white p-2 rounded px-3">
+          <div class="d-flex align-items-center credits"><img src="https://i.imgur.com/hlz6G90.png" width="16px"><span class="text-black-50 ml-2" style="font-weight:bolder">Company - 12</span></div>
+              <hr>
+          <h6 class="card-header mb-2" style="background-color:#0088cc;color:white;font-weight:bolder;text-align:center;border-radius:5px">Flipkart</h6><span class="badge badge-success p-2 mb-2 mr-2">LeetCode</span><span class="badge badge-danger p-2 mb-2 ">All Difficulty</span><span class="d-block mb-2" style="font-weight:bold">This PDF contains the most repeated Coding Questions from LeetCode asked By Flipkart.</span>
+          <hr>
+           <div class="container">
+            <center> <div class="row">
+                <div class="col">
+                    <a class="btn btn-lg" href="https://cutt.ly/VGdG5RO"target="_blank">
+                       <span>Lets Explore</span>
+                    </a>
+                </div>
+            </div> </center>
+        </div>
+        <hr>
+      </div>
+      </div>
+      <div class="col-md-4">
+        <div class="p-card bg-white p-2 rounded px-3">
+          <div class="d-flex align-items-center credits"><img src="https://i.imgur.com/hlz6G90.png" width="16px"><span class="text-black-50 ml-2" style="font-weight:bolder">Company - 13</span></div>
+               
+          <hr>
+          <h6 class="card-header mb-2" style="background-color:#0088cc;color:white;font-weight:bolder;text-align:center;border-radius:5px">GoDaddy</h6><span class="badge badge-success p-2 mb-2 mr-2">LeetCode</span><span class="badge badge-danger p-2 mb-2 ">All Difficulty</span><span class="d-block mb-2" style="font-weight:bold">This PDF contains the most repeated Coding Questions from LeetCode asked By GoDaddy.</span>
+          <hr>
+           <div class="container">
+            <center> <div class="row">
+                <div class="col">
+                    <a class="btn btn-lg" href="https://cutt.ly/rGdHebY"target="_blank">
+                       <span>Lets Explore</span>
+                    </a>
+                </div>
+            </div> </center>
+        </div>
+        <hr>
+        </div>
+        </div> 
+        <div class="col-md-4">
+          <div class="p-card bg-white p-2 rounded px-3">
+            <div class="d-flex align-items-center credits"><img src="https://i.imgur.com/hlz6G90.png" width="16px"><span class="text-black-50 ml-2" style="font-weight:bolder">Company - 14</span></div>
+                  
+            <hr>
+            <h6 class="card-header mb-2" style="background-color:#0088cc;color:white;font-weight:bolder;text-align:center;border-radius:5px">Goldman Sachs</h6><span class="badge badge-success p-2 mb-2 mr-2">LeetCode</span><span class="badge badge-danger p-2 mb-2 ">All Difficulty</span><span class="d-block mb-2" style="font-weight:bold">This PDF has the repeated Coding Questions from LeetCode asked By Goldman Sachs.</span>
+            <hr>
+             <div class="container">
+              <center> <div class="row">
+                  <div class="col">
+                      <a class="btn btn-lg" href="https://cutt.ly/DGdHoMl"target="_blank">
+                         <span>Lets Explore</span>
+                      </a>
+                  </div>
+              </div> </center>
+          </div>
+          <hr>
+          </div>
+          </div>
+          <div class="col-md-4">
+            <div class="p-card bg-white p-2 rounded px-3">
+                <div class="d-flex align-items-center credits"><img src="https://i.imgur.com/hlz6G90.png" width="16px"><span class="text-black-50 ml-2" style="font-weight:bolder">Company - 15</span></div>
+                    <hr>
+                <h6 class="card-header mb-2" style="background-color:#0088cc;color:white;font-weight:bolder;text-align:center;border-radius:5px">Huawei</h6><span class="badge badge-success p-2 mb-2 mr-2">LeetCode</span><span class="badge badge-danger p-2 mb-2 ">All Difficulty</span><span class="d-block mb-2" style="font-weight:bold">This PDF contains the most repeated Coding Questions from LeetCode asked By Huawei.</span>
+                <hr>
+                 <div class="container">
+                  <center> <div class="row">
+                      <div class="col">
+                          <a class="btn btn-lg" href="https://cutt.ly/EGdHfc1"target="_blank">
+                             <span>Lets Explore</span>
+                          </a>
+                      </div>
+                  </div> </center>
+              </div>
+              <hr>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="p-card bg-white p-2 rounded px-3">
+                <div class="d-flex align-items-center credits"><img src="https://i.imgur.com/hlz6G90.png" width="16px"><span class="text-black-50 ml-2" style="font-weight:bolder">Company - 16</span></div>
+                     
+                <hr>
+                <h6 class="card-header mb-2" style="background-color:#0088cc;color:white;font-weight:bolder;text-align:center;border-radius:5px">Hulu</h6><span class="badge badge-success p-2 mb-2 mr-2">LeetCode</span><span class="badge badge-danger p-2 mb-2 ">All Difficulty</span><span class="d-block mb-2" style="font-weight:bold">This PDF contains the most repeated Coding Questions from LeetCode asked By Hulu.</span>
+                <hr>
+                 <div class="container">
+                  <center> <div class="row">
+                      <div class="col">
+                          <a class="btn btn-lg" href="https://cutt.ly/9GdHkmw"target="_blank">
+                             <span>Lets Explore</span>
+                          </a>
+                      </div>
+                  </div> </center>
+              </div>
+              <hr>
+            </div>
+            </div>  
+            <div class="col-md-4">
+                <div class="p-card bg-white p-2 rounded px-3">
+                    <div class="d-flex align-items-center credits"><img src="https://i.imgur.com/hlz6G90.png" width="16px"><span class="text-black-50 ml-2" style="font-weight:bolder">Company - 17</span></div>
+                         
+                    <hr>
+                    <h6 class="card-header mb-2" style="background-color:#0088cc;color:white;font-weight:bolder;text-align:center;border-radius:5px">Intel</h6><span class="badge badge-success p-2 mb-2 mr-2">LeetCode</span><span class="badge badge-danger p-2 mb-2 ">All Difficulty</span><span class="d-block mb-2" style="font-weight:bold">This PDF contains the most repeated Coding Questions from LeetCode asked By Intel.</span>
+                    <hr>
+                     <div class="container">
+                      <center> <div class="row">
+                          <div class="col">
+                              <a class="btn btn-lg" href="https://cutt.ly/KGdHmpr"target="_blank">
+                                 <span>Lets Explore</span>
+                              </a>
+                          </div>
+                      </div> </center>
+                  </div>
+                  <hr>
+                </div>
+                </div>  
+                <div class="col-md-4">
+                    <div class="p-card bg-white p-2 rounded px-3">
+                        <div class="d-flex align-items-center credits"><img src="https://i.imgur.com/hlz6G90.png" width="16px"><span class="text-black-50 ml-2" style="font-weight:bolder">Company - 18</span></div>
+                             
+                        <hr>
+                        <h6 class="card-header mb-2" style="background-color:#0088cc;color:white;font-weight:bolder;text-align:center;border-radius:5px">Intuit</h6><span class="badge badge-success p-2 mb-2 mr-2">LeetCode</span><span class="badge badge-danger p-2 mb-2 ">All Difficulty</span><span class="d-block mb-2" style="font-weight:bold">This PDF contains the most repeated Coding Questions from LeetCode asked By Intuit.</span>
+                        <hr>
+                         <div class="container">
+                          <center> <div class="row">
+                              <div class="col">
+                                  <a class="btn btn-lg" href="https://cutt.ly/EGdHUkL"target="_blank">
+                                     <span>Lets Explore</span>
+                                  </a>
+                              </div>
+                          </div> </center>
+                      </div>
+                      <hr>
+                    </div>
+                    </div>  
+                    <div class="col-md-4">
+                        <div class="p-card bg-white p-2 rounded px-3">
+                            <div class="d-flex align-items-center credits"><img src="https://i.imgur.com/hlz6G90.png" width="16px"><span class="text-black-50 ml-2" style="font-weight:bolder">Company - 19</span></div>
+                                 
+                            <hr>
+                            <h6 class="card-header mb-2" style="background-color:#0088cc;color:white;font-weight:bolder;text-align:center;border-radius:5px">JP Morgan</h6><span class="badge badge-success p-2 mb-2 mr-2">LeetCode</span><span class="badge badge-danger p-2 mb-2 ">All Difficulty</span><span class="d-block mb-2" style="font-weight:bold">This PDF has the repeated Coding Questions from LeetCode asked By JP Morgan.</span>
+                            <hr>
+                             <div class="container">
+                              <center> <div class="row">
+                                  <div class="col">
+                                      <a class="btn btn-lg" href="https://cutt.ly/oGdHHWS"target="_blank">
+                                         <span>Lets Explore</span>
+                                      </a>
+                                  </div>
+                              </div> </center>
+                          </div>
+                          <hr>
+                        </div>
+                        </div>  
+                        <div class="col-md-4">
+                            <div class="p-card bg-white p-2 rounded px-3">
+                                <div class="d-flex align-items-center credits"><img src="https://i.imgur.com/hlz6G90.png" width="16px"><span class="text-black-50 ml-2" style="font-weight:bolder">Company - 20</span></div>
+                                     
+                                <hr>
+                                <h6 class="card-header mb-2" style="background-color:#0088cc;color:white;font-weight:bolder;text-align:center;border-radius:5px">McKinsey</h6><span class="badge badge-success p-2 mb-2 mr-2">LeetCode</span><span class="badge badge-danger p-2 mb-2 ">All Difficulty</span><span class="d-block mb-2" style="font-weight:bold">This PDF contains the most repeated Coding Questions from LeetCode asked By McKinsey.</span>
+                                <hr>
+                                 <div class="container">
+                                  <center> <div class="row">
+                                      <div class="col">
+                                          <a class="btn btn-lg" href="https://cutt.ly/LGdHNah"target="_blank">
+                                             <span>Lets Explore</span>
+                                          </a>
+                                      </div>
+                                  </div> </center>
+                              </div>
+                              <hr>
+                            </div>
+                            </div>  
+                            <div class="col-md-4">
+                                <div class="p-card bg-white p-2 rounded px-3">
+                                    <div class="d-flex align-items-center credits"><img src="https://i.imgur.com/hlz6G90.png" width="16px"><span class="text-black-50 ml-2" style="font-weight:bolder">Company - 21</span></div>
+                                         
+                                    <hr>
+                                    <h6 class="card-header mb-2" style="background-color:#0088cc;color:white;font-weight:bolder;text-align:center;border-radius:5px">Microsoft</h6><span class="badge badge-success p-2 mb-2 mr-2">LeetCode</span><span class="badge badge-danger p-2 mb-2 ">All Difficulty</span><span class="d-block mb-2" style="font-weight:bold">This PDF contains the most repeated Coding Questions from LeetCode asked By Microsoft.</span>
+                                    <hr>
+                                     <div class="container">
+                                      <center> <div class="row">
+                                          <div class="col">
+                                              <a class="btn btn-lg" href="https://cutt.ly/hGdH9VB"target="_blank">
+                                                 <span>Lets Explore</span>
+                                              </a>
+                                          </div>
+                                      </div> </center>
+                                  </div>
+                                  <hr>
+                                </div>
+                                </div>  
+                                <div class="col-md-4">
+                                    <div class="p-card bg-white p-2 rounded px-3">
+                                        <div class="d-flex align-items-center credits"><img src="https://i.imgur.com/hlz6G90.png" width="16px"><span class="text-black-50 ml-2" style="font-weight:bolder">Company - 22</span></div>
+                                             
+                                        <hr>
+                                        <h6 class="card-header mb-2" style="background-color:#0088cc;color:white;font-weight:bolder;text-align:center;border-radius:5px">Morgan Stanley</h6><span class="badge badge-success p-2 mb-2 mr-2">LeetCode</span><span class="badge badge-danger p-2 mb-2 ">All Difficulty</span><span class="d-block mb-2" style="font-weight:bold">This PDF has the repeated Coding Questions from LeetCode asked By Morgan Stanley.</span>
+                                        <hr>
+                                         <div class="container">
+                                          <center> <div class="row">
+                                              <div class="col">
+                                                  <a class="btn btn-lg" href="https://cutt.ly/5GdH5OM"target="_blank">
+                                                     <span>Lets Explore</span>
+                                                  </a>
+                                              </div>
+                                          </div> </center>
+                                      </div>
+                                      <hr>
+                                    </div>
+                                    </div>  
+                                    <div class="col-md-4">
+                                        <div class="p-card bg-white p-2 rounded px-3">
+                                            <div class="d-flex align-items-center credits"><img src="https://i.imgur.com/hlz6G90.png" width="16px"><span class="text-black-50 ml-2" style="font-weight:bolder">Company - 23</span></div>
+                                                 
+                                            <hr>
+                                            <h6 class="card-header mb-2" style="background-color:#0088cc;color:white;font-weight:bolder;text-align:center;border-radius:5px">Netflix</h6><span class="badge badge-success p-2 mb-2 mr-2">LeetCode</span><span class="badge badge-danger p-2 mb-2 ">All Difficulty</span><span class="d-block mb-2" style="font-weight:bold">This PDF contains the most repeated Coding Questions from LeetCode asked By Netflix.</span>
+                                            <hr>
+                                             <div class="container">
+                                              <center> <div class="row">
+                                                  <div class="col">
+                                                      <a class="btn btn-lg" href="https://cutt.ly/CGdJem4"target="_blank">
+                                                         <span>Lets Explore</span>
+                                                      </a>
+                                                  </div>
+                                              </div> </center>
+                                          </div>
+                                          <hr>
+                                        </div>
+                                        </div>  
+                                                  <div class="col-md-4">
+            <div class="p-card bg-white p-2 rounded px-3">
+                <div class="d-flex align-items-center credits"><img src="https://i.imgur.com/hlz6G90.png" width="16px"><span class="text-black-50 ml-2" style="font-weight:bolder">Company - 24</span></div>
+                     
+                <hr>
+                <h6 class="card-header mb-2" style="background-color:#0088cc;color:white;font-weight:bolder;text-align:center;border-radius:5px">Nutanix</h6><span class="badge badge-success p-2 mb-2 mr-2">LeetCode</span><span class="badge badge-danger p-2 mb-2 ">All Difficulty</span><span class="d-block mb-2" style="font-weight:bold">This PDF contains the most repeated Coding Questions from LeetCode asked By Nutanix.</span>
+                <hr>
+                 <div class="container">
+                  <center> <div class="row">
+                      <div class="col">
+                          <a class="btn btn-lg" href="https://cutt.ly/jGdJyC3"target="_blank">
+                             <span>Lets Explore</span>
+                          </a>
+                      </div>
+                  </div> </center>
+              </div>
+              <hr>
+            </div>
+            </div>  
+                      <div class="col-md-4">
+            <div class="p-card bg-white p-2 rounded px-3">
+                <div class="d-flex align-items-center credits"><img src="https://i.imgur.com/hlz6G90.png" width="16px"><span class="text-black-50 ml-2" style="font-weight:bolder">Company - 25</span></div>
+                     
+                <hr>
+                <h6 class="card-header mb-2" style="background-color:#0088cc;color:white;font-weight:bolder;text-align:center;border-radius:5px">Nvidia</h6><span class="badge badge-success p-2 mb-2 mr-2">LeetCode</span><span class="badge badge-danger p-2 mb-2 ">All Difficulty</span><span class="d-block mb-2" style="font-weight:bold">This PDF contains the most repeated Coding Questions from LeetCode asked By Nvidia.</span>
+                <hr>
+                 <div class="container">
+                  <center> <div class="row">
+                      <div class="col">
+                          <a class="btn btn-lg" href="https://cutt.ly/XGdJoCy"target="_blank">
+                             <span>Lets Explore</span>
+                          </a>
+                      </div>
+                  </div> </center>
+              </div>
+              <hr>
+            </div>
+            </div>  
+                      <div class="col-md-4">
+            <div class="p-card bg-white p-2 rounded px-3">
+                <div class="d-flex align-items-center credits"><img src="https://i.imgur.com/hlz6G90.png" width="16px"><span class="text-black-50 ml-2" style="font-weight:bolder">Company - 26</span></div>
+                     
+                <hr>
+                <h6 class="card-header mb-2" style="background-color:#0088cc;color:white;font-weight:bolder;text-align:center;border-radius:5px">Oracle</h6><span class="badge badge-success p-2 mb-2 mr-2">LeetCode</span><span class="badge badge-danger p-2 mb-2 ">All Difficulty</span><span class="d-block mb-2" style="font-weight:bold">This PDF contains the most repeated Coding Questions from LeetCode asked By Oracle.</span>
+                <hr>
+                 <div class="container">
+                  <center> <div class="row">
+                      <div class="col">
+                          <a class="btn btn-lg" href="https://cutt.ly/oGdJfg2"target="_blank">
+                             <span>Lets Explore</span>
+                          </a>
+                      </div>
+                  </div> </center>
+              </div>
+              <hr>
+            </div>
+            </div>            <div class="col-md-4">
+                <div class="p-card bg-white p-2 rounded px-3">
+                    <div class="d-flex align-items-center credits"><img src="https://i.imgur.com/hlz6G90.png" width="16px"><span class="text-black-50 ml-2" style="font-weight:bolder">Company - 27</span></div>
+                         
+                    <hr>
+                    <h6 class="card-header mb-2" style="background-color:#0088cc;color:white;font-weight:bolder;text-align:center;border-radius:5px">PayPal</h6><span class="badge badge-success p-2 mb-2 mr-2">LeetCode</span><span class="badge badge-danger p-2 mb-2 ">All Difficulty</span><span class="d-block mb-2" style="font-weight:bold">This PDF contains the most repeated Coding Questions from LeetCode asked By PayPal.</span>
+                    <hr>
+                     <div class="container">
+                      <center> <div class="row">
+                          <div class="col">
+                              <a class="btn btn-lg" href="https://cutt.ly/YGdJkBJ"target="_blank">
+                                 <span>Lets Explore</span>
+                              </a>
+                          </div>
+                      </div> </center>
+                  </div>
+                  <hr>
+                </div>
+                </div>  
+                <div class="col-md-4">
+                    <div class="p-card bg-white p-2 rounded px-3">
+                        <div class="d-flex align-items-center credits"><img src="https://i.imgur.com/hlz6G90.png" width="16px"><span class="text-black-50 ml-2" style="font-weight:bolder">Company - 28</span></div>
+                             
+                        <hr>
+                        <h6 class="card-header mb-2" style="background-color:#0088cc;color:white;font-weight:bolder;text-align:center;border-radius:5px">Qualcomm</h6><span class="badge badge-success p-2 mb-2 mr-2">LeetCode</span><span class="badge badge-danger p-2 mb-2 ">All Difficulty</span><span class="d-block mb-2" style="font-weight:bold">This PDF has the most repeated Coding Questions from LeetCode asked By Qualcomm.</span>
+                        <hr>
+                         <div class="container">
+                          <center> <div class="row">
+                              <div class="col">
+                                  <a class="btn btn-lg" href="https://cutt.ly/TGdJc8c"target="_blank">
+                                     <span>Lets Explore</span>
+                                  </a>
+                              </div>
+                          </div> </center>
+                      </div>
+                      <hr>
+                    </div>
+                    </div>            <div class="col-md-4">
+                        <div class="p-card bg-white p-2 rounded px-3">
+                            <div class="d-flex align-items-center credits"><img src="https://i.imgur.com/hlz6G90.png" width="16px"><span class="text-black-50 ml-2" style="font-weight:bolder">Company - 29</span></div>
+                                 
+                            <hr>
+                            <h6 class="card-header mb-2" style="background-color:#0088cc;color:white;font-weight:bolder;text-align:center;border-radius:5px">Rubrik</h6><span class="badge badge-success p-2 mb-2 mr-2">LeetCode</span><span class="badge badge-danger p-2 mb-2 ">All Difficulty</span><span class="d-block mb-2" style="font-weight:bold">This PDF contains the most repeated Coding Questions from LeetCode asked By Rubrik.</span>
+                            <hr>
+                             <div class="container">
+                              <center> <div class="row">
+                                  <div class="col">
+                                      <a class="btn btn-lg" href="https://cutt.ly/uGdJERt"target="_blank">
+                                         <span>Lets Explore</span>
+                                      </a>
+                                  </div>
+                              </div> </center>
+                          </div>
+                          <hr>
+                        </div>
+                        </div>  
+                        <div class="col-md-4">
+                            <div class="p-card bg-white p-2 rounded px-3">
+                                <div class="d-flex align-items-center credits"><img src="https://i.imgur.com/hlz6G90.png" width="16px"><span class="text-black-50 ml-2" style="font-weight:bolder">Company - 30</span></div>
+                                     
+                                <hr>
+                                <h6 class="card-header mb-2" style="background-color:#0088cc;color:white;font-weight:bolder;text-align:center;border-radius:5px">Samsung</h6><span class="badge badge-success p-2 mb-2 mr-2">LeetCode</span><span class="badge badge-danger p-2 mb-2 ">All Difficulty</span><span class="d-block mb-2" style="font-weight:bold">This PDF contains the most repeated Coding Questions from LeetCode asked By Samsung.</span>
+                                <hr>
+                                 <div class="container">
+                                  <center> <div class="row">
+                                      <div class="col">
+                                          <a class="btn btn-lg" href="https://cutt.ly/mGdJIW8"target="_blank">
+                                             <span>Lets Explore</span>
+                                          </a>
+                                      </div>
+                                  </div> </center>
+                              </div>
+                              <hr>
+                            </div>
+                            </div>  
+                            <div class="col-md-4">
+                                <div class="p-card bg-white p-2 rounded px-3">
+                                    <div class="d-flex align-items-center credits"><img src="https://i.imgur.com/hlz6G90.png" width="16px"><span class="text-black-50 ml-2" style="font-weight:bolder">Company - 31</span></div>
+                                         
+                                    <hr>
+                                    <h6 class="card-header mb-2" style="background-color:#0088cc;color:white;font-weight:bolder;text-align:center;border-radius:5px">SAP Labs</h6><span class="badge badge-success p-2 mb-2 mr-2">LeetCode</span><span class="badge badge-danger p-2 mb-2 ">All Difficulty</span><span class="d-block mb-2" style="font-weight:bold">This PDF contains the most repeated Coding Questions from LeetCode asked By SAP Labs.</span>
+                                    <hr>
+                                     <div class="container">
+                                      <center> <div class="row">
+                                          <div class="col">
+                                              <a class="btn btn-lg" href="https://cutt.ly/CGdJDSL"target="_blank">
+                                                 <span>Lets Explore</span>
+                                              </a>
+                                          </div>
+                                      </div> </center>
+                                  </div>
+                                  <hr>
+                                </div>
+                                </div>  
+                                <div class="col-md-4">
+                                    <div class="p-card bg-white p-2 rounded px-3">
+                                        <div class="d-flex align-items-center credits"><img src="https://i.imgur.com/hlz6G90.png" width="16px"><span class="text-black-50 ml-2" style="font-weight:bolder">Company - 32</span></div>
+                                             
+                                        <hr>
+                                        <h6 class="card-header mb-2" style="background-color:#0088cc;color:white;font-weight:bolder;text-align:center;border-radius:5px">Snapchat</h6><span class="badge badge-success p-2 mb-2 mr-2">LeetCode</span><span class="badge badge-danger p-2 mb-2 ">All Difficulty</span><span class="d-block mb-2" style="font-weight:bold">This PDF contains the most repeated Coding Questions from LeetCode asked By Snapchat.</span>
+                                        <hr>
+                                         <div class="container">
+                                          <center> <div class="row">
+                                              <div class="col">
+                                                  <a class="btn btn-lg" href="https://cutt.ly/BGdJJv3"target="_blank">
+                                                     <span>Lets Explore</span>
+                                                  </a>
+                                              </div>
+                                          </div> </center>
+                                      </div>
+                                      <hr>
+                                    </div>
+                                    </div>  
+                                    <div class="col-md-4">
+                                        <div class="p-card bg-white p-2 rounded px-3">
+                                            <div class="d-flex align-items-center credits"><img src="https://i.imgur.com/hlz6G90.png" width="16px"><span class="text-black-50 ml-2" style="font-weight:bolder">Company - 33</span></div>
+                                                 
+                                            <hr>
+                                            <h6 class="card-header mb-2" style="background-color:#0088cc;color:white;font-weight:bolder;text-align:center;border-radius:5px">Spotify</h6><span class="badge badge-success p-2 mb-2 mr-2">LeetCode</span><span class="badge badge-danger p-2 mb-2 ">All Difficulty</span><span class="d-block mb-2" style="font-weight:bold">This PDF contains the most repeated Coding Questions from LeetCode asked By Spotify.</span>
+                                            <hr>
+                                             <div class="container">
+                                              <center> <div class="row">
+                                                  <div class="col">
+                                                      <a class="btn btn-lg" href="https://cutt.ly/aGdJZ4x"target="_blank">
+                                                         <span>Lets Explore</span>
+                                                      </a>
+                                                  </div>
+                                              </div> </center>
+                                          </div>
+                                          <hr>
+                                        </div>
+                                        </div>  
+                                        <div class="col-md-4">
+                                            <div class="p-card bg-white p-2 rounded px-3">
+                                                <div class="d-flex align-items-center credits"><img src="https://i.imgur.com/hlz6G90.png" width="16px"><span class="text-black-50 ml-2" style="font-weight:bolder">Company - 34</span></div>
+                                                     
+                                                <hr>
+                                                <h6 class="card-header mb-2" style="background-color:#0088cc;color:white;font-weight:bolder;text-align:center;border-radius:5px">Twilio</h6><span class="badge badge-success p-2 mb-2 mr-2">LeetCode</span><span class="badge badge-danger p-2 mb-2 ">All Difficulty</span><span class="d-block mb-2" style="font-weight:bold">This PDF contains the most repeated Coding Questions from LeetCode asked By Twilio.</span>
+                                                <hr>
+                                                 <div class="container">
+                                                  <center> <div class="row">
+                                                      <div class="col">
+                                                          <a class="btn btn-lg" href="https://cutt.ly/GGdJBf7"target="_blank">
+                                                             <span>Lets Explore</span>
+                                                          </a>
+                                                      </div>
+                                                  </div> </center>
+                                              </div>
+                                              <hr>
+                                            </div>
+                                            </div>  
+                                            <div class="col-md-4">
+                                                <div class="p-card bg-white p-2 rounded px-3">
+                                                    <div class="d-flex align-items-center credits"><img src="https://i.imgur.com/hlz6G90.png" width="16px"><span class="text-black-50 ml-2" style="font-weight:bolder">Company - 35</span></div>
+                                                         
+                                                    <hr>
+                                                    <h6 class="card-header mb-2" style="background-color:#0088cc;color:white;font-weight:bolder;text-align:center;border-radius:5px">Twitter</h6><span class="badge badge-success p-2 mb-2 mr-2">LeetCode</span><span class="badge badge-danger p-2 mb-2 ">All Difficulty</span><span class="d-block mb-2" style="font-weight:bold">This PDF contains the most repeated Coding Questions from LeetCode asked By Twitter.</span>
+                                                    <hr>
+                                                     <div class="container">
+                                                      <center> <div class="row">
+                                                          <div class="col">
+                                                              <a class="btn btn-lg" href="https://cutt.ly/qGdJ0rN"target="_blank">
+                                                                 <span>Lets Explore</span>
+                                                              </a>
+                                                          </div>
+                                                      </div> </center>
+                                                  </div>
+                                                  <hr>
+                                                </div>
+                                                </div>  
+                                                <div class="col-md-4">
+                                                    <div class="p-card bg-white p-2 rounded px-3">
+                                                        <div class="d-flex align-items-center credits"><img src="https://i.imgur.com/hlz6G90.png" width="16px"><span class="text-black-50 ml-2" style="font-weight:bolder">Company - 36</span></div>
+                                                             
+                                                        <hr>
+                                                        <h6 class="card-header mb-2" style="background-color:#0088cc;color:white;font-weight:bolder;text-align:center;border-radius:5px">Uber</h6><span class="badge badge-success p-2 mb-2 mr-2">LeetCode</span><span class="badge badge-danger p-2 mb-2 ">All Difficulty</span><span class="d-block mb-2" style="font-weight:bold">This PDF contains the most repeated Coding Questions from LeetCode asked By Uber.</span>
+                                                        <hr>
+                                                         <div class="container">
+                                                          <center> <div class="row">
+                                                              <div class="col">
+                                                                  <a class="btn btn-lg" href="https://cutt.ly/3GdJ3nn"target="_blank">
+                                                                     <span>Lets Explore</span>
+                                                                  </a>
+                                                              </div>
+                                                          </div> </center>
+                                                      </div>
+                                                      <hr>
+                                                    </div>
+                                                    </div>  
+                                                    <div class="col-md-4">
+                                                        <div class="p-card bg-white p-2 rounded px-3">
+                                                            <div class="d-flex align-items-center credits"><img src="https://i.imgur.com/hlz6G90.png" width="16px"><span class="text-black-50 ml-2" style="font-weight:bolder">Company - 37</span></div>
+                                                                 
+                                                            <hr>
+                                                            <h6 class="card-header mb-2" style="background-color:#0088cc;color:white;font-weight:bolder;text-align:center;border-radius:5px">Valve</h6><span class="badge badge-success p-2 mb-2 mr-2">LeetCode</span><span class="badge badge-danger p-2 mb-2 ">All Difficulty</span><span class="d-block mb-2" style="font-weight:bold">This PDF contains the most repeated Coding Questions from LeetCode asked By Valve.</span>
+                                                            <hr>
+                                                             <div class="container">
+                                                              <center> <div class="row">
+                                                                  <div class="col">
+                                                                      <a class="btn btn-lg" href="https://cutt.ly/NGdJ555"target="_blank">
+                                                                         <span>Lets Explore</span>
+                                                                      </a>
+                                                                  </div>
+                                                              </div> </center>
+                                                          </div>
+                                                          <hr>
+                                                        </div>
+                                                        </div>  
+                                                        <div class="col-md-4">
+                                                            <div class="p-card bg-white p-2 rounded px-3">
+                                                                <div class="d-flex align-items-center credits"><img src="https://i.imgur.com/hlz6G90.png" width="16px"><span class="text-black-50 ml-2" style="font-weight:bolder">Company - 38</span></div>
+                                                                     
+                                                                <hr>
+                                                                <h6 class="card-header mb-2" style="background-color:#0088cc;color:white;font-weight:bolder;text-align:center;border-radius:5px">VM Ware</h6><span class="badge badge-success p-2 mb-2 mr-2">LeetCode</span><span class="badge badge-danger p-2 mb-2 ">All Difficulty</span><span class="d-block mb-2" style="font-weight:bold">This PDF contains the most repeated Coding Questions from LeetCode asked By VM Ware.</span>
+                                                                <hr>
+                                                                 <div class="container">
+                                                                  <center> <div class="row">
+                                                                      <div class="col">
+                                                                          <a class="btn btn-lg" href="https://cutt.ly/mGdKebM"target="_blank">
+                                                                             <span>Lets Explore</span>
+                                                                          </a>
+                                                                      </div>
+                                                                  </div> </center>
+                                                              </div>
+                                                              <hr>
+                                                            </div>
+                                                            </div>  
+                                                            <div class="col-md-4">
+                                                                <div class="p-card bg-white p-2 rounded px-3">
+                                                                    <div class="d-flex align-items-center credits"><img src="https://i.imgur.com/hlz6G90.png" width="16px"><span class="text-black-50 ml-2" style="font-weight:bolder">Company - 39</span></div>
+                                                                         
+                                                                    <hr>
+                                                                    <h6 class="card-header mb-2" style="background-color:#0088cc;color:white;font-weight:bolder;text-align:center;border-radius:5px">Walmart Labs</h6><span class="badge badge-success p-2 mb-2 mr-2">LeetCode</span><span class="badge badge-danger p-2 mb-2 ">All Difficulty</span><span class="d-block mb-2" style="font-weight:bold">This PDF has the repeated Coding Questions from LeetCode asked By Walmart Labs.</span>
+                                                                    <hr>
+                                                                     <div class="container">
+                                                                      <center> <div class="row">
+                                                                          <div class="col">
+                                                                              <a class="btn btn-lg" href="https://cutt.ly/BGdKits"target="_blank">
+                                                                                 <span>Lets Explore</span>
+                                                                              </a>
+                                                                          </div>
+                                                                      </div> </center>
+                                                                  </div>
+                                                                  <hr>
+                                                                </div>
+                                                                </div>  
+                                                                <div class="col-md-4">
+                                                                    <div class="p-card bg-white p-2 rounded px-3">
+                                                                        <div class="d-flex align-items-center credits"><img src="https://i.imgur.com/hlz6G90.png" width="16px"><span class="text-black-50 ml-2" style="font-weight:bolder">Company - 40</span></div>
+                                                                             
+                                                                        <hr>
+                                                                        <h6 class="card-header mb-2" style="background-color:#0088cc;color:white;font-weight:bolder;text-align:center;border-radius:5px">Yahoo</h6><span class="badge badge-success p-2 mb-2 mr-2">LeetCode</span><span class="badge badge-danger p-2 mb-2 ">All Difficulty</span><span class="d-block mb-2" style="font-weight:bold">This PDF contains the most repeated Coding Questions from LeetCode asked By Yahoo.</span>
+                                                                        <hr>
+                                                                         <div class="container">
+                                                                          <center> <div class="row">
+                                                                              <div class="col">
+                                                                                  <a class="btn btn-lg" href="https://cutt.ly/8GdKa4N"target="_blank">
+                                                                                     <span>Lets Explore</span>
+                                                                                  </a>
+                                                                              </div>
+                                                                          </div> </center>
+                                                                      </div>
+                                                                      <hr>
+                                                                    </div>
+                                                                    </div>  
+                                                                                                                <div class="col-md-4">
+                                                                    <div class="p-card bg-white p-2 rounded px-3">
+                                                                        <div class="d-flex align-items-center credits"><img src="https://i.imgur.com/hlz6G90.png" width="16px"><span class="text-black-50 ml-2" style="font-weight:bolder">Company - 41</span></div>
+                                                                             
+                                                                        <hr>
+                                                                        <h6 class="card-header mb-2" style="background-color:#0088cc;color:white;font-weight:bolder;text-align:center;border-radius:5px">Zynga</h6><span class="badge badge-success p-2 mb-2 mr-2">LeetCode</span><span class="badge badge-danger p-2 mb-2 ">All Difficulty</span><span class="d-block mb-2" style="font-weight:bold">This PDF contains the most repeated Coding Questions from LeetCode asked By Zynga.</span>
+                                                                        <hr>
+                                                                         <div class="container">
+                                                                          <center> <div class="row">
+                                                                              <div class="col">
+                                                                                  <a class="btn btn-lg" href="https://cutt.ly/kGdKlLa" target="_blank">
+                                                                                     <span>Lets Explore</span>
+                                                                                  </a>
+                                                                              </div>
+                                                                          </div> </center>
+                                                                      </div>
+                                                                      <hr>
+                                                                    </div>
+                                                                    </div>  
+    </div>
+    
+    <div class="row mb-4">
+      
+      
+    
+    
+    
+    
+    
+    </div>
+    </div>
+    
+    </div>
+    {% endblock %}
+    {% block script %}
+    <script>
+    
+      var colors = ['#FB9797', '#FB84BD', '#EA84FB', '#FF6D3F', '#4270E7', 'green', 'blue'];
+        $('.add-border').each(function() {
+            $(this).css('border-top', "3px solid " + colors[Math.floor(Math.random() * colors.length)]);
+        });
+    
+    </script>
+    {% endblock %}
+    
+    
+    

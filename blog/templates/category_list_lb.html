@@ -1,0 +1,956 @@
+
+
+
+    {% extends "blog/base.html" %}
+
+    {% block title %}Logic Building{% endblock %}
+    
+    {% block content %}
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <style>
+      body {
+        background: #eee
+    } * {
+      font-family: 'IBM Plex Sans Hebrew', sans-serif;
+    }
+    
+    .filter {
+        border-top-right-radius: 10px;
+        border-bottom-left-radius: 10px;
+        border-bottom-right-radius: 10px
+    }
+    
+    .profiles img {
+        margin-right: -6px
+    }
+    
+    .col-md-4 {
+        margin-top: 26px
+    }
+    .btn{
+      color: #fff;
+      background: linear-gradient(135deg, #852d91, #312a6c);
+      font-family: 'Comfortaa', cursive;
+      font-size: 17px;
+      font-weight: 700;
+    
+      padding: 11px 11px;
+      border: none;
+      border-radius: 5px;
+      overflow: hidden;
+      position: relative;
+      transition: all 0.3s cubic-bezier(0.02, 0.01, 0.47, 1);
+    }
+    .btn:hover{
+      color: #fff;
+      border: none;
+      box-shadow: 0 0 10px rgba(0,0,0,0.3);
+      animation: rotate 0.7s ease-in-out both;
+    }
+    .btn:before,
+    .btn:after{
+      content: '';
+      background: #fff;
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      opacity: 0;
+      transform: translate(100%, -25%) translate3d(0, 0, 0);
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      z-index: -1;
+      transition: all 0.15s cubic-bezier(0.02, 0.01, 0.47, 1);
+    }
+    .btn:hover:before,
+    .btn:hover:after{
+      opacity: 0.15;
+    }
+    .btn:hover:before{ transform: translate3d(50%, 0, 0) scale(0.9); }
+    .btn:hover:after{ transform: translate(50%, 0) scale(1.1); }
+    @keyframes rotate{
+      0%{ transform: rotate(0deg); }
+      25%{ transform: rotate(3deg); }
+      50%{ transform: rotate(-3deg); }
+      75%{ transform: rotate(1deg); }
+      100%{ transform: rotate(0deg); }
+    }
+    @media only screen and (max-width: 767px){
+      .btn{ margin-bottom: 20px; }
+    }.ratings i {
+      color: green;
+      margin-top:3px
+    }
+    .p-card,#card_suggest{
+      border-radius: 20px;
+      background: #e0e0e0;
+      box-shadow:  32px 32px 46px #6c6c6c,
+                   -32px -32px 46px #ffffff;
+    }
+    #badgehd{
+        border-radius: 14px;
+background: #e0e0e0;
+box-shadow:  10px 10px 8px #c5c5c5,
+             -12px -12px 8px #fbfbfb;
+    }
+    #qns{
+        text-align:left;
+        padding:-1rem
+    }
+    </style>
+
+      <div class="card text-center" id="card_suggest" style='margin-bottom:2rem'>
+        <h5 class="card-header" style="background-color:#0088cc;color:white;font-weight:bolder">Master Logic Building From Zero to Hero</h5>
+        <div class="card-body" style='border-radius:1rem'>
+          
+          
+          <h5 class="card-title" style='font-weight:bold'>Here we have provided a "30 Day Challenge" for Logic Building. Also called as the "Problem Solving Sheet". This assures to make you a "6 Star Hackerrank Coder".</h5>
+          <hr>
+          <span class="badge bg-secondary" style="color:white;font-family: 'IBM Plex Sans Hebrew', sans-serif;padding:10px;margin:5px" id="badgehd">Arrays</span>
+          <span class="badge bg-secondary" style="color:white;font-family: 'IBM Plex Sans Hebrew', sans-serif;padding:10px;margin:5px" id="badgehd">Bit Manipulation</span>
+          <span class="badge bg-secondary" style="color:white;font-family: 'IBM Plex Sans Hebrew', sans-serif;padding:10px;margin:5px"id="badgehd">Recursions</span>
+          <span class="badge bg-secondary" style="color:white;font-family: 'IBM Plex Sans Hebrew', sans-serif;padding:10px;margin:5px"id="badgehd">Strings</span>
+          <span class="badge bg-secondary" style="color:white;font-family: 'IBM Plex Sans Hebrew', sans-serif;padding:10px;margin:5px"id="badgehd">Searching</span>
+          <span class="badge bg-secondary" style="color:white;font-family: 'IBM Plex Sans Hebrew', sans-serif;padding:10px;margin:5px"id="badgehd">Sorting</span>
+          <span class="badge bg-secondary" style="color:white;font-family: 'IBM Plex Sans Hebrew', sans-serif;padding:10px;margin:5px"id="badgehd">Functions</span>
+          <span class="badge bg-secondary" style="color:white;font-family: 'IBM Plex Sans Hebrew', sans-serif;padding:10px;margin:5px"id="badgehd">Miscellanous</span>
+          <hr>
+          <span class="badge bg-danger" style="color:white;font-family: 'IBM Plex Sans Hebrew', sans-serif;padding:15px;margin:5px;background-color:crimson"id="badgehd">Week 1 - 24 Qns</span> <span style='color:#0088cc;font-weight:bolder'>+</span> 
+          <span class="badge bg-danger" style="color:white;font-family: 'IBM Plex Sans Hebrew', sans-serif;padding:15px;margin:5px;background-color:crimson"id="badgehd">Week 2 - 24 Qns</span>  <span style='color:#0088cc;font-weight:bolder'>+</span> 
+          <span class="badge bg-danger" style="color:white;font-family: 'IBM Plex Sans Hebrew', sans-serif;padding:15px;margin:5px;background-color:crimson"id="badgehd">Week 3 - 24 Qns</span>  <span style='color:#0088cc;font-weight:bolder'>+</span> 
+          <span class="badge bg-danger" style="color:white;font-family: 'IBM Plex Sans Hebrew', sans-serif;padding:15px;margin:5px;background-color:crimson"id="badgehd">Week 4 - 23 Qns</span>  <span style='color:#0088cc;font-weight:bolder'>+</span> 
+          <span class="badge bg-danger" style="color:white;font-family: 'IBM Plex Sans Hebrew', sans-serif;padding:15px;margin:5px;background-color:crimson"id="badgehd">Week 5 - 5 Qns</span>  <span style='color:#0088cc;font-weight:bolder'>=</span> 
+        </div> <span class="badge bg-success" style="color:white;font-family: 'IBM Plex Sans Hebrew', sans-serif;padding:15px;margin:10px;border-radius:90px;background-color:crimson"id="badgehd">Total - 100 Qns</span> 
+       
+      </div>
+      <div class="card text-center" id="card_suggest"  style='margin-bottom:2rem;width:100%;margin-top:2rem;border-radius:1rem'>
+        <h5 class="card-header" style="background-color:#0088cc;color:white;font-weight:bolder;width:100%;border-radius:1rem">Week - 1</h5>
+        <div class="card-body" style='border-radius:1rem'>
+    
+    
+            <h5 class="card-title" style='font-weight:bold'>"Success is a journey, not a destination"
+                - Arthur Ashe</h5>
+            <h5 class="card-title" style='font-weight:bold;color:crimson'><i class="fas fa-code"></i> Platform - Hackerrank</h5>
+          </div>
+      </div>
+      <div class="row mb-4">
+
+        <div class="col-md-4">
+            
+            <div class="p-card bg-white p-2 rounded px-3">
+                <div class="d-flex align-items-center credits"><img src="https://i.imgur.com/hlz6G90.png" width="16px"><span class="text-black-50 ml-2" style="font-weight:bolder">Level - 1</div>
+                  <hr>
+                  
+                  
+                <h6 class="card-header mb-2" style="background-color:#0088cc;color:white;font-weight:bolder;text-align:center;border-radius:5px">Day - 1</h6><span class="badge badge-success p-2 mb-2 mr-2">Total Questions - 4</span><span class="badge badge-danger p-2 mb-2 ">All Difficulty</span><span class="d-block mb-2" style="font-weight:bold">
+                    <p id='qns'>1. Solve Me First</p>
+                    <p id='qns'>2. Simple Array Sum</p>
+                    <p id='qns'>3. Compare the Triplets</p>
+                    <p id='qns'>4. A Very Big Sum</p>
+                   
+
+                    
+                    </span>
+                <hr>
+                 <div class="container">
+                  <center> <div class="row">
+                      <div class="col">
+                          <a class="btn btn-lg" href="/post/logic-building/2/">
+                             <span>Lets Solve</span>
+                          </a>
+                      </div>
+                  </div> </center>
+              </div>
+              <hr>
+            </div>
+        </div>
+        <div class="col-md-4">
+          <div class="p-card bg-white p-2 rounded px-3">
+              <div class="d-flex align-items-center credits"><img src="https://i.imgur.com/hlz6G90.png" width="16px"><span class="text-black-50 ml-2" style="font-weight:bolder">Level - 2</div>
+                <hr>
+                
+
+
+           <h6 class="card-header mb-2" style="background-color:#0088cc;color:white;font-weight:bolder;text-align:center;border-radius:5px">Day - 2</h6><span class="badge badge-success p-2 mb-2 mr-2">Total Questions - 4</span><span class="badge badge-danger p-2 mb-2 ">All Difficulty</span><span class="d-block mb-2" style="font-weight:bold">
+                <p id='qns'>1. Diagonal Difference</p>
+                <p id='qns'>2. Plus Minus</p>
+                <p id='qns'>3. Staircase</p>
+                <p id='qns'>4. Mini-Max Sum  </p>
+            </span>
+              <hr>
+               <div class="container">
+                <center> <div class="row">
+                    <div class="col">
+                        <a class="btn btn-lg" href="/post/logic-building/3/">
+                           <span>Lets Solve</span>
+                        </a>
+                    </div>
+                </div> </center>
+            </div>
+            <hr>
+          </div>
+      </div>
+      <div class="col-md-4">
+        <div class="p-card bg-white p-2 rounded px-3">
+            <div class="d-flex align-items-center credits"><img src="https://i.imgur.com/hlz6G90.png" width="16px"><span class="text-black-50 ml-2" style="font-weight:bolder">Level - 3</div>
+              <hr>
+              
+              
+
+
+
+
+            <h6 class="card-header mb-2" style="background-color:#0088cc;color:white;font-weight:bolder;text-align:center;border-radius:5px">Day - 3</h6><span class="badge badge-success p-2 mb-2 mr-2">Total Questions - 4</span><span class="badge badge-danger p-2 mb-2 ">All Difficulty</span><span class="d-block mb-2" style="font-weight:bold">
+                <p id='qns'>1. Birthday Cake Candles</p>
+                <p id='qns'>2. Time Conversion</p>
+                <p id='qns'>3. Grading Students</p>
+                <p id='qns'>4. Apple and Orange </p>
+            </span>
+            <hr>
+             <div class="container">
+              <center> <div class="row">
+                  <div class="col">
+                      <a class="btn btn-lg" href="/post/logic-building/4/">
+                         <span>Lets Solve</span>
+                      </a>
+                  </div>
+              </div> </center>
+          </div>
+          <hr>
+        </div>
+    </div>
+   
+    <div class="col-md-4">
+      <div class="p-card bg-white p-2 rounded px-3">
+          <div class="d-flex align-items-center credits"><img src="https://i.imgur.com/hlz6G90.png" width="16px"><span class="text-black-50 ml-2" style="font-weight:bolder">Level - 4</div>
+            <hr>
+            
+  
+
+          <h6 class="card-header mb-2" style="background-color:#0088cc;color:white;font-weight:bolder;text-align:center;border-radius:5px">Day - 4</h6><span class="badge badge-success p-2 mb-2 mr-2">Total Questions - 4</span><span class="badge badge-danger p-2 mb-2 ">All Difficulty</span><span class="d-block mb-2" style="font-weight:bold">
+            <p id='qns'>1. Number Line Jumps</p>
+            <p id='qns'>2. Breaking the Records</p>
+            <p id='qns'>3. Subarray Division</p>
+            <p id='qns'>4. Divisible Sum Pairs</p>
+        </span>
+          <hr>
+           <div class="container">
+            <center> <div class="row">
+                <div class="col">
+                    <a class="btn btn-lg" href="/post/logic-building/5/">
+                       <span>Lets Solve</span>
+                    </a>
+                </div>
+            </div> </center>
+        </div>
+        <hr>
+      </div>
+  </div>
+    <div class="col-md-4">
+      <div class="p-card bg-white p-2 rounded px-3">
+          <div class="d-flex align-items-center credits"><img src="https://i.imgur.com/hlz6G90.png" width="16px"><span class="text-black-50 ml-2" style="font-weight:bolder">Level - 5</span></div>
+              <hr>
+          <h6 class="card-header mb-2" style="background-color:#0088cc;color:white;font-weight:bolder;text-align:center;border-radius:5px">Day - 5 </h6><span class="badge badge-success p-2 mb-2 mr-2">Total Questions - 4</span><span class="badge badge-danger p-2 mb-2 ">All Difficulty</span><span class="d-block mb-2" style="font-weight:bold">
+           
+            <p id='qns'>1. Migratory Birds</p>
+            <p id='qns'>2. Day of the Programmer</p>
+            <p id='qns'>3. Bill Division</p>
+            <p id='qns'>4. Sales by Match</p>
+   
+            
+            </span>
+          <hr>
+           <div class="container">
+            <center> <div class="row">
+                <div class="col">
+                    <a class="btn btn-lg" href="/post/logic-building/6/">
+                       <span>Lets Solve</span>
+                    </a>
+                </div>
+            </div> </center>
+        </div>
+        <hr>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="p-card bg-white p-2 rounded px-3">
+          <div class="d-flex align-items-center credits"><img src="https://i.imgur.com/hlz6G90.png" width="16px"><span class="text-black-50 ml-2" style="font-weight:bolder">Level - 6</span></div>
+              <hr>
+          <h6 class="card-header mb-2" style="background-color:#0088cc;color:white;font-weight:bolder;text-align:center;border-radius:5px">Day - 6 </h6><span class="badge badge-success p-2 mb-2 mr-2">Total Questions - 4</span><span class="badge badge-danger p-2 mb-2 ">All Difficulty</span><span class="d-block mb-2" style="font-weight:bold">
+            
+            
+            
+            
+            
+            <p id='qns'>1. Drawing Book</p>
+            <p id='qns'>2. Counting Valleys</p>
+            <p id='qns'>3. Electronics Shop</p>
+            <p id='qns'>4. Cats and a Mouse</p></span>
+          <hr>
+           <div class="container">
+            <center> <div class="row">
+                <div class="col">
+                    <a class="btn btn-lg" href="/post/logic-building/7/">
+                       <span>Lets Solve</span>
+                    </a>
+                </div>
+            </div> </center>
+        </div>
+        <hr>
+      </div>
+    </div>
+    
+    <div class="col-md-4">
+      <div class="p-card bg-white p-2 rounded px-3">
+          <div class="d-flex align-items-center credits"><img src="https://i.imgur.com/hlz6G90.png" width="16px"><span class="text-black-50 ml-2" style="font-weight:bolder">Level - 7</span></div>
+              <hr>
+          <h6 class="card-header mb-2" style="background-color:#0088cc;color:white;font-weight:bolder;text-align:center;border-radius:5px">Day - 7 </h6><span class="badge badge-success p-2 mb-2 mr-2">Total Questions - Backlogs</span><span class="badge badge-danger p-2 mb-2 ">Backlogs</span><span class="d-block mb-2" style="font-weight:bold">
+              This Section is a break or you can complete you backlogs On this Day.</span>
+          <hr>
+           <div class="container">
+            <center> <div class="row">
+                <div class="col">
+                   
+                </div>
+            </div> </center>
+        </div>
+        <hr>
+      </div>
+    </div>
+    <div class="card text-center" id="card_suggest"  style='margin-bottom:2rem;width:100%;margin-top:2rem;border-radius:1rem'>
+        <h5 class="card-header" style="background-color:#0088cc;color:white;font-weight:bolder;width:100%;border-radius:1rem">Week - 2</h5>
+        <div class="card-body" style='border-radius:1rem'>
+    
+    
+            <h5 class="card-title" style='font-weight:bold'>"Consistent hard work leads to success. Greatness will come”
+                – Dwayne Johnson</h5>
+            <h5 class="card-title" style='font-weight:bold;color:crimson'><i class="fas fa-code"></i> Platform - Hackerrank</h5>
+          </div>
+      </div>
+    <div class="col-md-4">
+      <div class="p-card bg-white p-2 rounded px-3">
+          <div class="d-flex align-items-center credits"><img src="https://i.imgur.com/hlz6G90.png" width="16px"><span class="text-black-50 ml-2" style="font-weight:bolder">Level - 8</div>
+             
+            <hr>
+            <h6 class="card-header mb-2" style="background-color:#0088cc;color:white;font-weight:bolder;text-align:center;border-radius:5px">Day - 8</h6><span class="badge badge-success p-2 mb-2 mr-2">Total Questions - 4</span><span class="badge badge-danger p-2 mb-2 ">All Difficulty</span><span class="d-block mb-2" style="font-weight:bold">
+                
+            <p id='qns'>1. Forming a Magic Square</p>
+            <p id='qns'>2. Picking Numbers</p>
+            <p id='qns'>3. Climbing the Leaderboard</p>
+            <p id='qns'>4. The Hurdle Race</p>
+        </span>
+          <hr>
+          
+
+
+
+
+           <div class="container">
+            <center> <div class="row">
+                <div class="col">
+                    <a class="btn btn-lg" href="/post/logic-building/8/">
+                       <span>Lets Solve</span>
+                    </a>
+                </div>
+            </div> </center>
+        </div>
+        <hr>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="p-card bg-white p-2 rounded px-3">
+          <div class="d-flex align-items-center credits"><img src="https://i.imgur.com/hlz6G90.png" width="16px"><span class="text-black-50 ml-2" style="font-weight:bolder">Level - 9</span></div>
+            <hr>
+            
+
+          <h6 class="card-header mb-2" style="background-color:#0088cc;color:white;font-weight:bolder;text-align:center;border-radius:5px">Day - 9 </h6><span class="badge badge-success p-2 mb-2 mr-2">Total Questions - 4</span><span class="badge badge-danger p-2 mb-2 ">All Difficulty</span><span class="d-block mb-2" style="font-weight:bold">
+            <p id='qns'>1. Designer PDF Viewer</p>
+            <p id='qns'>2. Utopian Tree</p>
+            <p id='qns'>3. Angry Professor</p>
+            <p id='qns'>4. Beautiful Days</p>
+        </span>
+          <hr>
+           <div class="container">
+            <center> <div class="row">
+                <div class="col">
+                    <a class="btn btn-lg" href="/post/logic-building/9/">
+                       <span>Lets Solve</span>
+                    </a>
+                </div>
+            </div> </center>
+        </div>
+        <hr>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="p-card bg-white p-2 rounded px-3">
+          <div class="d-flex align-items-center credits"><img src="https://i.imgur.com/hlz6G90.png" width="16px"><span class="text-black-50 ml-2" style="font-weight:bolder">Level - 10</span></div>
+             
+          <hr>
+          
+
+
+
+
+          <h6 class="card-header mb-2" style="background-color:#0088cc;color:white;font-weight:bolder;text-align:center;border-radius:5px">Day - 10</h6><span class="badge badge-success p-2 mb-2 mr-2">Total Questions - 4</span><span class="badge badge-danger p-2 mb-2 ">All Difficulty</span><span class="d-block mb-2" style="font-weight:bold">
+            <p id='qns'>1. Viral Advertising</p>
+            <p id='qns'>2. Save the Prisoner!</p>
+            <p id='qns'>3. Circular Array Rotation</p>
+            <p id='qns'>4. Sequence Equation</p>
+        </span>
+          <hr>
+           <div class="container">
+            <center> <div class="row">
+                <div class="col">
+                    <a class="btn btn-lg" href="/post/logic-building/10/">
+                       <span>Lets Solve</span>
+                    </a>
+                </div>
+            </div> </center>
+        </div>
+        <hr>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="p-card bg-white p-2 rounded px-3">
+          <div class="d-flex align-items-center credits"><img src="https://i.imgur.com/hlz6G90.png" width="16px"><span class="text-black-50 ml-2" style="font-weight:bolder">Level - 11</span></div>
+              <hr>
+
+          <h6 class="card-header mb-2" style="background-color:#0088cc;color:white;font-weight:bolder;text-align:center;border-radius:5px">Day - 11</h6><span class="badge badge-success p-2 mb-2 mr-2">Total Questions - 4</span><span class="badge badge-danger p-2 mb-2 ">All Difficulty</span><span class="d-block mb-2" style="font-weight:bold">
+            <p id='qns'>1. Library Fine</p>
+            <p id='qns'>2. Cut the sticks</p>
+            <p id='qns'>3. Repeated String</p>
+            <p id='qns'>4. Jumping on the Clouds</p>      
+        </span>
+          <hr>
+           <div class="container">
+            <center> <div class="row">
+                <div class="col">
+                    <a class="btn btn-lg" href="/post/logic-building/11/">
+                       <span>Lets Solve</span>
+                    </a>
+                </div>
+            </div> </center>
+        </div>
+        <hr>
+      </div>
+      </div>
+      <div class="col-md-4">
+        <div class="p-card bg-white p-2 rounded px-3">
+          <div class="d-flex align-items-center credits"><img src="https://i.imgur.com/hlz6G90.png" width="16px"><span class="text-black-50 ml-2" style="font-weight:bolder">Level - 12</span></div>
+               
+          <hr>
+
+
+          <h6 class="card-header mb-2" style="background-color:#0088cc;color:white;font-weight:bolder;text-align:center;border-radius:5px">Day - 12</h6><span class="badge badge-success p-2 mb-2 mr-2">Total Questions - 4</span><span class="badge badge-danger p-2 mb-2 ">All Difficulty</span><span class="d-block mb-2" style="font-weight:bold">
+            <p id='qns'>1. Jumping on the Clouds 2</p>
+            <p id='qns'>2. Find Digits</p>
+            <p id='qns'>3. Append and Delete</p>
+            <p id='qns'>4. Sherlock and Squares</p>  
+          <hr>
+           <div class="container">
+            <center> <div class="row">
+                <div class="col">
+                    <a class="btn btn-lg" href="/post/logic-building/12/">
+                       <span>Lets Solve</span>
+                    </a>
+                </div>
+            </div> </center>
+        </div>
+        <hr>
+        </div>
+        </div> 
+        <div class="col-md-4">
+          <div class="p-card bg-white p-2 rounded px-3">
+            <div class="d-flex align-items-center credits"><img src="https://i.imgur.com/hlz6G90.png" width="16px"><span class="text-black-50 ml-2" style="font-weight:bolder">Level - 13</span></div>
+                  
+            <hr>
+
+
+            <h6 class="card-header mb-2" style="background-color:#0088cc;color:white;font-weight:bolder;text-align:center;border-radius:5px">Day - 13</h6><span class="badge badge-success p-2 mb-2 mr-2">Total Questions - 4</span><span class="badge badge-danger p-2 mb-2 ">All Difficulty</span><span class="d-block mb-2" style="font-weight:bold">
+                <p id='qns'>1. Equalize the Array</p>
+                <p id='qns'>2. ACM ICPC Team</p>
+                <p id='qns'>3. Taum and B'day</p>
+                <p id='qns'>4. Organizing Containers</p>  
+            </span>
+            <hr>
+             <div class="container">
+              <center> <div class="row">
+                  <div class="col">
+                      <a class="btn btn-lg" href="/post/logic-building/13/">
+                         <span>Lets Solve</span>
+                      </a>
+                  </div>
+              </div> </center>
+          </div>
+          <hr>
+          </div>
+          </div>
+          <div class="col-md-4">
+            <div class="p-card bg-white p-2 rounded px-3">
+                <div class="d-flex align-items-center credits"><img src="https://i.imgur.com/hlz6G90.png" width="16px"><span class="text-black-50 ml-2" style="font-weight:bolder">Level - 14</span></div>
+                    <hr>
+                <h6 class="card-header mb-2" style="background-color:#0088cc;color:white;font-weight:bolder;text-align:center;border-radius:5px">Day - 14</h6><span class="badge badge-success p-2 mb-2 mr-2">Total Questions - Backlogs</span><span class="badge badge-danger p-2 mb-2 ">Backlogs</span><span class="d-block mb-2" style="font-weight:bold">
+                    This Section is a break or you can complete you backlogs On this Day.</span>
+                <hr>
+                 <div class="container">
+                  <center> <div class="row">
+                      <div class="col">
+                          
+                      </div>
+                  </div> </center>
+              </div>
+              <hr>
+            </div>
+          </div>
+          <div class="card text-center" id="card_suggest"  style='margin-bottom:2rem;width:100%;margin-top:2rem;border-radius:1rem'>
+            <h5 class="card-header" style="background-color:#0088cc;color:white;font-weight:bolder;width:100%;border-radius:1rem">Week - 3</h5>
+            <div class="card-body" style='border-radius:1rem'>
+        
+        
+                <h5 class="card-title" style='font-weight:bold'>"Don't stop when you are tired , stop when you are done"
+                    - Wesley Snipes</h5>
+                <h5 class="card-title" style='font-weight:bold;color:crimson'><i class="fas fa-code"></i> Platform - Hackerrank</h5>
+              </div>
+          </div>
+          <div class="col-md-4">
+            <div class="p-card bg-white p-2 rounded px-3">
+                <div class="d-flex align-items-center credits"><img src="https://i.imgur.com/hlz6G90.png" width="16px"><span class="text-black-50 ml-2" style="font-weight:bolder">Level - 15</span></div>
+                     
+                <hr>
+
+
+                <h6 class="card-header mb-2" style="background-color:#0088cc;color:white;font-weight:bolder;text-align:center;border-radius:5px">Day - 15</h6><span class="badge badge-success p-2 mb-2 mr-2">Total Questions - 4</span><span class="badge badge-danger p-2 mb-2 ">All Difficulty</span><span class="d-block mb-2" style="font-weight:bold">
+                    <p id='qns'>1. Encryption</p>
+                    <p id='qns'>2. Modi Kaprekar Nums</p>
+                    <p id='qns'>3. Beautiful Triplets</p>
+                    <p id='qns'>4. Minimum Distances</p>  
+                </span>
+                <hr>
+                 <div class="container">
+                  <center> <div class="row">
+                      <div class="col">
+                          <a class="btn btn-lg" href="/post/logic-building/14/">
+                             <span>Lets Solve</span>
+                          </a>
+                      </div>
+                  </div> </center>
+              </div>
+              <hr>
+            </div>
+            </div>  
+            <div class="col-md-4">
+              <div class="p-card bg-white p-2 rounded px-3">
+                  <div class="d-flex align-items-center credits"><img src="https://i.imgur.com/hlz6G90.png" width="16px"><span class="text-black-50 ml-2" style="font-weight:bolder">Level - 16</span></div>
+  
+                  <hr>
+                  <h6 class="card-header mb-2" style="background-color:#0088cc;color:white;font-weight:bolder;text-align:center;border-radius:5px">Day - 16</h6><span class="badge badge-success p-2 mb-2 mr-2">Total Questions - 4</span><span class="badge badge-danger p-2 mb-2 ">All Difficulty</span><span class="d-block mb-2" style="font-weight:bold">
+                    <p id='qns'>1. Halloween Sale</p>
+                    <p id='qns'>2. Chocolate Feast</p>
+                    <p id='qns'>3. Service Lane</p>
+                    <p id='qns'>4. Lisa's Workbook</p>  
+                </span>
+                  <hr>
+                   <div class="container">
+                    <center> <div class="row">
+                        <div class="col">
+                            <a class="btn btn-lg" href="/post/logic-building/15/">
+                               <span>Lets Solve</span>
+                            </a>
+                        </div>
+                    </div> </center>
+                </div>
+                <hr>
+              </div>
+              </div> 
+              <div class="col-md-4">
+                <div class="p-card bg-white p-2 rounded px-3">
+                    <div class="d-flex align-items-center credits"><img src="https://i.imgur.com/hlz6G90.png" width="16px"><span class="text-black-50 ml-2" style="font-weight:bolder">Level - 17</span></div>
+
+                    <hr>
+                    <h6 class="card-header mb-2" style="background-color:#0088cc;color:white;font-weight:bolder;text-align:center;border-radius:5px">Day - 17</h6><span class="badge badge-success p-2 mb-2 mr-2">Total Questions - 4</span><span class="badge badge-danger p-2 mb-2 ">All Difficulty</span><span class="d-block mb-2" style="font-weight:bold">
+                        <p id='qns'>1. Fair Rations</p>
+                        <p id='qns'>2. Cavity Map</p>
+                        <p id='qns'>3. Manasa and Stones</p>
+                        <p id='qns'>4. The Grid Search</p>  
+                    </span>
+                    <hr>
+                     <div class="container">
+                      <center> <div class="row">
+                          <div class="col">
+                              <a class="btn btn-lg" href="/post/logic-building/16/">
+                                 <span>Lets Solve</span>
+                              </a>
+                          </div>
+                      </div> </center>
+                  </div>
+                  <hr>
+                </div>
+                </div> 
+                <div class="col-md-4">
+                  <div class="p-card bg-white p-2 rounded px-3">
+                      <div class="d-flex align-items-center credits"><img src="https://i.imgur.com/hlz6G90.png" width="16px"><span class="text-black-50 ml-2" style="font-weight:bolder">Level - 18</span></div>
+  
+                      
+                      <hr>
+                      <h6 class="card-header mb-2" style="background-color:#0088cc;color:white;font-weight:bolder;text-align:center;border-radius:5px">Day - 18</h6><span class="badge badge-success p-2 mb-2 mr-2">Total Questions - 4</span><span class="badge badge-danger p-2 mb-2 ">All Difficulty</span><span class="d-block mb-2" style="font-weight:bold">
+                        <p id='qns'>1. Happy Ladybugs</p>
+                        <p id='qns'>2. Strange Counter</p>
+                        <p id='qns'>3. Tutorial Challenges</p>
+                        <p id='qns'>4. CamelCase</p>  
+                    </span>
+                      <hr>
+                       <div class="container">
+                        <center> <div class="row">
+                            <div class="col">
+                                <a class="btn btn-lg" href="/post/logic-building/17/">
+                                   <span>Lets Solve</span>
+                                </a>
+                            </div>
+                        </div> </center>
+                    </div>
+                    <hr>
+                  </div>
+                  </div> 
+                  <div class="col-md-4">
+                    <div class="p-card bg-white p-2 rounded px-3">
+                        <div class="d-flex align-items-center credits"><img src="https://i.imgur.com/hlz6G90.png" width="16px"><span class="text-black-50 ml-2" style="font-weight:bolder">Level - 19</span></div>
+      
+                        
+                        <hr>
+                        <h6 class="card-header mb-2" style="background-color:#0088cc;color:white;font-weight:bolder;text-align:center;border-radius:5px">Day - 19</h6><span class="badge badge-success p-2 mb-2 mr-2">Total Questions - 4</span><span class="badge badge-danger p-2 mb-2 ">All Difficulty</span><span class="d-block mb-2" style="font-weight:bold">
+                            <p id='qns'>1. Insertion Sort - Part 1</p>
+                            <p id='qns'>2. Strong Password</p>
+                            <p id='qns'>3. Insertion Sort - Part 2</p>
+                            <p id='qns'>4. Loop Invariant</p>     
+                        </span>
+                        <hr>
+                         <div class="container">
+                          <center> <div class="row">
+                              <div class="col">
+                                  <a class="btn btn-lg" href="/post/logic-building/18/">
+                                     <span>Lets Solve</span>
+                                  </a>
+                              </div>
+                          </div> </center>
+                      </div>
+                      <hr>
+                    </div>
+                    </div> 
+                    <div class="col-md-4">
+            <div class="p-card bg-white p-2 rounded px-3">
+                <div class="d-flex align-items-center credits"><img src="https://i.imgur.com/hlz6G90.png" width="16px"><span class="text-black-50 ml-2" style="font-weight:bolder">Level - 20</span></div>
+   
+                <hr>
+                <h6 class="card-header mb-2" style="background-color:#0088cc;color:white;font-weight:bolder;text-align:center;border-radius:5px">Day - 20</h6><span class="badge badge-success p-2 mb-2 mr-2">Total Questions - 4</span><span class="badge badge-danger p-2 mb-2 ">All Difficulty</span><span class="d-block mb-2" style="font-weight:bold">
+                            <p id='qns'>1. Caesar Cipher</p>
+                            <p id='qns'>2. Mars Exploration</p>
+                            <p id='qns'>3. Run Time of Algorithms</p>
+                            <p id='qns'>4. HackerRank in a String!</p>    
+                </span>
+                <hr>
+                 <div class="container">
+                  <center> <div class="row">
+                      <div class="col">
+                          <a class="btn btn-lg" href="/post/logic-building/19/">
+                             <span>Lets Solve</span>
+                          </a>
+                      </div>
+                  </div> </center>
+              </div>
+              <hr>
+            </div>
+            </div> 
+            <div class="col-md-4">
+                <div class="p-card bg-white p-2 rounded px-3">
+                    <div class="d-flex align-items-center credits"><img src="https://i.imgur.com/hlz6G90.png" width="16px"><span class="text-black-50 ml-2" style="font-weight:bolder">Level - 21</span></div>
+                        <hr>
+                    <h6 class="card-header mb-2" style="background-color:#0088cc;color:white;font-weight:bolder;text-align:center;border-radius:5px">Day - 21 </h6><span class="badge badge-success p-2 mb-2 mr-2">Total Questions - Backlogs</span><span class="badge badge-danger p-2 mb-2 ">Backlogs</span><span class="d-block mb-2" style="font-weight:bold">
+                        This Section is a break or you can complete you backlogs On this Day.</span>
+                    <hr>
+                     <div class="container">
+                      <center> <div class="row">
+                          <div class="col">
+                             
+                          </div>
+                      </div> </center>
+                  </div>
+                  <hr>
+                </div>
+              </div>
+            <div class="card text-center" id="card_suggest"  style='margin-bottom:2rem;width:100%;margin-top:2rem;border-radius:1rem'>
+                <h5 class="card-header" style="background-color:#0088cc;color:white;font-weight:bolder;width:100%;border-radius:1rem">Week - 4</h5>
+                <div class="card-body" style='border-radius:1rem'>
+            
+            
+                    <h5 class="card-title" style='font-weight:bold'>"Don't wish it easier , wish you were better"
+                        - Jim Rohn
+                        </h5>
+                    <h5 class="card-title" style='font-weight:bold;color:crimson'><i class="fas fa-code"></i> Platform - Hackerrank</h5>
+                  </div>
+              </div>
+            <div class="col-md-4">
+              <div class="p-card bg-white p-2 rounded px-3">
+                  <div class="d-flex align-items-center credits"><img src="https://i.imgur.com/hlz6G90.png" width="16px"><span class="text-black-50 ml-2" style="font-weight:bolder">Level - 22</span></div>
+                  
+
+                  <hr>
+                  <h6 class="card-header mb-2" style="background-color:#0088cc;color:white;font-weight:bolder;text-align:center;border-radius:5px">Day - 22</h6><span class="badge badge-success p-2 mb-2 mr-2">Total Questions - 4</span><span class="badge badge-danger p-2 mb-2 ">All Difficulty</span><span class="d-block mb-2" style="font-weight:bold">
+                    <p id='qns'>1. Pangrams</p>
+                    <p id='qns'>2. Separate the Numbers</p>
+                    <p id='qns'>3. Funny String</p>
+                    <p id='qns'>4. Counting Sort 1</p>        
+                </span>
+                  <hr>
+                   <div class="container">
+                    <center> <div class="row">
+                        <div class="col">
+                            <a class="btn btn-lg" href="/post/logic-building/20/">
+                               <span>Lets Solve</span>
+                            </a>
+                        </div>
+                    </div> </center>
+                </div>
+                <hr>
+              </div>
+              </div> 
+              <div class="col-md-4">
+                <div class="p-card bg-white p-2 rounded px-3">
+                    <div class="d-flex align-items-center credits"><img src="https://i.imgur.com/hlz6G90.png" width="16px"><span class="text-black-50 ml-2" style="font-weight:bolder">Level - 23</span></div>
+    
+                    <hr>
+                    <h6 class="card-header mb-2" style="background-color:#0088cc;color:white;font-weight:bolder;text-align:center;border-radius:5px">Day - 23</h6><span class="badge badge-success p-2 mb-2 mr-2">Total Questions - 4</span><span class="badge badge-danger p-2 mb-2 ">All Difficulty</span><span class="d-block mb-2" style="font-weight:bold">
+                        <p id='qns'>1. Counting Sort 2</p>
+                        <p id='qns'>2. Gemstones</p>
+                        <p id='qns'>3. Alternating Characters</p>
+                        <p id='qns'>4. Beautiful Binary String</p>   
+                    </span>
+                    <hr>
+                     <div class="container">
+                      <center> <div class="row">
+                          <div class="col">
+                              <a class="btn btn-lg" href="/post/logic-building/21/">
+                                 <span>Lets Solve</span>
+                              </a>
+                          </div>
+                      </div> </center>
+                  </div>
+                  <hr>
+                </div>
+                </div> 
+                <div class="col-md-4">
+            <div class="p-card bg-white p-2 rounded px-3">
+                <div class="d-flex align-items-center credits"><img src="https://i.imgur.com/hlz6G90.png" width="16px"><span class="text-black-50 ml-2" style="font-weight:bolder">Level - 24</span></div>
+
+                
+                <hr>
+                <h6 class="card-header mb-2" style="background-color:#0088cc;color:white;font-weight:bolder;text-align:center;border-radius:5px">Day - 24</h6><span class="badge badge-success p-2 mb-2 mr-2">Total Questions - 4</span><span class="badge badge-danger p-2 mb-2 ">All Difficulty</span><span class="d-block mb-2" style="font-weight:bold">
+                    <p id='qns'>1. Love-Letter Mystery</p>
+                    <p id='qns'>2. Anagram</p>
+                    <p id='qns'>3. Making Anagrams</p>
+                    <p id='qns'>4. Game of Thrones - I</p>       
+                </span>
+                <hr>
+                 <div class="container">
+                  <center> <div class="row">
+                      <div class="col">
+                          <a class="btn btn-lg" href="/post/logic-building/22/">
+                             <span>Lets Solve</span>
+                          </a>
+                      </div>
+                  </div> </center>
+              </div>
+              <hr>
+            </div>
+            </div> 
+            <div class="col-md-4">
+              <div class="p-card bg-white p-2 rounded px-3">
+                  <div class="d-flex align-items-center credits"><img src="https://i.imgur.com/hlz6G90.png" width="16px"><span class="text-black-50 ml-2" style="font-weight:bolder">Level - 25</span></div>
+
+                  <hr>
+                  <h6 class="card-header mb-2" style="background-color:#0088cc;color:white;font-weight:bolder;text-align:center;border-radius:5px">Day - 25</h6><span class="badge badge-success p-2 mb-2 mr-2">Total Questions - 4</span><span class="badge badge-danger p-2 mb-2 ">All Difficulty</span><span class="d-block mb-2" style="font-weight:bold">
+                    <p id='qns'>1. Two Strings</p>
+                    <p id='qns'>2. String Construction</p>
+                    <p id='qns'>3. Extra Long Factorials</p>
+                    <p id='qns'>4. Non-Divisible Subset</p>         
+                </span>
+                  <hr>
+                   <div class="container">
+                    <center> <div class="row">
+                        <div class="col">
+                            <a class="btn btn-lg" href="/post/logic-building/23/">
+                               <span>Lets Solve</span>
+                            </a>
+                        </div>
+                    </div> </center>
+                </div>
+                <hr>
+              </div>
+              </div> 
+              <div class="col-md-4">
+                <div class="p-card bg-white p-2 rounded px-3">
+                    <div class="d-flex align-items-center credits"><img src="https://i.imgur.com/hlz6G90.png" width="16px"><span class="text-black-50 ml-2" style="font-weight:bolder">Level - 26</span></div>
+                    
+    
+                    
+                    <hr>
+                    <h6 class="card-header mb-2" style="background-color:#0088cc;color:white;font-weight:bolder;text-align:center;border-radius:5px">Day - 26</h6><span class="badge badge-success p-2 mb-2 mr-2">Total Questions - 4</span><span class="badge badge-danger p-2 mb-2 ">All Difficulty</span><span class="d-block mb-2" style="font-weight:bold">
+                        <p id='qns'>1. Queen's Attack II</p>
+                        <p id='qns'>2. Bigger is Greater</p>
+                        <p id='qns'>3. Flatland Space Stations</p>
+                        <p id='qns'>4. 3D Surface Area</p>  
+                    </span>
+                    <hr>
+                     <div class="container">
+                      <center> <div class="row">
+                          <div class="col">
+                              <a class="btn btn-lg" href="/post/logic-building/24">
+                                 <span>Lets Solve</span>
+                              </a>
+                          </div>
+                      </div> </center>
+                  </div>
+                  <hr>
+                </div>
+                </div> 
+                <div class="col-md-4">
+                  <div class="p-card bg-white p-2 rounded px-3">
+                      <div class="d-flex align-items-center credits"><img src="https://i.imgur.com/hlz6G90.png" width="16px"><span class="text-black-50 ml-2" style="font-weight:bolder">Level - 27</span></div>
+                     
+                      
+                      
+                       
+                      <hr>
+                      <h6 class="card-header mb-2" style="background-color:#0088cc;color:white;font-weight:bolder;text-align:center;border-radius:5px">Day - 27</h6><span class="badge badge-success p-2 mb-2 mr-2">Total Questions - 3</span><span class="badge badge-danger p-2 mb-2 ">All Difficulty</span><span class="d-block mb-2" style="font-weight:bold">
+                        <p id='qns'>1. Absolute Permutation</p>
+                        <p id='qns'>2. Larry's Array</p>
+                        <p id='qns'>3. Almost Sorted</p>
+                        <p id='qns'>4. -</p>
+                    </span>
+                      <hr>
+                       <div class="container">
+                        <center> <div class="row">
+                            <div class="col">
+                                <a class="btn btn-lg" href="/post/logic-building/25/">
+                                   <span>Lets Solve</span>
+                                </a>
+                            </div>
+                        </div> </center>
+                    </div>
+                    <hr>
+                  </div>
+                  </div> 
+                  <div class="col-md-4">
+                    <div class="p-card bg-white p-2 rounded px-3">
+                        <div class="d-flex align-items-center credits"><img src="https://i.imgur.com/hlz6G90.png" width="16px"><span class="text-black-50 ml-2" style="font-weight:bolder">Level - 28</span></div>
+                            <hr>
+                        <h6 class="card-header mb-2" style="background-color:#0088cc;color:white;font-weight:bolder;text-align:center;border-radius:5px">Day - 28 </h6><span class="badge badge-success p-2 mb-2 mr-2">Total Questions - Backlogs</span><span class="badge badge-danger p-2 mb-2 ">Backlogs</span><span class="d-block mb-2" style="font-weight:bold">
+                            This Section is a break or you can complete you backlogs On this Day.</span>
+                        <hr>
+                         <div class="container">
+                          <center> <div class="row">
+                              <div class="col">
+                                 
+                              </div>
+                          </div> </center>
+                      </div>
+                      <hr>
+                    </div>
+                  </div>
+            <div class="card text-center" id="card_suggest"  style='margin-bottom:2rem;width:100%;margin-top:2rem;border-radius:1rem'>
+                <h5 class="card-header" style="background-color:#0088cc;color:white;font-weight:bolder;width:100%;border-radius:1rem">Week - 5</h5>
+                <div class="card-body" style='border-radius:1rem'>
+            
+            
+                    <h5 class="card-title" style='font-weight:bold'>"If its important you will find a way , if not you will find an excuse"
+                        - Michelle Ruiz
+                        </h5>
+                    <h5 class="card-title" style='font-weight:bold;color:crimson'><i class="fas fa-code"></i> Platform - Hackerrank</h5>
+                  </div>
+              </div>
+                    <div class="col-md-4">
+                      <div class="p-card bg-white p-2 rounded px-3">
+                          <div class="d-flex align-items-center credits"><img src="https://i.imgur.com/hlz6G90.png" width="16px"><span class="text-black-50 ml-2" style="font-weight:bolder">Level - 29</span></div>
+                          
+                          
+                          
+                          <hr>
+                          <h6 class="card-header mb-2" style="background-color:#0088cc;color:white;font-weight:bolder;text-align:center;border-radius:5px">Day - 29</h6><span class="badge badge-success p-2 mb-2 mr-2">Total Questions - 3</span><span class="badge badge-danger p-2 mb-2 ">All Difficulty</span><span class="d-block mb-2" style="font-weight:bold">
+                            <p id='qns'>1. Matrix Layer Rotation</p>
+                            <p id='qns'>2. Super Reduced String</p>
+                            <p id='qns'>3. Two Characters</p>
+                        </span>
+                          <hr>
+                           <div class="container">
+                            <center> <div class="row">
+                                <div class="col">
+                                    <a class="btn btn-lg" href="/post/logic-building/26/">
+                                       <span>Lets Solve</span>
+                                    </a>
+                                </div>
+                            </div> </center>
+                        </div>
+                        <hr>
+                      </div>
+                      </div> 
+                      <div class="col-md-4">
+                        <div class="p-card bg-white p-2 rounded px-3">
+                            <div class="d-flex align-items-center credits"><img src="https://i.imgur.com/hlz6G90.png" width="16px"><span class="text-black-50 ml-2" style="font-weight:bolder">Level - 30</span></div>
+                                 
+                            <hr>
+                            <h6 class="card-header mb-2" style="background-color:#0088cc;color:white;font-weight:bolder;text-align:center;border-radius:5px">Day - 30</h6><span class="badge badge-success p-2 mb-2 mr-2">Total Questions - 2</span><span class="badge badge-danger p-2 mb-2 ">All Difficulty</span><span class="d-block mb-2" style="font-weight:bold">
+                                <p id='qns'>1. Weighted Uniform Strings</p>
+                                <p id='qns'>2. Sherlock and Anagrams</p>
+                                <p id='qns'>3. - </p>
+                          
+                            </span>
+                            <hr>
+                             <div class="container">
+                              <center> <div class="row">
+                                  <div class="col">
+                                      <a class="btn btn-lg" href="/post/logic-building/27/">
+                                         <span>Lets Solve</span>
+                                      </a>
+                                  </div>
+                              </div> </center>
+                          </div>
+                          <hr>
+                        </div>
+                        </div> 
+                    
+                         
+                            
+                             
+                              
+                               
+                  
+    </div>
+    
+    <div class="row mb-4">
+      
+      
+    
+    
+    
+    
+    
+    </div>
+    </div>
+    
+    </div>
+    {% endblock %}
+    {% block script %}
+    <script>
+    
+      var colors = ['#FB9797', '#FB84BD', '#EA84FB', '#FF6D3F', '#4270E7', 'green', 'blue'];
+        $('.add-border').each(function() {
+            $(this).css('border-top', "3px solid " + colors[Math.floor(Math.random() * colors.length)]);
+        });
+    
+    </script>
+    {% endblock %}
+    
+    
+    

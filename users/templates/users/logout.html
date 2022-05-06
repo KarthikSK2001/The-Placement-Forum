@@ -1,0 +1,19 @@
+{% extends "blog/base.html" %}
+
+{% block title %}Logout{% endblock %}
+
+{% block content %}
+
+<div class="container">
+    <div class="card text-center" id="card_suggest"  style='margin-bottom:4rem'>
+        <h5 class="card-header" style="background-color:#0088cc;color:white;font-weight:bolder;width:100%">You have been logged out!</h5>
+        <div class="card-body" style='border-radius:1rem'>
+          
+            <a href="{% url 'account_login' %}"  style='font-weight:bold'>Login Again</a>
+          <h5 class="card-title" style='font-weight:bold'></h5>
+        </div>
+      </div>
+    <h2></h2>    
+    
+</div>
+{% endblock %}

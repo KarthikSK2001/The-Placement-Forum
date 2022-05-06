@@ -1,0 +1,86 @@
+{% extends "blog/base.html" %}
+
+{% block title %}Logic Building{% endblock %}
+
+{% block content %}
+<style>
+    #card_suggest_detail,#btntitle,col-md-10{
+        border-radius: 0.5rem;
+        
+        box-shadow:  8px 8px 4px #c5c5c5,
+                     -8px -8px 4px #fbfbfb;}
+</style>
+<div class="col-md-10 m-auto">
+    
+<article class="content-section" style="overflow: auto;margin-bottom:2rem;border-radius: 0.5rem;
+        
+box-shadow:  8px 8px 4px #c5c5c5,
+             -8px -8px 4px #fbfbfb;">
+
+    <div class="media">
+        <img class="rounded-circle article-img" src="/static/blog/images/main-logo.PNG" alt="image">
+        <div class="media-body">
+            <h4 class="d-inline" style="pointer-events:none;font-weight:bolder;color:crimson">Code Studio</h4>
+            {% comment %} <div id="save-section">
+                {% include 'blog/save_section_cpp.html' %}
+            </div> {% endcomment %}
+            <p><small class="text-success" style="color:darkgreen;font-weight:bolder;" ><i class="fas fa-code"></i> Platform - Hackerrank</small></p>
+        </div>
+    </div>
+    <hr>
+    <div class="card text-center" id="card_suggest_detail" style='margin-bottom:1rem'>
+        <h6 class="card-header" style="background-color:#0088cc;color:white;font-weight:bolder;border-radius:0.5rem;">1. {{post.titlelb1}}</h6>
+       
+       
+      </div>
+      <center> <button type="button" id="btntitle" class="btn btn-danger" style="border-radius:0.5rem;background-color:crimson;margin-bottom:1rem"><a target="_blank" class="article-title" href="{{ post.linklb1 }}" style="color:white;">Solve Here</a></button>
+      </center>
+      <div class="card text-center" id="card_suggest_detail" style='margin-bottom:1rem'>
+        <h6 class="card-header" style="background-color:#0088cc;color:white;font-weight:bolder;border-radius:0.5rem;">2. {{post.titlelb2}}</h6>
+       
+       
+      </div>
+      <center> <button type="button" id="btntitle" class="btn btn-danger" style="border-radius:0.5rem;background-color:crimson;margin-bottom:1rem"><a target="_blank" class="article-title" href="{{ post.linklb2 }}" style="color:white;">Solve Here</a></button>
+      </center>
+      <div class="card text-center" id="card_suggest_detail" style='margin-bottom:1rem'>
+        <h6 class="card-header" style="background-color:#0088cc;color:white;font-weight:bolder;border-radius:0.5rem;">3. {{post.titlelb3}}</h6>
+       
+       
+      </div>
+      <center> <button type="button" id="btntitle" class="btn btn-danger" style="border-radius:0.5rem;background-color:crimson;margin-bottom:1rem"><a target="_blank" class="article-title" href="{{ post.linklb3 }}" style="color:white;">Solve Here</a></button>
+      </center>
+      <div class="card text-center" id="card_suggest_detail" style='margin-bottom:1rem'>
+        <h6 class="card-header" style="background-color:#0088cc;color:white;font-weight:bolder;border-radius:0.5rem;">4. {{post.titlelb4}}</h6>
+       
+       
+      </div>
+      <center> <button type="button" id="btntitle" class="btn btn-danger" style="border-radius:0.5rem;background-color:crimson;margin-bottom:1rem"><a target="_blank" class="article-title" href="{{ post.linklb4 }}" style="color:white;">Solve Here</a></button>
+      </center>
+    {% comment %} <h3 class="d-inline"><a class="article-title" href="{% url 'post-detail' post.id %}">{{ post.titlelb1 }}</a></h3> {% endcomment %}
+    {% comment %} {% if postlb.author == user %}
+        <div class="d-inline float-right">
+            &nbsp;&nbsp;&nbsp;<a class="btn btnedit" href="{% url 'post-update' post.id %}"><i class="far fa-edit"></i></a>
+            &nbsp;&nbsp;&nbsp;<a class="btn btndel" href="{% url 'post-delete' post.id %}"><i class="far fa-trash-alt"></i></a>
+        </div> {% endcomment %}
+   
+    
+
+    <hr>
+    
+    
+</article>
+
+
+<hr>
+
+<div class="main-comment-section">
+    {% include 'blog/comments_lb.html' %}
+</div>
+
+
+<br><br>
+
+</div>
+
+
+{% endblock %}
